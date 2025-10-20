@@ -1,4 +1,6 @@
 
+### Decision Tree:
+
 | Start Here | Question | If YES → Go To | If NO → Go To | Bio Example | Recommended Test |
 |------------|----------|----------------|---------------|-------------|------------------|
 | 1. How many groups? | 2 groups? | Row 2 | Row 5 | Drug vs. control on plant growth | t-test |
@@ -11,3 +13,8 @@
 | 8. Categorical data? (counts %) | - | Chi-square or Fisher's exact | Row 9 | % plants surviving (yes/no) | Chi-square |
 | 9. Proportions/rates? | - | Row 10 | Row 2 | Infection rates in 2 groups | Z-test for proportions |
 | 10. Repeated measures? (same subjects over time) | - | Repeated-measures ANOVA or Friedman | End | Growth over 5 weeks (same plants) | RM ANOVA |
+
+### Quick Rules:
+1. Always check normality first --> use plots or normality tests (e.g., Kolmogorov-Smirnov, Shaphiro Wilk).
+2. Sample size <30? → Non-parametric safer.
+3. Bio tip: Growth/survival data often non-normal → Start with Wilcoxon/Kruskal.
