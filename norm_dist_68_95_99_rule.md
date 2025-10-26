@@ -7,7 +7,3 @@ The 68-95-99.7 rule is based on the mean and standard deviation. It says:
 
 <img src="images/normal_dist_68_95_99-7_rule.jpg" alt="The 68-95-99.7 rule" style="width: 50%;">
 *Caption: The 68-95-99.7 rule. Source: [freecodecamp.org]([https://example.com](https://www.freecodecamp.org/news/normal-distribution-explained/))*
-
-![The 68-95-99.7 rule](images/normal_dist_68_95_99-7_rule.jpg){: width="50%"}
-
-[images/normal_dist_68_95_99-7_rule.jpg]: https://www.freecodecamp.org/news/normal-distribution-explained/ "Source: Example Website[](https://example.com)"
