@@ -230,11 +230,3 @@ Fill this form completely before running any software.
 
 ---
 
-Would you like me to now generate this as:
-
-* a **fillable PDF form** (with text boxes and checkboxes),
-  or
-* a **Word (.docx)** template you can share and edit?
-
-Both will preserve the structure and allow students to fill it digitally or print it.
-
