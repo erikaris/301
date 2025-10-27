@@ -200,10 +200,10 @@ Fill this form completely before running any software.
 
 ## 7️⃣. **Documentation / Attachments**
 
-☐ Pilot data summary
-☐ Literature tables or prior studies for effect sizes
-☐ Assumptions for ICC / correlation
-☐ Any constraints or notes from ethics or supervisor
+☐ Pilot data summary <br />
+☐ Literature tables or prior studies for effect sizes <br />
+☐ Assumptions for ICC / correlation <br />
+☐ Any constraints or notes from ethics or supervisor <br />
 
 ---
 
