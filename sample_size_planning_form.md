@@ -1,4 +1,4 @@
-# 📋 **Power & Sample Size Planning Form (Pre-Calculation Worksheet)**
+# **Power & Sample Size Planning Form (Pre-Calculation Worksheet)**
 
 **Purpose:**
 To collect and organize all information needed *before* performing a sample size or power analysis in G*Power, R, SPSS, or another tool.
