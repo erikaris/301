@@ -5,7 +5,7 @@ The 68-95-99.7 rule is based on the mean and standard deviation. It says:
 > 2. 95% of the population is within 2 standard deviations of the mean.
 > 3. 99.7% of the population is within 3 standard deviations of the mean.
 
-<img src="images/normal_dist_68_95_99-7_rule.jpg" alt="The 68-95-99.7 rule" style="width: 40%;">
+<img src="images/normal_dist_68_95_99-7_rule.jpg" alt="The 68-95-99.7 rule" style="width: 50%;">
 
 *The 68-95-99.7 rule. Source: [freecodecamp.org](https://www.freecodecamp.org/news/normal-distribution-explained/)*
 
