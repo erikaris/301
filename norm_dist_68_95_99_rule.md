@@ -11,4 +11,4 @@ The 68-95-99.7 rule is based on the mean and standard deviation. It says:
 
 ### Application example:
 What's the chance of seeing someone with a height between 62 and 66 inches? <br />
-It's (95-68)/2 = 13.5%. Both outer edges have the same %.
+It's **(95-68)/2 = 13.5%**. Both outer edges have the same %.
