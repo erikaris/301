@@ -54,7 +54,7 @@ He also proposed **3×IQR** for “extreme” outliers (like a 3 σ rule).
 
 ### 4. Check this normal curve for a better understanding. 
 
-<img src="images/iqr15.png" alt="Description" width="400">
+<img src="images/iqr15.png" alt="Description" width="500">
 
 Here’s the visual explanation:
 
