@@ -45,16 +45,23 @@ He also proposed **3×IQR** for “extreme” outliers (like a 3 σ rule).
 
 ---
 
-
-✅ **In summary:**
+**In summary:**
 
 > The 1.5×IQR rule was chosen because it’s a balance:
   * Not too tight (doesn’t label normal variation as outliers).
   * Not too loose (still catches extreme values).
   * Statistically, for roughly bell-shaped data, this range covers about **95%** of the data. So anything outside can be considered unusual/outlier.
 
+### 4. Check this normal curve for a better understanding. 
 
+[Standard Normal Distribution with Quartiles](images/iqr15.png)
 
+Here’s the visual explanation:
 
-Would you like me to show *how much data* falls outside the 1.5×IQR fence for several distributions (normal, uniform, skewed)? That often makes the choice feel much more intuitive.
+* The **orange dashed lines** show **Q1 (−0.674)** and **Q3 (+0.674)** — the 25th and 75th percentiles of a normal distribution.
+* The **red dotted lines** mark the **1.5 × IQR fences**, roughly at ±2.7σ.
+* Only a tiny fraction of the normal curve lies beyond those fences — those would be considered *outliers* in Tukey’s boxplot rule.
+
+This demonstrates visually where that **1.5 × IQR** idea comes from and why it corresponds to about **2 standard deviations** beyond the center for normally distributed data.
+
 
