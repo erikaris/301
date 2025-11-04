@@ -54,7 +54,7 @@ He also proposed **3×IQR** for “extreme” outliers (like a 3 σ rule).
 
 ### 4. Check this normal curve for a better understanding. 
 
-![Standard Normal Distribution with Quartiles](images/iqr15.png)
+<img src="images/iqr15.png" alt="Description" width="200">
 
 Here’s the visual explanation:
 
