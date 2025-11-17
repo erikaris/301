@@ -81,3 +81,158 @@ Paired by nature, not by experiment:
 * Husband–wife income comparisons (paired by household)
 
 ---
+
+# Is This Paired or Not Paired?
+
+### **Example 1: Blood Pressure Before and After Medication**
+
+* Measure BP for 30 patients before starting a drug and after 4 weeks.
+  **Paired?** ✅ (same patient measured twice)
+
+---
+
+### **Example 2: Reaction Time Under Two Conditions**
+
+* 25 students perform a reaction-time test **once with caffeine and once without**.
+  **Paired?** ✅ (same person under two conditions)
+
+---
+
+### **Example 3: Comparing Two Different Groups**
+
+* 50 men and 50 women complete a memory test once.
+  **Paired?** ❌ (different people, independent groups)
+
+---
+
+### **Example 4: Twin Study**
+
+* Twin A gets treatment, twin B does not. Measure outcome in both twins.
+  **Paired?** ✅ (matched individuals)
+
+---
+
+### **Example 5: Heart Rate on Left vs Right Arm**
+
+* Measure HR simultaneously on left and right arm for 20 patients.
+  **Paired?** ✅ (same patient, two measurements)
+
+---
+
+### **Example 6: Classroom Test Scores**
+
+* Class A vs Class B take the same exam. Each student only in one class.
+  **Paired?** ❌ (students in different groups)
+
+---
+
+### **Example 7: Soil Nutrients**
+
+* Measure nutrient levels in soil **before and after fertiliser** on the same plots.
+  **Paired?** ✅ (same experimental unit measured twice)
+
+---
+
+### **Example 8: Comparing Hospitals**
+
+* Hospital X vs Hospital Y: compare average patient recovery times.
+  **Paired?** ❌ (different hospitals, independent groups)
+
+---
+
+### **Example 9: Eye Pressure**
+
+* Measure intraocular pressure in **left and right eye** of each patient.
+  **Paired?** ✅ (two measurements per patient)
+
+---
+
+### **Example 10: Matched Case-Control Study**
+
+* Each patient with a disease is matched to a healthy control by age/sex. Measure cholesterol.
+  **Paired?** ✅ (matched pairs)
+
+---
+
+# Is This Paired or Not Paired? (With a Twist)
+
+### **1. Blood Pressure in Two Hospitals**
+
+* Hospital A: 50 patients measured once
+* Hospital B: 50 patients measured once
+
+**Tricky twist:**
+
+* If the 50 patients in A are *age- and sex-matched* to the 50 in B → **paired**
+* If random patients → **independent**
+
+---
+
+### **2. Student Test Scores**
+
+* Compare pre-test and post-test scores for 30 students.
+
+**Tricky twist:**
+
+* If the *same students* do pre and post → **paired**
+* If post-test is taken by a *different group of 30 students* → **independent**
+
+---
+
+### **3. Left vs Right Eye**
+
+* Measure eye pressure in patients.
+
+**Tricky twist:**
+
+* If each patient contributes *both eyes* → **paired**
+* If one group is left eyes and another group is right eyes from *different patients* → **independent**
+
+---
+
+### **4. Twin Study**
+
+* Twin A gets treatment, Twin B does not.
+
+**Tricky twist:**
+
+* If you **compare within twin pairs** → **paired**
+* If you treat all treated twins vs all untreated twins as two groups (ignoring pairing) → **independent** (less powerful)
+
+---
+
+### **5. Diet Intervention**
+
+* Compare weight loss in adults who try diet A vs diet B.
+
+**Tricky twist:**
+
+* If individuals are **matched on BMI, age, sex**, and one gets diet A, one gets diet B → **paired**
+* If participants are randomly assigned without matching → **independent**
+
+---
+
+### **6. Blood Sugar Measurements**
+
+* Measure blood sugar at 8 AM and 2 PM in patients.
+
+**Tricky twist:**
+
+* If measurements are on the *same patients* → **paired**
+* If 8 AM group is different from 2 PM group → **independent**
+
+---
+
+### **7. Patient Satisfaction**
+
+* Compare satisfaction for telemedicine vs face-to-face appointments.
+
+**Tricky twist:**
+
+* If *same patients experience both types* → **paired**
+* If one group only did telemedicine, the other only face-to-face → **independent**
+
+---
+
+
+
