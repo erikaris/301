@@ -1,20 +1,3 @@
-Got it — you want **the correct answers**, not examples of student responses.
-Here is a clear, accurate set of explanations you can rely on during your shift.
-
----
-
-# ✅ **1. “Do you understand what a t-test is in general?” — Correct explanation**
-
-A **t-test** is a statistical hypothesis test used to compare **means**.
-It checks whether the difference between sample means is large enough (relative to variability) to conclude that a real difference exists in the population.
-
-There are three standard types:
-
-1. **One-sample t-test** — compare a sample mean to a known value.
-2. **Independent samples t-test** — compare means of *two independent groups*.
-3. **Paired samples t-test** — compare two measurements taken on *the same or matched units*.
-
-Purpose:
 
 # **“Do you know what makes data ‘paired’?”**
 
@@ -70,12 +53,10 @@ Then one is assigned to each group.
 Examples:
 
 * **Twin studies:** one twin receives treatment, the other is control.
-* **Matched case–control studies:** a case (disease) is matched with a control of same age/sex/neighbourhood.
-* **Educational studies:** students matched on prior achievement before applying different teaching methods.
-
-Why matched pairs?
-
-> To reduce variability from confounders and isolate the effect of the condition/treatment.
+* **Matched case–control studies:** Each patient with a disease is matched to a healthy control of same age, sex, and location. Compare outcome (e.g., cholesterol, blood pressure).
+* **Educational studies:** Students matched on prior achievement: one assigned to new teaching method, one to standard method. Compare test scores.
+* **Household / paired relationships** Compare husbands and wives on dietary habits, or parents and children on activity levels.
+* **Experimental units** Pairs of plots of land with similar soil characteristics: one gets fertiliser, one does not.
 
 ---
 
