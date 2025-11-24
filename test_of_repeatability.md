@@ -1,11 +1,10 @@
-Perfect! Let’s get you fully prepped for your 301 MASH session in just **13 minutes**. I’ll break it down step by step so you can understand, explain, and guide the student clearly.
 
----
-
-## **1️⃣ Understand the Topic Yourself: Test of Repeatability**
+## **Understand the Topic Yourself: Test of Repeatability**
 
 **Definition in simple terms:**
 A **Test of Repeatability** (sometimes called the **intra-class correlation coefficient, ICC**) measures **how consistent or reliable repeated measurements are for the same item, individual, or sample under the same conditions**.
+> Repeatability measures how consistent repeated measurements are for the same subject/sample.
+> High repeatability → measurements are reliable; Low → large measurement error.
 
 * Example in animal & plant science:
 
@@ -29,30 +28,21 @@ A **Test of Repeatability** (sometimes called the **intra-class correlation coef
 
 ---
 
-## **2️⃣ How to Explain It to the Student**
+## **How to understand it better**
 
-1. **Start with a real-world analogy:**
-
-   * “Imagine you measure the same plant’s height 5 times. If all 5 measurements are almost the same, your measurement is highly repeatable. If they vary a lot, repeatability is low.”
-
-2. **Connect to their research:**
-
-   * “If you are doing experiments in your PhD, calculating repeatability helps you see if your measurements are reliable enough to trust for analysis.”
-
-3. **Link to statistical tests:**
-
-   * The repeatability can be calculated using:
-
+1. Imagine you measure the same plant’s height 5 times. If all 5 measurements are almost the same, your measurement is highly repeatable. If they vary a lot, repeatability is low.
+2. Calculating repeatability helps you see if your measurements are reliable enough to trust for analysis.
+3. The repeatability can be calculated using:
      * **ANOVA-based methods** (variance components)
      * **Intra-class correlation (ICC)** in R or SPSS
-   * If their data is continuous: use ICC.
+   * If the data is continuous: use ICC.
    * If binary/categorical: there are adapted methods.
 
 ---
 
-## **3️⃣ Steps to Tackle Their Data/Problem**
+## **Steps to Tackle Data/Problem**
 
-1. **Ask about their dataset:**
+1. **Ask about the dataset:**
 
    * Number of subjects (plants, animals, samples)?
    * Number of repeated measurements per subject?
@@ -76,31 +66,10 @@ A **Test of Repeatability** (sometimes called the **intra-class correlation coef
    * R = 0 → no repeatability (all variation is noise)
    * R = 1 → perfect repeatability (all variation is true differences)
    * Usually, R > 0.7 is considered high.
-
+     
 ---
 
-## **4️⃣ How to Solve Student Issues in a Session**
-
-**Step 1: Clarify their goal**
-
-* “Do you just want to understand repeatability, or do you want to calculate it on your data?”
-
-**Step 2: Show conceptually**
-
-* Draw a quick diagram of “within-subject vs between-subject variance.”
-
-**Step 3: Walk through calculation**
-
-* If they have data: use R or Excel for simple variance components.
-* If no data yet: do a conceptual example using small numbers.
-
-**Step 4: Interpret & discuss implications**
-
-* Explain what the result means for their experiment: reliability of measurement, design improvements.
-
----
-
-## **5️⃣ Quick Prep Summary (to have in your head)**
+## **Quick Prep Summary (to have in your head)**
 
 | Point       | Key Notes                                                         |
 | ----------- | ----------------------------------------------------------------- |
@@ -113,22 +82,191 @@ A **Test of Repeatability** (sometimes called the **intra-class correlation coef
 
 ---
 
-💡 **Pro Tip for tutoring:**
+### ** Example Dataset (3 plants measured 3 times)**
 
-* Use a small example with **3 “plants” measured 3 times**. Students grasp repeatability much faster with a visual table:
+| PlantID | Measurement |
+| ------- | ----------- |
+| A       | 10          |
+| A       | 11          |
+| A       | 10.5        |
+| B       | 15          |
+| B       | 14.8        |
+| B       | 15.2        |
+| C       | 8           |
+| C       | 9           |
+| C       | 8.5         |
 
-| Plant | Measurement 1 | Measurement 2 | Measurement 3 |
-| ----- | ------------- | ------------- | ------------- |
-| A     | 10            | 11            | 10.5          |
-| B     | 15            | 14.8          | 15.2          |
-| C     | 8             | 9             | 8.5           |
-
-* Then explain how **variance between plants vs variance within plants** gives repeatability.
+* **Between-subject variance:** differences between A, B, C
+* **Within-subject variance:** variation among repeated measures for each plant
 
 ---
 
-If you want, I can make a **1-page “cheat sheet”** with:
+### ** How to Calculate in R**
 
-* definition, formula, example table, R code, and interpretation ready for your 13-minute prep. It will make it super fast to explain in the session.
+**Step 1: Prepare data**
 
-Do you want me to do that?
+```R
+# Install if not already
+install.packages("rptR")
+library(rptR)
+
+# Example dataset
+data <- data.frame(
+  PlantID = rep(c("A", "B", "C"), each=3),
+  Height = c(10,11,10.5,15,14.8,15.2,8,9,8.5)
+)
+
+# Calculate repeatability
+rpt_result <- rpt(Height ~ (1|PlantID), grname="PlantID",
+                  data=data, datatype="Gaussian", nboot=1000, npermut=0)
+print(rpt_result)
+```
+
+**Step 2: Interpretation**
+
+* Look at `R` value:
+
+  * R ~ 0 → low repeatability (high measurement error)
+  * R ~ 1 → high repeatability (measurements consistent)
+* Confidence intervals indicate uncertainty.
+
+---
+
+### ** How to Calculate in SPSS**
+
+**Step 1: Organize data**
+
+* Two columns:
+
+  * `PlantID` (Subject ID)
+  * `Height` (Measurement)
+* Each row = 1 measurement
+
+**Step 2: Run ICC**
+
+1. Go to **Analyze → Scale → Reliability Analysis**
+2. Click **Statistics → Intraclass Correlation Coefficient (ICC)**
+3. Select **“Two-way mixed”** or **“Two-way random”**, depending on your design
+4. Click **OK**
+
+**Step 3: Interpretation**
+
+* ICC value = Repeatability
+* > 0.7 → good repeatability
+* <0.5 → poor repeatability
+
+---
+# Intepreting ICC
+
+## **1. ICC ≈ 0.7 or higher → Good Repeatability**
+
+**Interpretation:**
+
+* Measurements are consistent; most variation comes from **true differences between subjects**.
+* Your measurement method is reliable.
+
+**Action:**
+
+* You can proceed with your analysis confidently.
+* Use the repeated measurements as they are in further statistical models.
+* No major changes needed to measurement protocol.
+
+**Example:**
+
+* Plant heights measured 3 times → almost same each time for each plant → high ICC.
+* Can trust the measured values for analysis or modeling.
+
+---
+
+## **2. ICC between ~0.5 – 0.7 → Moderate Repeatability**
+
+**Interpretation:**
+
+* Measurements are **somewhat reliable**, but there’s noticeable **measurement error**.
+
+**Action:**
+
+* Consider **improving measurement consistency**:
+
+  * Use the same instrument or protocol more carefully
+  * Train measurers
+  * Increase number of repeats to reduce noise
+* You can still use data but **acknowledge some uncertainty** in your analysis.
+
+**Example:**
+
+* Plant height measured by multiple lab members → slight variation.
+* Could standardize method or take more repeats per plant.
+
+---
+
+## **3. ICC < 0.5 → Poor Repeatability**
+
+**Interpretation:**
+
+* Most of the variation comes from **measurement error** rather than true differences.
+* Current measurements are **not reliable**.
+
+**Action:**
+
+* **Do not trust these measurements** for analysis yet.
+* Investigate **sources of error**:
+
+  * Different measurers or instruments
+  * Inconsistent experimental protocol
+  * Environmental factors affecting measurements
+* **Increase repeats** or **standardize protocol** before proceeding.
+
+**Example:**
+
+* Enzyme activity measured inconsistently between replicates → need stricter lab protocol or better instruments.
+
+---
+
+## **ICC Calculation in SPSS**
+* In SPSS, the ICC can be computed with different **models**, depending on the assumptions about your raters/measurements.
+
+---
+
+## ** Two-Way Models in SPSS**
+
+* **Two-way** = both **subjects** and **raters/measurements** are considered as factors.
+* It considers variability due to **both subjects** and **raters/measurements** in the ANOVA.
+
+Now, the difference lies in **whether raters/measurements are random or fixed**.
+
+---
+
+### **A) Two-Way Random (ICC[2])**
+
+* Assumes **both subjects and raters are random samples** from a larger population.
+* Use this if you want to **generalize the ICC to other raters**.
+* Example: You measured plant height using **different students as raters**, and you want to generalize to any student.
+
+**Interpretation:** The ICC tells you **reliability that could apply to other raters**, not just the ones in your dataset.
+
+---
+
+### **B) Two-Way Mixed (ICC[3])**
+
+* Assumes **subjects are random**, but **raters are fixed** (i.e., specific raters of interest).
+* Use this if you only care about **these specific raters**.
+* Example: You measured plant height with **just your lab technician**, and you only care about **this technician’s measurements**.
+
+**Interpretation:** The ICC tells you **reliability for the specific raters in your study**, not generalizable beyond them.
+
+---
+
+## **3️⃣ Quick Summary Table**
+
+| Model          | Subjects | Raters/Measurements | Use Case                                       |
+| -------------- | -------- | ------------------- | ---------------------------------------------- |
+| Two-way random | Random   | Random              | Generalize to other raters                     |
+| Two-way mixed  | Random   | Fixed               | Only interested in these raters                |
+| One-way random | Random   | N/A                 | When each subject measured by different raters |
+
+---
+
+
+
+
