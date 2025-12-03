@@ -1,5 +1,7 @@
 # Parametric vs Non-parametric / Ordinal / Paired Tests
 
+* Check this [decision tree](https://raw.githubusercontent.com/erikaris/301/7a22e2dba773be57a89ca85d2ee1f3f8bd3b0707/stats_key.svg).
+
 | **No.** | **Purpose / Data Type**                      | **Parametric Test (Normal / Interval)** | **Non-parametric / Ordinal / Robust Alternative**                                     | **Notes**                                                                             | **R script example** |
 | ------ | -------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | --------------------- |
 | 1 | **One-sample location (interval/ratio)**     | One-sample t-test                       | Wilcoxon signed-rank; Sign test                                                       | Wilcoxon assumes symmetric distribution; Sign test works for skewed data.             | `t.test(x, mu=0)`<br>`wilcox.test(x, mu=0)` |
