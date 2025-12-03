@@ -18,3 +18,4 @@
 | 14 | **Ordinal data (independent samples)**       | —                                       | Mann–Whitney U / Kruskal–Wallis                                                       | Ranks preserve order; do not assume equal spacing.                                    | `wilcox.test(x, y)`<br>`kruskal.test(y~g)` |
 | 15 | **Ordinal data (paired samples)**            | —                                       | Wilcoxon signed-rank                                                                  | Tests for median shift in paired ordinal responses.                                   | `wilcox.test(x, y, paired=TRUE)` |
 | 16 | **Normality / distribution check**           | Shapiro–Wilk, KS                        | —                                                                                     | If rejected, choose non-parametric alternatives above.                                | `shapiro.test(x)`<br>`ks.test(x, "pnorm", mean(x), sd(x))` |
+------
