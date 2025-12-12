@@ -9,6 +9,8 @@ It goes beyond “Is there a difference?” and answers:
 → **Is it meaningful or trivial?**
 
 Effect size gives *practical significance*, not just statistical significance.
+> What is the smallest meaningful difference you care about?
+>> *e.g., 5 points on a 100-point quiz, or 0.4 points on a 5-point scale*
 
 ---
 
