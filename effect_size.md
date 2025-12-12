@@ -2,6 +2,9 @@
 
 ## What is Effect Size?
 
+> *What is the smallest meaningful difference you care about?*
+> *e.g., 5 points on a 100-point quiz, or 0.4 points on a 5-point scale*
+
 **Effect size** is a numerical measure of **how big or meaningful** a finding is in the real world.
 It goes beyond “Is there a difference?” and answers:
 → **How big is the difference?**
@@ -9,12 +12,13 @@ It goes beyond “Is there a difference?” and answers:
 → **Is it meaningful or trivial?**
 
 Effect size gives *practical significance*, not just statistical significance.
-> What is the smallest meaningful difference you care about?
->> *e.g., 5 points on a 100-point quiz, or 0.4 points on a 5-point scale*
 
 ---
 
 ## Why Effect Size Matters
+
+> Smaller meaningful differences → larger sample needed
+> Larger meaningful differences → smaller sample needed
 
 * A p-value only tells you whether a difference exists (yes/no).
 * **Effect size tells you how large that difference is**, which is often more important.
@@ -54,6 +58,17 @@ Meaning:
 
 * Small r → weak relationship
 * Large r → strong relationship
+
+---
+
+## Example for computing effect size (d):
+Check [effect size calculator](https://www.socscistatistics.com/effectsize/default3.aspx).
+
+> “A 5-point difference on a 100-point quiz”.
+> Suppose the quiz **SD pooled = 15 points**. 
+> Then:
+> d=  5/15 = 0.33
+> So the effect size is: **d = 0.33 → a small-to-medium effect**.
 
 ---
 
