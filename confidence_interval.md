@@ -13,9 +13,9 @@ A **confidence interval (CI)** is a range of values that gives **plausible value
 
 All confidence intervals follow this structure:
 
-$
-\text{Estimate} ;\pm; (\text{critical value}) \times (\text{standard error})
-$
+[
+$\text{Estimate} ;\pm; (\text{critical value}) \times (\text{standard error})$
+]
 
 * **Estimate** → our best guess of the true value (mean, proportion, OR, etc.)
 * **Standard error** → how much this estimate might vary from sample to sample
