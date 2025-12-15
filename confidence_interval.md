@@ -78,9 +78,9 @@ A **95% confidence interval** means:
 
 Used for outcomes like blood pressure, BMI, age.
 
-[
+$$
 \bar{x} \pm t \times \frac{s}{\sqrt{n}}
-]
+$$
 
 * Uses **t-distribution** when population SD is unknown
 * Larger sample size → narrower CI
