@@ -13,9 +13,9 @@ A **confidence interval (CI)** is a range of values that gives **plausible value
 
 All confidence intervals follow this structure:
 
-
-$\text{Estimate} \pm (\text{critical value}) \times (\text{standard error})$
-
+$$
+\text{Estimate} \pm (\text{critical value}) \times (\text{standard error})
+$$
 
 * **Estimate** → our best guess of the true value (mean, proportion, OR, etc.)
 * **Standard error** → how much this estimate might vary from sample to sample
@@ -49,9 +49,9 @@ For example:
 ### Margin of Error
 
 Everything after ± is called the **margin of error**:
-[
+$$
 \text{Margin of Error} = (\text{critical value}) \times (\text{standard error})
-]
+$$
 
 * Larger critical value → wider CI
 * Smaller critical value → narrower CI
@@ -66,7 +66,7 @@ A **95% confidence interval** means:
 
 > If we repeated the study many times, about **95% of the intervals** we calculate would contain the true population value.
 
-🚫 It does **not** mean:
+It does **not** mean:
 
 * There is a 95% probability that the true value lies in *this* interval
 
@@ -88,8 +88,9 @@ $$
 ### (b) Proportion Confidence Interval
 
 Used for prevalence, risk, percentages.
-
-$\hat{p} \pm z \times \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+$$
+\hat{p} \pm z \times \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+$$
 
 ### (c) Ratios (Odds Ratio, Relative Risk, Hazard Ratio)
 
