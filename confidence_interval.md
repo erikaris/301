@@ -89,9 +89,7 @@ Used for outcomes like blood pressure, BMI, age.
 
 Used for prevalence, risk, percentages.
 
-[
-\hat{p} \pm z \times \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
-]
+$\hat{p} \pm z \times \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
 
 ### (c) Ratios (Odds Ratio, Relative Risk, Hazard Ratio)
 
