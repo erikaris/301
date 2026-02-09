@@ -16,3 +16,28 @@ LCA helps answer: *“What type of respondent is this person?”*
 - The choice between FA and LCA depends on what we want to capture in the questionnaire:
   - If the primary interest is identifying underlying continuous dimensions of the research object, FA is most appropriate.
   - If the primary interest is identifying categorical profiles or subtypes that might relate differently to our research object, LCA could be considered.
+
+## Examples:
+Questionnaire items: 5 items about eating disorder behavior
+
+Person	Restrict	Binge	Purge	Anxiety	Rituals
+A	5	1	1	4	5
+B	4	1	2	5	4
+C	1	5	5	2	1
+D	2	4	4	2	2
+
+### Factor Analysis:
+1. Looks at items (columns)
+2. Might find 2 factors:
+   a. Factor 1 = Restrictive + Rituals + Anxiety (high loadings)
+   b. Factor 2 = Binge + Purge
+3. Everyone gets a score on Factor 1 and Factor 2
+4. Focus: *“How much does each person have of each dimension?”*
+
+### Latent Class Analysis:
+1. Looks at people (rows)
+2. Might find 2 classes:
+  a. Class 1 = Restrictive + Anxiety (A & B)
+  b. Class 2 = Binge-Purge (C & D)
+3. Each person is assigned to a class
+4. Focus: *“What type of respondent is this person?”*
