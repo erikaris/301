@@ -18,13 +18,14 @@ LCA helps answer: *“What type of respondent is this person?”*
   - If the primary interest is identifying categorical profiles or subtypes that might relate differently to our research object, LCA could be considered.
 
 ## Examples:
-Questionnaire items: 5 items about eating disorder behavior
+**Questionnaire items:** 5 items about eating disorder behavior
 
-Person	Restrict	Binge	Purge	Anxiety	Rituals
-A	5	1	1	4	5
-B	4	1	2	5	4
-C	1	5	5	2	1
-D	2	4	4	2	2
+| Person | Restrict | Binge | Purge | Anxiety | Rituals |
+| ------ | -------- | ----- | ----- | ------- | ------- |
+| A      | 5        | 1     | 1     | 4       | 5       |
+| B      | 4        | 1     | 2     | 5       | 4       |
+| C      | 1        | 5     | 5     | 2       | 1       |
+| D      | 2        | 4     | 4     | 2       | 2       |
 
 ### Factor Analysis:
 1. Looks at items (columns)
