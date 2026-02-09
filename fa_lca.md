@@ -12,3 +12,7 @@ Essentially, FA helps answer: *“How much does each person exhibit each latent 
 
 - Latent Class Analysis (LCA) can be used to identify distinct subgroups of respondents who share similar response patterns across the questionnaire. For example, LCA might reveal classes such as “restrictive/anxious type” or “binge-purge type.” These classes can be used as **categorical predictors** in logistic regression if the theoretical model suggests different autism risk profiles across types. 
 LCA helps answer: *“What type of respondent is this person?”*
+
+- The choice between FA and LCA depends on what we want to capture in the questionnaire:
+  - If the primary interest is identifying underlying continuous dimensions of the research object, FA is most appropriate.
+  - If the primary interest is identifying categorical profiles or subtypes that might relate differently to our research object, LCA could be considered.
