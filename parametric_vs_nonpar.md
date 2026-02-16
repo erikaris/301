@@ -2,6 +2,12 @@
 
 * Check this [decision tree](https://raw.githubusercontent.com/erikaris/301/7a22e2dba773be57a89ca85d2ee1f3f8bd3b0707/stats_key.svg).
 
+* Ask yourself: what is the dependent variables?
+  - If outcome is:
+    - Continuous (e.g., blood pressure, enzyme level, cholesterol) → Parametric tests possible
+    - Categorical (e.g., yes/no disease) → Chi-square or logistic regression
+    - Ordinal (e.g., pain score 1–5) → Possibly non-parametric
+
 | **No.** | **Purpose / Data Type** | **Parametric Test (Normal / Interval)** | **Non-parametric / Ordinal / Robust Alternative** | **Notes** | **R script example** | **Scenario & Research Question** | **H0 / H1** |
 | ------ | ------------------------ | --------------------------------------- | ------------------------------------------------- | --------- | --------------------- | --------------------------------- | ----------- |
 | 1 | **One-sample location (interval/ratio)** | One-sample t-test | Wilcoxon signed-rank; Sign test | Wilcoxon assumes symmetric distribution; Sign test works for skewed data. | `t.test(x, mu=0)`<br>`wilcox.test(x, mu=0)` | *Scenario:* A company wants to check if mean daily login time differs from a known benchmark.<br>*RQ:* “Is the mean login time significantly different from 5 minutes?” | **H0:** Mean = 5 min<br>**H1:** Mean ≠ 5 min |
