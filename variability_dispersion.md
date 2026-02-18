@@ -88,7 +88,7 @@ They measure variability differently.
 There is no general formula linking IQR and SD. They are only approximately related if the data are normally distributed. 
 If data are **normally distributed**:
 
-<img src="images/IQR-1.webp" alt="Description" width="600">
+<img src="images/IQR-1.webp" alt="Description" width="400">
 
 $$
 IQR \approx 1.35 \times SD
@@ -96,30 +96,30 @@ $$
 
 Or:
 
-[
+$$
 SD \approx \frac{IQR}{1.35}
-]
+$$
 
 ### How so?
 #### Step 1: Start With the Standard Normal Distribution
 
 For a standard normal variable:
 
-[
+$$
 Z \sim N(0,1)
-]
+$$
 
 The probability between −a and +a is:
 
-[
+$$
 P(-a < Z < a)
-]
+$$
 
 Because of symmetry:
 
-[
+$$
 P(-a < Z < a) = 2\Phi(a) - 1
-]
+$$
 
 where
 (\Phi(a)) = cumulative distribution function (CDF).
@@ -130,35 +130,35 @@ where
 
 We want:
 
-[
+$$
 P(-1 < Z < 1)
-]
+$$
 
 Using the formula:
 
-[
+$$
 = 2\Phi(1) - 1
-]
+$$
 
 From tables:
 
-[
+$$
 \Phi(1) = 0.8413
-]
+$$
 
 So:
 
-[
+$$
 2(0.8413) - 1
-]
+$$
 
-[
+$$
 = 1.6826 - 1
-]
+$$
 
-[
+$$
 = 0.6826 \approx 68%
-]
+$$
 
 That’s exactly where ±1 SD → 68% comes from.
 
@@ -168,55 +168,55 @@ That’s exactly where ±1 SD → 68% comes from.
 
 We now want to find **a** such that:
 
-[
+$$
 P(-a < Z < a) = 0.50
-]
+$$
 
 Using the same formula:
 
-[
+$$
 2\Phi(a) - 1 = 0.50
-]
+$$
 
 ---
 
 #### Step 4: Solve Algebraically
 
-[
+$$
 2\Phi(a) - 1 = 0.50
-]
+$$
 
 Add 1 to both sides:
 
-[
+$$
 2\Phi(a) = 1.50
-]
+$$
 
 Divide by 2:
 
-[
+$$
 \Phi(a) = 0.75
-]
+$$
 
 So we now need:
 
-[
+$$
 a = \Phi^{-1}(0.75)
-]
+$$
 
 Looking this up in a Z-table (or using software):
 
-[
+$$
 a = 0.674
-]
+$$
 
 ---
 
 #### Step 5: Final Result
 
-[
+$$
 P(-0.674 < Z < 0.674) = 0.50
-]
+$$
 
 That means:
 
@@ -225,17 +225,17 @@ That means:
 
 So:
 
-[
+$$
 IQR = 0.674 - (-0.674)
-]
+$$
 
-[
+$$
 IQR = 1.349 SD
-]
+$$
 
-[
+$$
 IQR \approx 1.35 SD
-]
+$$
 
 ---
 
@@ -248,9 +248,9 @@ Both:
 
 come from solving the same probability equation:
 
-[
+$$
 P(-a < Z < a) = desired\ percentage
-]
+$$
 
 The only difference is the probability you plug in.
 
