@@ -88,6 +88,8 @@ They measure variability differently.
 There is no general formula linking IQR and SD. They are only approximately related if the data are normally distributed. 
 If data are **normally distributed**:
 
+
+
 [
 IQR \approx 1.35 \times SD
 ]
@@ -237,7 +239,7 @@ IQR \approx 1.35 SD
 
 ---
 
-# 🎯 The Core Insight
+# The Core Insight
 
 Both:
 
@@ -252,17 +254,6 @@ P(-a < Z < a) = desired\ percentage
 
 The only difference is the probability you plug in.
 
----
-
-# How to Explain It Simply in Class
-
-You can say:
-
-> “The 68% rule comes from calculating the probability between −1 and +1 using the normal CDF. The IQR link comes from solving the same equation but setting the probability to 50% instead of 68%. When you solve it, the answer is ±0.674.”
-
----
-
-If you’d like, I can now give you a 30-second intuitive explanation (without formulas) that still sounds mathematically rigorous.
 ---
 
 ## 6. When Do We Use Each?
