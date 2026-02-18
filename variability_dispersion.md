@@ -88,7 +88,7 @@ They measure variability differently.
 There is no general formula linking IQR and SD. They are only approximately related if the data are normally distributed. 
 If data are **normally distributed**:
 
-
+<img src="images/IQR-1.webp" alt="Description" width="600">
 
 [
 IQR \approx 1.35 \times SD
