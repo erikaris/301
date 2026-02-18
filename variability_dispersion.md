@@ -206,21 +206,6 @@ The normal curve is perfectly symmetric.
 * To capture the middle 50%, you move out equally on both sides.
 * The amount you move is 0.674 SD.
 
-That’s all it is — it comes from the probability table.
-
----
-
-# How You Can Explain It in the Tutorial
-
-You can say:
-
-
-
----
-
-If you'd like, I can also show you a super simple visual explanation you can draw in under 30 seconds during the session.
-
-
 ---
 
 # The Core Insight
