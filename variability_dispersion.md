@@ -101,141 +101,126 @@ SD \approx \frac{IQR}{1.35}
 $$
 
 ### How so?
-#### Step 1: Start With the Standard Normal Distribution
+The short answer:
 
-For a standard normal variable:
-
-$$
-Z \sim N(0,1)
-$$
-
-The probability between −a and +a is:
-
-$$
-P(-a < Z < a)
-$$
-
-Because of symmetry:
-
-$$
-P(-a < Z < a) = 2\Phi(a) - 1
-$$
-
-where
-(\Phi(a)) = cumulative distribution function (CDF).
+We get **±0.674 SD** from the **standard normal distribution (Z distribution)**.
 
 ---
 
-#### Step 2: Reproduce the 68% Rule Mathematically
+# Step 1: Think in Z-scores
 
-We want:
-
-$$
-P(-1 < Z < 1)
-$$
-
-Using the formula:
+In a normal distribution, we standardise values using:
 
 $$
-= 2\Phi(1) - 1
+Z = \frac{X - \mu}{SD}
 $$
 
-From tables:
-
-$$
-\Phi(1) = 0.8413
-$$
-
-So:
-
-$$
-2(0.8413) - 1
-$$
-
-$$
-= 1.6826 - 1
-$$
-
-$$
-= 0.6826 \approx 68%
-$$
-
-That’s exactly where ±1 SD → 68% comes from.
+So instead of thinking in raw units, we think in **standard deviation units**.
 
 ---
 
-#### Step 3: Now Do It for 50%
+# Step 2: What does Q1 mean?
 
-We now want to find **a** such that:
-
-$$
-P(-a < Z < a) = 0.50
-$$
-
-Using the same formula:
-
-$$
-2\Phi(a) - 1 = 0.50
-$$
-
----
-
-#### Step 4: Solve Algebraically
-
-$$
-2\Phi(a) - 1 = 0.50
-$$
-
-Add 1 to both sides:
-
-$$
-2\Phi(a) = 1.50
-$$
-
-Divide by 2:
-
-$$
-\Phi(a) = 0.75
-$$
-
-So we now need:
-
-$$
-a = \Phi^{-1}(0.75)
-$$
-
-Looking this up in a Z-table (or using software):
-
-$$
-a = 0.674
-$$
-
----
-
-#### Step 5: Final Result
-
-$$
-P(-0.674 < Z < 0.674) = 0.50
-$$
+Q1 is the **25th percentile**.
 
 That means:
 
-* Q1 = −0.674 SD
-* Q3 = +0.674 SD
+$$
+P(X < Q1) = 0.25
+$$
+
+
+In Z-score language:
+
+[
+P(Z < z_{0.25}) = 0.25
+]
+
+So we are asking:
+
+👉 What Z-value cuts off the lowest 25% of a normal distribution?
+
+---
+
+# Step 3: Look at the standard normal table
+
+If you check a Z-table (or statistical software), the Z-value that gives cumulative probability = 0.25 is:
+
+[
+z = -0.674
+]
+
+Similarly:
+
+The Z-value for cumulative probability = 0.75 (Q3) is:
+
+[
+z = +0.674
+]
+
+Because the normal distribution is symmetric.
+
+---
+
+# Step 4: Convert Back to SD Units
+
+Since Z tells us “how many SDs from the mean”:
+
+* Q1 is 0.674 SD below the mean
+* Q3 is 0.674 SD above the mean
 
 So:
 
-$$
-IQR = 0.674 - (-0.674)
-$$
+[
+IQR = 0.674SD - (-0.674SD)
+]
 
-$$
-IQR = 1.349 SD
-$$
+[
+IQR = 1.349SD \approx 1.35SD
+]
 
-$$
-IQR \approx 1.35 SD
-$$
+That’s where everything comes from.
+
+---
+
+# How This Connects to the 68–95–99.7 Rule
+
+The empirical rule comes from specific Z-values too:
+
+* ±1 SD → 68%
+* ±2 SD → 95%
+* ±3 SD → 99.7%
+
+Similarly:
+
+* ±0.674 SD → 50%
+
+So the IQR is simply the SD-distance that captures 50% of the distribution.
+
+---
+
+# Intuitive Way to Think About It
+
+The normal curve is perfectly symmetric.
+
+* The median is at 0 SD.
+* To capture the middle 50%, you move out equally on both sides.
+* The amount you move is 0.674 SD.
+
+That’s all it is — it comes from the probability table.
+
+---
+
+# How You Can Explain It in the Tutorial
+
+You can say:
+
+> “The values ±0.674 come from the standard normal distribution table. They are the Z-scores that leave 25% of the data in each tail. Since Z-scores represent standard deviation units, Q1 and Q3 must be 0.674 SD away from the mean in a normal distribution.”
+
+---
+
+If you'd like, I can also show you a super simple visual explanation you can draw in under 30 seconds during the session.
+
 
 ---
 
