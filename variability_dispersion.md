@@ -70,7 +70,7 @@ Then explain:
 There is no general fixed relationship between IQR and SD.
 They are only mathematically related if the data follow a normal distribution.
 
-## Key Point:
+### Key Point:
 
 They measure variability differently.
 
@@ -83,8 +83,9 @@ They measure variability differently.
 
 ---
 
-## Mathematical Relationship (ONLY if data are normal)
+## 5. Mathematical Relationship (ONLY if data are normal)
 
+There is no general formula linking IQR and SD. They are only approximately related if the data are normally distributed. 
 If data are **normally distributed**:
 
 [
@@ -97,19 +98,174 @@ Or:
 SD \approx \frac{IQR}{1.35}
 ]
 
-This is true **only under normal distribution**.
+### How so?
+#### Step 1: Start With the Standard Normal Distribution
 
-This is likely what the student is confused about.
+For a standard normal variable:
 
-You can say:
+[
+Z \sim N(0,1)
+]
 
-> “There is no general formula linking IQR and SD. They are only approximately related if the data are normally distributed.”
+The probability between −a and +a is:
+
+[
+P(-a < Z < a)
+]
+
+Because of symmetry:
+
+[
+P(-a < Z < a) = 2\Phi(a) - 1
+]
+
+where
+(\Phi(a)) = cumulative distribution function (CDF).
 
 ---
 
-# 4️⃣ When Do We Use Each? (Public Health context)
+#### Step 2: Reproduce the 68% Rule Mathematically
 
-In MPH:
+We want:
+
+[
+P(-1 < Z < 1)
+]
+
+Using the formula:
+
+[
+= 2\Phi(1) - 1
+]
+
+From tables:
+
+[
+\Phi(1) = 0.8413
+]
+
+So:
+
+[
+2(0.8413) - 1
+]
+
+[
+= 1.6826 - 1
+]
+
+[
+= 0.6826 \approx 68%
+]
+
+That’s exactly where ±1 SD → 68% comes from.
+
+---
+
+#### Step 3: Now Do It for 50%
+
+We now want to find **a** such that:
+
+[
+P(-a < Z < a) = 0.50
+]
+
+Using the same formula:
+
+[
+2\Phi(a) - 1 = 0.50
+]
+
+---
+
+#### Step 4: Solve Algebraically
+
+[
+2\Phi(a) - 1 = 0.50
+]
+
+Add 1 to both sides:
+
+[
+2\Phi(a) = 1.50
+]
+
+Divide by 2:
+
+[
+\Phi(a) = 0.75
+]
+
+So we now need:
+
+[
+a = \Phi^{-1}(0.75)
+]
+
+Looking this up in a Z-table (or using software):
+
+[
+a = 0.674
+]
+
+---
+
+#### Step 5: Final Result
+
+[
+P(-0.674 < Z < 0.674) = 0.50
+]
+
+That means:
+
+* Q1 = −0.674 SD
+* Q3 = +0.674 SD
+
+So:
+
+[
+IQR = 0.674 - (-0.674)
+]
+
+[
+IQR = 1.349 SD
+]
+
+[
+IQR \approx 1.35 SD
+]
+
+---
+
+# 🎯 The Core Insight
+
+Both:
+
+* ±1 SD → 68%
+* ±0.674 SD → 50%
+
+come from solving the same probability equation:
+
+[
+P(-a < Z < a) = desired\ percentage
+]
+
+The only difference is the probability you plug in.
+
+---
+
+# How to Explain It Simply in Class
+
+You can say:
+
+> “The 68% rule comes from calculating the probability between −1 and +1 using the normal CDF. The IQR link comes from solving the same equation but setting the probability to 50% instead of 68%. When you solve it, the answer is ±0.674.”
+
+---
+
+If you’d like, I can now give you a 30-second intuitive explanation (without formulas) that still sounds mathematically rigorous.
+---
+
+## 6. When Do We Use Each?
 
 ### Use Median + IQR when:
 
@@ -125,69 +281,8 @@ In MPH:
 
 ---
 
-# 5️⃣ Possible Follow-Up Questions They May Ask
-
-Be ready for:
-
-### ❓ Why does SD change more with outliers?
-
-Because it squares deviations.
-
-### ❓ Can I calculate IQR in SPSS?
-
-Yes:
-Analyze → Descriptive Statistics → Explore → Tick Percentiles
-
-### ❓ Which should I report in my assignment?
-
-Check:
-
-* Distribution shape
-* What statistical test they’re using
-
----
-
-# 6️⃣ Simple Way to Explain the Core Difference
-
-You can say:
-
+## In a nutshell:
 > “Standard deviation tells us how far values spread around the mean.
 > IQR tells us how wide the middle 50% of values are.
 > SD is sensitive; IQR is robust.”
 
-That sentence alone usually clarifies everything.
-
----
-
-# 7️⃣ If You Have 1 Extra Minute
-
-Draw a boxplot:
-
-* Box length = IQR
-* Whiskers extend further
-* Outliers shown separately
-
-Explain:
-→ IQR is literally the width of the box.
-
----
-
-# 8️⃣ Quick Teaching Flow You Can Follow
-
-1. Define IQR
-2. Calculate IQR from small example
-3. Define SD conceptually
-4. Compare sensitivity to outliers
-5. Explain the 1.35 relationship under normality
-6. Apply to Public Health example
-
----
-
-If you want, I can also give you:
-
-* A 1-minute whiteboard explanation script
-* A practice question you can give the student
-* A quick SPSS demo explanation
-* Or a simple visual explanation you can sketch
-
-You’re ready 👍
