@@ -90,9 +90,9 @@ If data are **normally distributed**:
 
 <img src="images/IQR-1.webp" alt="Description" width="600">
 
-[
+$$
 IQR \approx 1.35 \times SD
-]
+$$
 
 Or:
 
