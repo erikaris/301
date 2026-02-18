@@ -102,8 +102,7 @@ $$
 
 ### How so?
 The short answer:
-
-We get **±0.674 SD** from the **standard normal distribution (Z distribution)**.
+> “The values ±0.674 come from the standard normal distribution table. They are the Z-scores that leave 25% of the data in each tail. Since Z-scores represent standard deviation units, Q1 and Q3 must be 0.674 SD away from the mean in a normal distribution.”
 
 ---
 
@@ -132,9 +131,9 @@ $$
 
 In Z-score language:
 
-[
+$$
 P(Z < z_{0.25}) = 0.25
-]
+$$
 
 So we are asking:
 
@@ -146,17 +145,17 @@ So we are asking:
 
 If you check a Z-table (or statistical software), the Z-value that gives cumulative probability = 0.25 is:
 
-[
+$$
 z = -0.674
-]
+$$
 
 Similarly:
 
 The Z-value for cumulative probability = 0.75 (Q3) is:
 
-[
+$$
 z = +0.674
-]
+$$
 
 Because the normal distribution is symmetric.
 
@@ -171,13 +170,13 @@ Since Z tells us “how many SDs from the mean”:
 
 So:
 
-[
+$$
 IQR = 0.674SD - (-0.674SD)
-]
+$$
 
-[
+$$
 IQR = 1.349SD \approx 1.35SD
-]
+$$
 
 That’s where everything comes from.
 
@@ -215,7 +214,7 @@ That’s all it is — it comes from the probability table.
 
 You can say:
 
-> “The values ±0.674 come from the standard normal distribution table. They are the Z-scores that leave 25% of the data in each tail. Since Z-scores represent standard deviation units, Q1 and Q3 must be 0.674 SD away from the mean in a normal distribution.”
+
 
 ---
 
