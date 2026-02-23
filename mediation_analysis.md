@@ -43,137 +43,163 @@ Mediation analysis relies on standard **regression assumptions** (linearity, hom
 
 ---
 
-Absolutely — let’s make a **concise, report-ready summary** of mediation assumptions and how to check them in SPSS. You can copy-paste this into a methods/results section.
+# **Checking Assumptions in Mediation: What to Test**
 
----
+Remember: mediation involves **two regressions**:
 
-# **Assumptions for Mediation Analysis and How to Test Them (SPSS)**
+1. **Model 1:** M = aX
+2. **Model 2:** Y = c’X + bM
 
-Mediation analysis is regression-based, so assumptions are primarily the standard **linear regression assumptions**, plus conceptual checks.
+Most assumptions are **regression assumptions**, and the key point:
+
+> **You do NOT test X, M, or Y directly for normality or linearity. You test the residuals from the regression models.**
 
 ---
 
 ## **1. Missing Data**
 
-**Assumption:** Minimal missing data; missingness is random.
+* **Test:** All variables (X, M, Y)
+* **Why:** Regression cannot handle missing data unless using imputation.
+* **SPSS:**
 
-**SPSS Check:**
+  * Analyze → Descriptive Statistics → Frequencies → check % missing
+* **R:**
 
-* Analyze → Descriptive Statistics → Frequencies
-* Inspect % missing per variable.
-* If <5%, listwise deletion is acceptable.
+  ```r
+  summary(data)
+  sapply(data, function(x) sum(is.na(x)))
+  ```
 
 ---
 
 ## **2. Outliers**
 
-**Assumption:** No extreme cases that distort results.
+* **Test:** Residuals from each regression
+* **SPSS:**
 
-**SPSS Check:**
+  1. Analyze → Regression → Linear
 
-1. Run regression: Analyze → Regression → Linear
+     * Model 1: DV = M, IV = X
+     * Model 2: DV = Y, IV = X + M
+  2. Save → Standardized Residuals, Cook’s Distance, Leverage
+  3. Inspect columns: |ZRESID| > 3, Cook’s D > 1, high leverage
+* **R:**
 
-   * DV = Y, IVs = X + M(s)
-   * Save → Standardized Residuals, Cook’s Distance, Leverage
-2. Inspect columns:
-
-   * Standardized residuals > ±3
-   * Cook’s D > 1
-   * High leverage points
+  ```r
+  model1 <- lm(M ~ X, data = data)
+  model2 <- lm(Y ~ X + M, data = data)
+  plot(rstandard(model1)) # residuals for M
+  plot(rstandard(model2)) # residuals for Y
+  ```
 
 ---
 
 ## **3. Linearity**
 
-**Assumption:** Relationship between predictors (X, M) and outcome (Y) is linear.
+* **Test:** Relationship between predictors and outcome
 
-**SPSS Check:**
+  * Model 1: X → M
+  * Model 2: X + M → Y
+* **SPSS:**
 
-* Plot Standardized Predicted Values (ZPRED) vs Standardized Residuals (ZRESID)
-* Random scatter → OK
-* Curved/funnel pattern → violation
+  * Plot ZRESID vs ZPRED (saved from regression)
+  * Look for random scatter; curved/funnel → violation
+* **R:**
+
+  ```r
+  plot(fitted(model1), resid(model1)) # X → M
+  abline(h=0, col="red")
+  plot(fitted(model2), resid(model2)) # X+M → Y
+  abline(h=0, col="red")
+  ```
 
 ---
 
 ## **4. Homoscedasticity**
 
-**Assumption:** Equal variance of residuals across predicted values.
+* **Test:** Variance of residuals across predicted values
 
-**SPSS Check:**
-
-* Use same plot as linearity (ZPRED vs ZRESID)
-* Look for consistent spread (no funneling).
+  * Model 1: M regression residuals
+  * Model 2: Y regression residuals
+* **SPSS:** Same ZRESID vs ZPRED plots as linearity
+* **R:** Same plots; check for “funnel shape”
 
 ---
 
 ## **5. Normality of Residuals**
 
-**Assumption:** Residuals (errors) are approximately normally distributed.
+* **Test:** Residuals only (ZRESID)
 
-> **Important:** Do **not** test X, M, or Y directly.
+  * Model 1: residuals from M = X
+  * Model 2: residuals from Y = X + M
+* **SPSS:**
 
-**SPSS Check:**
+  1. Save ZRESID from each regression
+  2. Analyze → Descriptives → Explore → Plots → Histogram & Normality plots
+* **R:**
 
-1. Save ZRESID (standardized residuals) from regression
-2. Analyze → Descriptive Statistics → Explore → Plots → Histogram & Normality plots with tests
-3. Check:
+  ```r
+  hist(resid(model1))
+  qqnorm(resid(model1)); qqline(resid(model1))
+  shapiro.test(resid(model1))  # optional, not critical if N>100 or bootstrapping
+  hist(resid(model2))
+  qqnorm(resid(model2)); qqline(resid(model2))
+  shapiro.test(resid(model2))
+  ```
 
-   * Histogram roughly bell-shaped
-   * Q–Q plot points near diagonal line
-
-**Note:** With bootstrapping (e.g., PROCESS macro), minor deviations are acceptable.
+> **Important:** You **do not** test X, M, or Y themselves for normality — only residuals.
 
 ---
 
-## **6. Multicollinearity**
+## **6. Multicollinearity (only in model 2, if multiple mediators)**
 
-**Assumption:** Predictors (X + M(s)) are not too highly correlated.
+* **Test:** Predictors in Y = X + M1 + M2
+* **SPSS:**
 
-**SPSS Check:**
+  * Regression → Statistics → Collinearity diagnostics → check VIF (<5), Tolerance (>0.2)
+* **R:**
 
-* Regression → Statistics → Collinearity diagnostics
-* Check VIF (<5, ideally <3) and Tolerance (>0.2)
+  ```r
+  library(car)
+  vif(model2)
+  ```
 
 ---
 
 ## **7. Independence of Residuals**
 
-**Assumption:** Residuals are independent.
+* **Test:** Model 2 residuals
+* **SPSS:** Durbin-Watson in regression output (acceptable: 1.5–2.5)
+* **R:**
 
-**SPSS Check:**
-
-* Durbin-Watson statistic in regression output (acceptable range: 1.5–2.5)
-
----
-
-## **8. Conceptual Assumptions**
-
-1. **Temporal order:** X → M → Y
-
-   * Cross-sectional data limits causal claims → phrase as “consistent with mediation”
-2. **No omitted confounders:** No unmeasured variables affect both M and Y, or X and M
+  ```r
+  dwtest(model2) # requires lmtest package
+  ```
 
 ---
 
-# **Summary Table for Report**
+# **Quick Reference Table: Which Variable / Residual to Test**
 
-| Assumption                | How Checked in SPSS                        | Notes                                      |
-| ------------------------- | ------------------------------------------ | ------------------------------------------ |
-| Missing data              | Frequencies                                | <5% missing is acceptable                  |
-| Outliers                  | Standardized residuals, Cook’s D, leverage | Remove/run sensitivity analysis if extreme |
-| Linearity                 | ZRESID vs ZPRED plot                       | Random scatter = ok                        |
-| Homoscedasticity          | ZRESID vs ZPRED plot                       | Even spread across predicted values        |
-| Normality of residuals    | Histogram + Q–Q plot of ZRESID             | Minor deviations ok with bootstrapping     |
-| Multicollinearity         | VIF <5, Tolerance >0.2                     | Critical in multiple mediation             |
-| Independence of residuals | Durbin-Watson 1.5–2.5                      | Usually ok in cross-sectional data         |
-| Conceptual                | Temporal order & no confounders            | Report in method section                   |
+| Assumption        | Model   | What to Check            | SPSS / R                   |
+| ----------------- | ------- | ------------------------ | -------------------------- |
+| Missing data      | Both    | X, M, Y                  | Frequencies / summary()    |
+| Outliers          | Model 1 | residuals M              | ZRESID / rstandard(model1) |
+| Outliers          | Model 2 | residuals Y              | ZRESID / rstandard(model2) |
+| Linearity         | Model 1 | residuals M vs predicted | Plot ZRESID vs ZPRED       |
+| Linearity         | Model 2 | residuals Y vs predicted | Plot ZRESID vs ZPRED       |
+| Homoscedasticity  | Both    | residuals vs predicted   | Same plots                 |
+| Normality         | Both    | residuals                | Histogram, Q-Q plot        |
+| Multicollinearity | Model 2 | predictors X + M(s)      | VIF/Tolerance              |
+| Independence      | Model 2 | residuals Y              | Durbin-Watson              |
+
+---
+
+**Key Teaching Point to Emphasize:**
+
+> “In mediation, you **never test the original variables** for regression assumptions. Always test the **residuals** from each regression model. The first model (M ~ X) has its own residuals, the second model (Y ~ X + M) has its residuals. Normality, linearity, homoscedasticity are all about these residuals, not X, M, or Y themselves.”
 
 ---
 
-# **Example Write-Up for a Report**
 
-> Prior to conducting the mediation analysis, assumptions of multiple regression were examined. Scatterplots of standardized predicted values versus standardized residuals indicated linear relationships and homoscedasticity. Standardized residuals were inspected for outliers (none exceeded ±3), and Cook’s Distance and leverage values were within acceptable limits. Multicollinearity among predictors was low (VIF < 3). Normality of residuals was assessed via histograms and Q–Q plots, with no substantial deviations observed. Given the use of bootstrapped confidence intervals (5000 samples), minor deviations from normality were not considered problematic. Conceptually, the mediation model assumes temporal order (X → M → Y) and no unmeasured confounders affecting the relationships.
-
----
 
 
