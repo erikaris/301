@@ -53,7 +53,7 @@ Mediation analysis is regression-based, so assumptions are primarily the standar
 
 ---
 
-## ** 1. Missing Data**
+## **1. Missing Data**
 
 **Assumption:** Minimal missing data; missingness is random.
 
