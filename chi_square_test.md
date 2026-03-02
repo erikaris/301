@@ -1,222 +1,15 @@
-Perfect — this is exactly how you should prepare as a tutor:
-**anticipate the structure of the data before you even see it.** 👏
 
-Let’s reason from the notes logically.
-
----
-
-# 1️⃣ Why Did the Previous Tutor Suggest GLM Instead of LM?
-
-From meeting notes:
-
-* “why a GLM was needed over an LM”
-* “chi tests”
-* “use counts rather than percentages”
-* “interaction terms”
-
-This strongly suggests:
-
-👉 Her dependent variable is **count data**
-👉 Probably number of behaviours, events, or occurrences in pigeons
-👉 Therefore, normal linear regression (LM) assumptions were violated
-
-### Why LM would be wrong
-
-LM assumes:
-
-* Continuous outcome
-* Normally distributed residuals
-* Constant variance
-
-But count data:
-
-* Are integers (0,1,2,…)
-* Often skewed
-* Variance increases with mean
-* Cannot go negative
-
-So the previous tutor likely saw:
-
-* Skewed residuals
-* Non-normality
-* Heteroskedasticity
-
-→ therefore recommended **Poisson GLM**
-
----
-
-# 2️⃣ What Might Her Pigeon Data Look Like?
-
-Let’s predict realistically (Zoology project):
-
-### Possible dependent variables:
-
-* Number of pecks
-* Number of visits to feeder
-* Number of aggressive interactions
-* Number of nesting attempts
-* Number of offspring
-
-### Possible predictors:
-
-* Food type (categorical)
-* Sex (male/female)
-* Treatment (control vs experimental)
-* Habitat type
-* Temperature
-* Time of day
-
-So her dataset might look like:
-
-| pigeon_id | sex | food_type | habitat | pecks |
-| --------- | --- | --------- | ------- | ----- |
-| 1         | F   | A         | urban   | 12    |
-| 2         | M   | B         | rural   | 3     |
-| 3         | F   | A         | urban   | 0     |
-
-Here:
-
-* Y = pecks (count)
-* Xs = categorical predictors
-
-This screams:
-
-👉 Poisson regression:
-
-```
-pecks ~ sex + food_type + habitat
-```
-
-Or with interaction:
-
-```
-pecks ~ sex * food_type
-```
-
----
-
-# 3️⃣ How She Likely Used GLM
-
-Most likely in R:
-
-```r
-glm(pecks ~ sex + food_type, family = poisson, data = mydata)
-```
-
-Or in SPSS:
-
-* Analyze → Generalized Linear Models
-* Distribution: Poisson
-* Link: Log
-
----
-
-# 4️⃣ How To Check Whether Her Model Is Right
-
-When she shows you output, check this step-by-step:
-
----
-
-## ✅ Step 1: Is the family correct?
-
-If Y is count:
-
-* family = poisson → good
-* lm() → probably wrong
-
----
-
-## ✅ Step 2: Check Overdispersion
-
-Poisson assumption:
-Mean ≈ Variance
-
-Ask her:
-
-```
-mean(mydata$pecks)
-var(mydata$pecks)
-```
-
-If:
-Variance >> Mean
-→ Overdispersion
-→ Poisson may not fit well
-→ Might need quasi-Poisson or negative binomial
-
-You can also check:
-
-Residual deviance / df
-
-If this ratio >> 1 → overdispersion.
-
----
-
-## ✅ Step 3: Check Interpretation
-
-In Poisson GLM:
-
-Coefficients are in **log scale**.
-
-If output shows:
-
-| Estimate | Std. Error | z value | p   |       |
-| -------- | ---------- | ------- | --- | ----- |
-| sexMale  | 0.69       | 0.2     | 3.4 | 0.001 |
-
-Interpretation:
-
-exp(0.69) ≈ 2
-
-Meaning:
-Male pigeons have **twice the expected count** compared to females.
-
-NOT:
-“increase by 0.69 pecks”
-
-That would be wrong.
-
----
-
-## ✅ Step 4: Are Interaction Terms Meaningful?
-
-If she used:
-
-```
-pecks ~ sex * food_type
-```
-
-Check:
-
-* Is interaction significant?
-* If yes → interpret interaction, not just main effects.
-
-Students often ignore this.
-
----
-
-# 5️⃣ Why Not Just Use Percentages?
-
-If she converted:
-
-12 pecks out of 20 observations → 60%
-
-Problem:
-
-* 60% of 5 trials ≠ 60% of 100 trials
-* Percentages remove information about sample size
-
-That’s why previous tutor insisted on counts.
-
----
-
-# 6️⃣ Now: What Is Chi-Square Test?
+# What Is Chi-Square Test?
 
 Chi-square test is used for:
 
 👉 Testing association between **categorical variables**
 
 It does NOT model counts with predictors.
+
+```
+“In statistics, we say two variables are associated if the pattern in the data is unlikely to occur by chance. For categorical variables, chi-square tests whether counts differ from what we would expect if the variables were independent. We don’t say ‘relationship’ because chi-square does not tell us about cause or strength, only whether there is evidence of a systematic pattern.”
+```
 
 ---
 
@@ -232,7 +25,7 @@ Are two categorical variables independent?
 
 ---
 
-# 7️⃣ Example of Chi-Square Test
+# Example of Chi-Square Test
 
 Suppose she had:
 
@@ -254,7 +47,7 @@ If p < 0.05:
 
 ---
 
-# 8️⃣ What Is the Difference Between Chi-Square and GLM?
+# What Is the Difference Between Chi-Square and GLM?
 
 | Chi-square                   | GLM                               |
 | ---------------------------- | --------------------------------- |
@@ -270,16 +63,16 @@ GLM = regression framework
 
 ---
 
-# 9️⃣ When Would She Use Chi-Square Instead?
+# When Would She Use Chi-Square Instead?
 
-If her data looked like:
+If the data looked like (only has 1 dependent variable)
 
 | Habitat | Nesting Success (Yes/No) |
 
-Then she could do:
+Then we could do:
 Chi-square test of independence.
 
-But if she wants:
+But if we want:
 
 * Adjust for temperature
 * Include sex
@@ -287,23 +80,8 @@ But if she wants:
 
 → Use logistic regression (GLM with binomial).
 
----
 
-# 🔟 What You Should Be Ready to Say in Session
-
-You can confidently say:
-
-> The reason GLM was suggested is likely because your response variable is count data, which violates the normality assumption required for linear regression. A Poisson GLM models count data more appropriately using a log link.
-
-Then ask:
-
-> Did you check for overdispersion?
-
-That will make you sound very competent.
-
----
-
-# 11️⃣ Quick Visual Summary
+# Quick Visual Summary
 
 ### If Y is:
 
@@ -314,7 +92,138 @@ That will make you sound very competent.
 
 ---
 
-If you'd like, tell me:
+# 1️⃣ Observed vs Expected Counts: The Core Idea
 
-* What you’re most nervous about (math? interpretation? SPSS output?)
-* I can give you a 5-minute “survival script” specifically for tutoring her confidently tomorrow.
+* **Observed counts** = what you actually recorded in your data
+* **Expected counts** = what you would expect **if there were no association between variables**
+
+> The chi-square test asks:
+> *Are the observed counts close enough to what we’d expect by chance, or is there evidence of a real association?*
+
+---
+
+# 2️⃣ How Expected Counts Are Calculated
+
+Suppose you have a 2×2 table:
+
+|              | Aggressive | Not Aggressive | Row total |
+| ------------ | ---------- | -------------- | --------- |
+| Male         | 30         | 10             | 40        |
+| Female       | 15         | 25             | 40        |
+| Column total | 45         | 35             | 80        |
+
+**Step 1: Compute expected counts for each cell**
+
+Formula:
+
+$
+\text{Expected count} = \frac{(\text{Row total} \times \text{Column total})}{\text{Grand total}}
+$
+
+---
+
+### Example
+
+* Male & Aggressive:
+  [
+  E = \frac{40 \times 45}{80} = 22.5
+  ]
+
+* Male & Not Aggressive:
+  [
+  E = \frac{40 \times 35}{80} = 17.5
+  ]
+
+* Female & Aggressive:
+  [
+  E = \frac{40 \times 45}{80} = 22.5
+  ]
+
+* Female & Not Aggressive:
+  [
+  E = \frac{40 \times 35}{80} = 17.5
+  ]
+
+---
+
+# 3️⃣ Compare Observed to Expected
+
+|        | Aggressive         | Not Aggressive |
+| ------ | ------------------ | -------------- |
+| Male   | 30 (O) vs 22.5 (E) | 10 vs 17.5     |
+| Female | 15 vs 22.5         | 25 vs 17.5     |
+
+* Large differences → possible association
+* Small differences → consistent with independence
+
+---
+
+# 4️⃣ Chi-Square Statistic
+
+Formula:
+
+[
+\chi^2 = \sum \frac{(O - E)^2}{E}
+]
+
+Where:
+
+* O = observed count
+* E = expected count
+
+> Measures “distance” between observed and expected counts.
+
+Then:
+
+* Compare χ² to chi-square distribution with (rows-1)×(columns-1) degrees of freedom
+* Gives p-value
+
+p < 0.05 → reject null → evidence of association
+
+---
+
+# Intuitive Way to Explain
+
+* Think of expected counts as **what would happen if nothing mattered** (e.g., aggression not related to sex)
+* Observed counts = **what actually happened**
+* Chi-square = measures how far reality is from “chance expectation”
+
+> Big difference → suggests a real effect
+
+---
+
+# 6️⃣ Quick Case Example (Zoology)
+
+**Research question:** Is aggression associated with sex in pigeons?
+
+* Observed data (actual counts):
+
+| Sex    | Aggressive | Not Aggressive |
+| ------ | ---------- | -------------- |
+| Male   | 30         | 10             |
+| Female | 15         | 25             |
+
+* Expected counts (under null hypothesis of no association):
+
+| Sex    | Aggressive | Not Aggressive |
+| ------ | ---------- | -------------- |
+| Male   | 22.5       | 17.5           |
+| Female | 22.5       | 17.5           |
+
+* χ² statistic =
+  [
+  \frac{(30-22.5)^2}{22.5} + \frac{(10-17.5)^2}{17.5} + \frac{(15-22.5)^2}{22.5} + \frac{(25-17.5)^2}{17.5} \approx 14.29
+  ]
+
+* Compare to chi-square table with df=(2-1)*(2-1)=1 → p < 0.001
+
+* Interpretation: Aggression **is associated with sex**
+
+---
+
+✅ Key Takeaway:
+
+> Comparing observed vs expected counts = asking “Do the patterns we see in the data differ significantly from what we’d expect if the variables were independent?”
+
+---
+
