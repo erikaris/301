@@ -7,9 +7,8 @@ Chi-square test is used for:
 
 It does NOT model counts with predictors.
 
-```
-“In statistics, we say two variables are associated if the pattern in the data is unlikely to occur by chance. For categorical variables, chi-square tests whether counts differ from what we would expect if the variables were independent. We don’t say ‘relationship’ because chi-square does not tell us about cause or strength, only whether there is evidence of a systematic pattern.”
-```
+> “In statistics, we say two variables are associated if the pattern in the data is unlikely to occur by chance. For categorical variables, chi-square tests whether counts differ from what we would expect if the variables were independent. We don’t say ‘relationship’ because chi-square does not tell us about cause or strength, only whether there is evidence of a systematic pattern.”
+
 
 ---
 
@@ -125,9 +124,9 @@ $
 ### Example
 
 * Male & Aggressive:
-  [
+  $
   E = \frac{40 \times 45}{80} = 22.5
-  ]
+  $
 
 * Male & Not Aggressive:
   [
