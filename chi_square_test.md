@@ -115,23 +115,23 @@ Suppose you have a 2×2 table:
 
 Formula:
 
-$
+$$
 \text{Expected count} = \frac{(\text{Row total} \times \text{Column total})}{\text{Grand total}}
-$
+$$
 
 ---
 
 ### Example
 
 * Male & Aggressive:
-  $
+  $$
   E = \frac{40 \times 45}{80} = 22.5
-  $
+  $$
 
 * Male & Not Aggressive:
-  [
+  $$
   E = \frac{40 \times 35}{80} = 17.5
-  ]
+  $$
 
 * Female & Aggressive:
   [
