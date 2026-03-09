@@ -884,5 +884,3 @@ Filter(function(x) x > 5, 1:10)    # Elements > 5
 
 ---
 
-**Last Updated:** March 2026
-**Total Functions Covered:** 200+
