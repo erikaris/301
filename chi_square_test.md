@@ -3,7 +3,7 @@
 
 Chi-square test is used for:
 
-👉 Testing association between **categorical variables**
+Testing association between **categorical variables**
 
 It does NOT model counts with predictors.
 
@@ -91,7 +91,7 @@ But if we want:
 
 ---
 
-# 1️⃣ Observed vs Expected Counts: The Core Idea
+# Observed vs Expected Counts: The Core Idea
 
 * **Observed counts** = what you actually recorded in your data
 * **Expected counts** = what you would expect **if there were no association between variables**
@@ -101,7 +101,7 @@ But if we want:
 
 ---
 
-# 2️⃣ How Expected Counts Are Calculated
+# How Expected Counts Are Calculated
 
 Suppose you have a 2×2 table:
 
@@ -145,7 +145,7 @@ $$
 
 ---
 
-# 3️⃣ Compare Observed to Expected
+# Compare Observed to Expected
 
 |        | Aggressive         | Not Aggressive |
 | ------ | ------------------ | -------------- |
@@ -157,7 +157,7 @@ $$
 
 ---
 
-# 4️⃣ Chi-Square Statistic
+# Chi-Square Statistic
 
 Formula:
 
@@ -191,7 +191,7 @@ p < 0.05 → reject null → evidence of association
 
 ---
 
-# 6️⃣ Quick Case Example (Zoology)
+# Quick Case Example (Zoology)
 
 **Research question:** Is aggression associated with sex in pigeons?
 
