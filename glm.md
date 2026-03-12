@@ -1,5 +1,5 @@
 
-# 1️⃣ First: What Is a GLM? (Accessible Explanation)
+# First: What Is a GLM? (Accessible Explanation)
 
 Start simple:
 
@@ -21,7 +21,7 @@ So:
 
 ---
 
-# 2️⃣ Why Do someone might use GLM Instead of LM?
+# Why Do someone might use GLM Instead of LM?
 
 When:
 
@@ -48,7 +48,7 @@ Count data violates that → use GLM.
 
 ---
 
-# 3️⃣ How to Explain GLM in Simple Terms
+# How to Explain GLM in Simple Terms
 
 You can say:
 
@@ -66,7 +66,7 @@ Then simplify:
 
 ---
 
-# 4️⃣ What You Should Ask Her Immediately
+# What You Should Ask Her Immediately
 
 Start with these:
 
@@ -99,7 +99,7 @@ Start with these:
 
 ---
 
-# 5️⃣ Very Likely Scenario (Based on Notes)
+# Very Likely Scenario (Based on Notes)
 
 She probably:
 
@@ -110,7 +110,7 @@ She probably:
 
 So you should prepare to explain:
 
-## 📌 When to Use Poisson Regression
+## When to Use Poisson Regression
 
 Use when:
 
@@ -125,7 +125,7 @@ If variance >> mean → overdispersion → maybe use:
 
 ---
 
-# 6️⃣ Difference Between Chi-Square and GLM
+# Difference Between Chi-Square and GLM
 
 She previously discussed chi-square.
 
@@ -144,7 +144,7 @@ So:
 
 ---
 
-# 7️⃣ Interaction Terms (They Discussed This)
+# Interaction Terms (They Discussed This)
 
 Interaction means:
 
@@ -164,7 +164,7 @@ Important in ecology/zoology.
 
 ---
 
-# 8️⃣ What You Need to Check in Her Model
+# What You Need to Check in Her Model
 
 When she shows you output:
 
@@ -184,7 +184,7 @@ lm(y ~ x1 + x2)
 
 ---
 
-### ✔ Step 2: Check Overdispersion
+### Step 2: Check Overdispersion
 
 In Poisson:
 Mean ≈ Variance.
@@ -198,7 +198,7 @@ If variance much larger → overdispersion → Poisson may be inappropriate.
 
 ---
 
-### ✔ Step 3: Interpret Coefficients Correctly
+### Step 3: Interpret Coefficients Correctly
 
 Poisson uses log link.
 
@@ -217,7 +217,7 @@ Students often misinterpret this.
 
 ---
 
-# 9️⃣ Simple Way to Explain Log Link
+# Simple Way to Explain Log Link
 
 If β = 0.7
 
@@ -234,46 +234,6 @@ Not:
 That would be wrong.
 
 ---
-
-# 🔟 What If She Actually Needed LM?
-
-If her outcome is:
-
-* Body mass
-* Wing length
-* Continuous measurement
-
-Then LM is correct.
-
-So first step = clarify outcome variable.
-
----
-
-# 11️⃣ 5-Minute Teaching Script You Can Use
-
-You can say:
-
-> A generalised linear model is just a flexible regression model that lets us use different types of outcome distributions.
-> If your outcome is continuous and normal → LM.
-> If it’s count data → Poisson GLM.
-> If it’s binary → Logistic GLM.
->
-> The key is matching the distribution of the outcome to the correct model family.
-
-That alone already makes you sound confident.
-
----
-
-# 12️⃣ Likely Weak Points You Should Be Ready For
-
-* Why not just use percentages?
-  → Because percentages lose information about sample size.
-* Why not chi-square?
-  → **Doesn’t allow multiple predictors or interactions**.
-* What is overdispersion?
-  → Variance larger than mean in count data.
-* How to check model fit?
-  → Residual deviance vs degrees of freedom.
 
 ---
 
