@@ -34,7 +34,7 @@ This is the most common, but **not the only** type.
 
 ---
 
-# ✅ **2. Same person, two conditions (not necessarily time-based)**
+# **2. Same person, two conditions (not necessarily time-based)**
 
 * Reaction time under caffeine vs without caffeine
 * Heart rate lying down vs standing
