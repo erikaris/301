@@ -12,18 +12,21 @@
    * categorical (e.g., gender, department)
    * ordinal (Likert scale)
    * continuous (scores, counts)
-5. **How many groups or variables are being compared?**
-
+   * Is your outcome variable **numeric or categorical**?
+6. Are you **comparing groups** or **looking for relationships**?
+   * **How many groups or variables are being compared?**
+7. How many **participants/samples** do you expect/have?
+8. What software are you planning to use? (e.g., SPSS, R, Excel)
 
 ---
 
 ## 2. Quick method guide (what usually appears in dissertations)
 
-Use this **simple decision logic** to guide them.
+Check this [decision tree](https://raw.githubusercontent.com/erikaris/301/96fc1bd6ef6dd9c62719688497119e8e06c2eb40/stats_key.svg). 
 
 ### A. Comparing groups
 
-If they want to see **differences between groups**:
+If they want to see **differences between groups** and your DV is **normally distributed**:
 
 | Situation | Method     |
 | --------- | ---------- |
@@ -62,66 +65,150 @@ Department × Preferred information source.
 
 ---
 
-## 3. Common dissertation workflow (very useful to explain)
+## 3. Common dissertation workflow
 
-Many students benefit from seeing the **typical analysis pipeline**:
+The **typical analysis pipeline**:
+> “Most dissertations start with descriptive statistics, then move to one main inferential test depending on the research question.”
 
 1. **Descriptive statistics**
-
    * mean
    * frequency
    * standard deviation
 2. **Check assumptions / data**
 3. **Run main test**
-
    * t-test / ANOVA / correlation / regression
 4. **Report results**
 
-You can say:
-
-> “Most dissertations start with descriptive statistics, then move to one main inferential test depending on the research question.”
-
 ---
 
-## 4. Questions you can ask to guide them
-
-These often unlock the right method quickly:
-
-* Are you **comparing groups** or **looking for relationships**?
-* How many **groups** do you have?
-* Is your outcome variable **numeric or categorical**?
-* How many **participants** do you expect?
-* What software are you planning to use? (SPSS, R, Excel)
-
----
-
-## 5. Useful suggestion to give the student
-
-If they haven't decided yet:
+## 5. If still in doubt: 
 
 Suggested actions:
-
-* Clarify **research question + variables**
-* Identify **dependent vs independent variables**
 * Bring **sample dataset or questionnaire** next time
 * Check methods used in **similar dissertations**
 
 ---
 
-## 6. A safe tutor framing (important)
-
-Avoid prescribing one method too strongly. Instead say:
-
-> “Based on the structure of your research question, these methods might be appropriate. It’s always good to confirm with your supervisor as well.”
+# Some Examples:
 
 ---
 
-✅ **Quick mental cheat sheet**
+## 1. Comparing two groups → **t-test**
 
-* Compare groups → **t-test / ANOVA**
-* Relationship → **correlation / regression**
-* Categorical association → **chi-square**
+**Example research question:**
+“Does attending library information literacy training improve students’ confidence in using academic databases?”
+
+**Variables**
+
+* Independent variable: training attendance (attended / not attended)
+* Dependent variable: confidence score (Likert scale or numeric score)
+
+**Method**
+
+* **Independent samples t-test**
+
+You can say:
+
+> “Since we’re comparing the mean score between two groups, a t-test could work.”
 
 ---
 
-If you want, I can also give you **3–4 example dissertation questions in library & information science and which stats to recommend** — those are *extremely handy during tutoring sessions*.
+## 2. Comparing several groups → **ANOVA**
+
+**Example research question:**
+“Does digital resource usage differ across academic disciplines?”
+
+**Variables**
+
+* Independent variable: discipline (Arts / Science / Engineering / etc.)
+* Dependent variable: number of digital resources used per week
+
+**Method**
+
+* **One-way ANOVA**
+
+You can say:
+
+> “Because there are more than two groups, ANOVA is often used to compare the averages.”
+
+---
+
+## 3. Relationship between two variables → **Correlation**
+
+**Example research question:**
+“Is there a relationship between frequency of library database use and research productivity?”
+
+**Variables**
+
+* Database usage frequency
+* Number of publications / research output score
+
+**Method**
+
+* **Correlation**
+
+  * Pearson (continuous variables)
+  * Spearman (ordinal or non-normal data)
+
+You can say:
+
+> “If we’re interested in whether two variables move together rather than comparing groups, correlation might be appropriate.”
+
+---
+
+## 4. Predicting an outcome → **Regression**
+
+**Example research question:**
+“What factors predict postgraduate students’ satisfaction with digital library services?”
+
+**Variables**
+
+* Dependent variable: satisfaction score
+* Predictors: usability, access speed, training, support quality
+
+**Method**
+
+* **Multiple linear regression**
+
+You can explain:
+
+> “Regression is useful when we want to see how several variables predict an outcome.”
+
+---
+
+## 5. Relationship between categorical variables → **Chi-square**
+
+> The Chi-square test of independence tests whether **two categorical variables** are related.
+
+**Example research question:**
+“Is preferred information source associated with students’ level of study?”
+
+**Variables**
+
+* Level of study (undergraduate / postgraduate)
+* Preferred source (books / databases / Google Scholar)
+
+**Method**
+
+* **Chi-square test of independence**
+
+---
+
+## 6. Likert-scale survey dissertations
+
+Typical workflow:
+
+1. Descriptive statistics
+   * mean
+   * frequency
+2. Reliability check (sometimes **Cronbach’s alpha**)
+3. Main analysis:
+   * **t-test / ANOVA** (group comparison)
+   * **correlation / regression** (relationships)
+
+---
+
+
+
+
+
