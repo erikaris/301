@@ -205,6 +205,8 @@ Typical workflow:
 3. Main analysis:
    * **t-test / ANOVA** (group comparison)
    * **correlation / regression** (relationships)
+  
+Check examples on how to analyse likert scale [here](https://github.com/erikaris/301/blob/main/likert_scale.md). 
 
 ---
 
