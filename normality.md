@@ -13,7 +13,7 @@ If the normality assumption is violated:
 
 ---
 
-# 1️⃣ What Exactly Should Be Normal?
+# What Exactly Should Be Normal?
 
 This is very important (and often misunderstood):
 
@@ -25,7 +25,7 @@ With **large samples (n > 30–50)**, normality becomes less critical due to the
 
 ---
 
-# 2️⃣ Common Normality Tests
+# Common Normality Tests
 
 ### A. Shapiro–Wilk Test (Recommended)
 
@@ -34,6 +34,8 @@ With **large samples (n > 30–50)**, normality becomes less critical due to the
 * If **p > .05** → assume normality.
 * If **p < .05** → evidence against normality.
 
+> Don’t rely only on p-value — combine with plots
+
 ### B. Kolmogorov–Smirnov (K–S) Test
 
 * Less powerful than Shapiro–Wilk.
@@ -41,12 +43,16 @@ With **large samples (n > 30–50)**, normality becomes less critical due to the
 
 ---
 
-# 3️⃣ Graphical Methods (Always Recommended!)
+# Graphical Methods (Always Recommended!)
 
 Statistical tests are sensitive in large samples. So combine with:
 
 * Histogram
+  - Bell-shaped → good
+  - Skewed → not normal
 * Q–Q Plot (most informative)
+  - Points follow a straight line → normal
+  - Systematic curve/deviation → not normal
 * Boxplot (to detect outliers)
 
 ---
