@@ -712,4 +712,3 @@ item was moderately to highly correlated with the overall scale."
 
 ---
 
-*This guide provides everything Lily needs to understand, calculate, and interpret Cronbach's alpha.*
