@@ -4,7 +4,7 @@
 
 ### What Does Cronbach's Alpha Actually Measure?
 
-**Simple answer:** Cronbach's alpha measures **internal consistency** – how much your multiple items agree with each other about what they're measuring.
+**Simple answer:** Cronbach's alpha measures **internal consistency** – how much the multiple items agree with each other about what they're measuring.
 
 **More precise answer:** It quantifies whether multiple test items measure a single underlying construct reliably, or whether they're measuring different things.
 
@@ -696,7 +696,7 @@ Either is scientifically sound. The key is that we have **validated** that the i
 
 ### Reporting:
 
-Include in your methods section:
+Include in the methods section:
 ```
 "Engagement items showed good internal consistency (Cronbach's α = X.XX). 
 Item-total correlations ranged from X.XX to X.XX, indicating that each 
