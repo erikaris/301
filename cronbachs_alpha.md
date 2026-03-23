@@ -620,9 +620,8 @@ Based on this analysis, We would write:
 **If removing Q5:**
 > "Five items measuring user engagement were initially considered. Item-total correlations and alpha-if-item-deleted analysis indicated that Q5 ('I feel engaged with this website') weakly fit the overall scale (r = .55). After removing Q5, four items were averaged to create a composite engagement score (α = .82, indicating good internal consistency)."
 
-Either is scientifically sound. The key is that we have **validated** that her items cohere before averaging them.
+Either is scientifically sound. The key is that we have **validated** that the items cohere before averaging them.
 
----
 
 ---
 
@@ -668,12 +667,6 @@ Either is scientifically sound. The key is that we have **validated** that her i
 - Check if α increases when item is deleted
 - Review the item's wording carefully
 - If it's reverse-coded, ensure reverse coding was done correctly
-
----
-
-## Problem 4: Items Are from a Published Scale (e.g., PANAS, PSS)
-
-**Note:** If we are using items from a validated published scale, she shouldn't need to calculate α (it's already established). But she can calculate it on her sample to verify consistency.
 
 ---
 
