@@ -406,4 +406,22 @@ Or (large sample):
 
 ---
 
+# Normality and Likert Data
+
+**With Likert data, true normality is unlikely because:**
+- Likert responses are ordinal (ranked categories), not continuous
+- Averaging multiple items creates a quasi-continuous variable, but it's still bounded (e.g., if you have 5-point scales, the average is between 1-5)
+- True normality requires unbounded, continuous data
+
+**In practice:**
+- **Paired t-test:** Reasonably robust to violations of normality, especially if:
+  - Your averaged DV has enough items (e.g., 5+ Likert questions averaged gives more stability)
+  - Your sample size is moderate-to-large (n > 30 helps)
+  - The distribution isn't severely skewed
+  
+- **Wilcoxon signed-rank test:** The safer, more conservative choice for ordinal/quasi-continuous Likert data. It makes fewer distributional assumptions.
+
+**Suggestion:** 
+Check normality with a **Shapiro-Wilk test** AND **visual inspection (Q-Q plot)**. If either shows moderate deviation from normality, **lean toward Wilcoxon**—it's more defensible for Likert data anyway.
+
 
