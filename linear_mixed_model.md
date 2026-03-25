@@ -14,7 +14,7 @@ You want to know:
 
 Do stimuli differ in mean distance?
 
-Random Effects
+## Random Effects
 
 Sources of variability you are NOT testing, but must account for.
 
