@@ -1,11 +1,7 @@
-# Tutoring Note: Analyzing Your Time-Series Data with Changing Treatments
-**Student**: Year 4 MBiolSci/Microbiology  
-**Topic**: Statistical analysis of time-series with treatment regime changes  
-**Date**: [Session Date]
+# Research with multiple groups, across time, with different treatments at the time points. 
 
----
 
-## 1. YOUR PROBLEM SUMMARY
+## 1. PROBLEM SUMMARY
 
 You've collected data from a **time-series experiment** where:
 
@@ -105,6 +101,57 @@ Your **independent sampling** is well-suited for the analysis we're going to rec
 - ✅ Clean independence between observations
 - ✅ Flexible for handling time-varying treatments
 
+---
+# Step-by-Step Plan for the Experiment
+
+### **Step 1 — Inspect and prepare the data**
+
+* Ensure the dataset is in **long format**:
+  `outcome`, `time`, `treatment`
+  Optional: `group` (batch, strain, replicate)
+* Convert:
+
+  * `treatment` → factor
+  * `time` → numeric or factor
+
+---
+
+### **Step 2 — Check for repeated measures**
+
+**Question:** Are some individuals measured at multiple time points?
+
+* **Yes:** → Use a **Linear Mixed Model** with individual as a random effect `(1 | individual)`
+* **No:** → Go to Step 3
+
+> **Why:** Mixed models account for correlation between repeated measurements on the same individual, which standard regression cannot.
+
+---
+
+### **Step 3 — Check for grouped or clustered data**
+
+**Question:** Are there groups (e.g., batches, strains, cultures) that could create correlation between samples?
+
+* **Yes:** → Use a **Linear Mixed Model** with group as a random effect `(1 | group)`
+* **No:** → Go to Step 4
+
+> **Why:** Mixed models handle clustered data, giving more accurate estimates of treatment and time effects.
+
+---
+
+### **Step 4 — Check treatment structure**
+
+**Question:** Are all treatments present at every time point (fully crossed)?
+
+* **Yes:** → Could use **2-way ANOVA** if you want simple group comparisons
+* **No / unbalanced or changing treatments:** → Use **Linear Regression** with interaction:
+
+```r
+outcome ~ time * treatment
+```
+
+> **Note:** Even if there is no repeated measure or grouping, you *can still use a Linear Mixed Model*. It’s more flexible and handles unbalanced designs, but linear regression is simpler if independence can be assumed.
+
+---
 ---
 
 ## 4. SOLUTION 1: LINEAR REGRESSION WITH INTERACTION
