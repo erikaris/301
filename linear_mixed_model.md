@@ -1,6 +1,8 @@
-A regression model that includes both fixed effects and random effects.
+# Linear Mixed Model (LMM)
 
-Fixed Effects
+Linear Mixed Model (LMM): A regression model that includes both fixed effects (like traditional regression coefficients) and random effects (to account for groupings, repeated measures, or hierarchical structure).
+
+## Fixed Effects
 
 Effects you care about testing.
 
