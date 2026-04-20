@@ -705,3 +705,102 @@ Think of it like a price increase:
 Does this 150% increase make sense in the context of your specific research project?
 
 ---
+You’re basically looking for a **rapid diagnostic + fix workflow**, so you don’t get stuck guessing in-session. Here’s a clean, practical guide you can follow in real time.
+
+---
+
+## 12. Possible Cause of Unexpected Results. 
+
+## 1. “Not significant but expected to be significant”
+
+###  Investigation:
+
+* Check sample size (N small?)
+* Check effect size (Exp(B) near 1?)
+* Check too many predictors
+
+### 🛠 Fix / explanation:
+
+* Not a technical error
+* Likely low power or weak relationship
+ Say:
+
+> “This means the data doesn’t provide enough evidence for the effect, even if theory suggests it.”
+
+---
+
+## ❌ 2. “Effect direction is opposite (B sign wrong)”
+
+### 🔎 Investigation:
+
+* Check DV coding (0/1 reversed?)
+* Check IV coding (e.g. high vs low reversed)
+* Check reference category in categorical variables
+
+### 🛠 Fix:
+
+* Recode variable or change reference category
+
+👉 Say:
+
+> “In logistic regression, direction is completely dependent on coding — this is very often a coding issue, not a real contradiction.”
+
+---
+
+## ❌ 3. “Odds ratios are extreme (very large/small)”
+
+### 🔎 Investigation:
+
+* Look for sparse categories
+* Check cross-tab DV × IV
+* Check separation (perfect prediction)
+
+### 🛠 Fix:
+
+* Collapse categories
+* Remove problematic variable
+* Acknowledge instability
+
+👉 Say:
+
+> “This usually happens when one group almost perfectly predicts the outcome.”
+
+---
+
+## ❌ 4. “Everything is not significant”
+
+### 🔎 Investigation:
+
+* Sample size too small?
+* Predictors highly correlated?
+* No real relationship in data?
+
+### 🛠 Fix:
+
+* Reduce predictors
+* Check multicollinearity
+* Revisit model specification
+
+👉 Say:
+
+> “This is actually quite common in social science data — relationships are often weaker than theory suggests.”
+
+---
+
+## ❌ 5. “Model predicts badly / all one category”
+
+### 🔎 Investigation:
+
+* Check distribution of DV (imbalanced?)
+* Example: 90% = Yes
+
+### 🛠 Fix:
+
+* Use balanced sampling or weighting
+* Acknowledge limitation
+
+👉 Say:
+
+> “The model is biased toward the dominant category, which is why accuracy looks misleading.”
+
+---
