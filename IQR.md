@@ -308,4 +308,36 @@ Calculate the IQR for both schools. Which school has more consistent reading age
 
 ---
 
-*Notes prepared for EDCU006 — Faculty of Social Sciences, School of Education.*
+**If the IQR is small, what does that mean?**
+<details>
+<summary>Show answer</summary>
+
+The middle 50% of the data is clustered closely together — there is little variation between most people's scores/values. The data is consistent; individuals tend to respond or score in a similar way.
+
+</details>
+
+**Which is more affected by outliers — the range or the IQR?**
+<details>
+<summary>Show answer</summary>
+
+The range. Because the range uses the highest and lowest values, just one extreme score can make it much larger. The IQR ignores those extremes entirely, so outliers have no effect on it at all.
+
+</details>
+
+**We use IQR alongside which other measure?**
+<details>
+<summary>Show answer</summary>
+
+→ The median. Both are resistant to outliers, so they work well together. Just as the mean and standard deviation are paired, the median and IQR are paired — especially useful when data is skewed or uneven.
+
+</details>
+
+**If two groups have the same median but different IQRs, what does that tell you?**
+<details>
+<summary>Show answer</summary>
+
+→ Their average (typical) score is the same, but one group is more consistent than the other. The group with the smaller IQR has scores that are more tightly packed — people are more similar to each other. The group with the larger IQR has more variation — some people score much higher or lower than others, even though the middle value is the same. In social science, this matters because it tells you not just *what* is typical, but *how much people differ* around that typical value.
+
+</details>
+
+---
