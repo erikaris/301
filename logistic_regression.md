@@ -668,5 +668,39 @@ A clear write-up follows a structured order. Below is a template with the key el
 | 0.40 | "...had 60% lower odds of [outcome]" |
 
 ---
+## 11. $Exp(B) Interpretation
+To say $Exp(B) = 2.5$ in percentage terms, you describe the **increase** in odds relative to the reference group.
 
-*This document was prepared for tutorial support in SCSU01 BA Sociology. For further reading, see Field, A. (2024) Discovering Statistics Using IBM SPSS Statistics, and Tabachnick, B.G. & Fidell, L.S. (2019) Using Multivariate Statistics.*
+An $Exp(B)$ of **2.5** means the group has **150% higher odds** (or a 150% increase in odds) compared to the reference group.
+
+### The Calculation
+To get the percentage, you subtract 1 from the $Exp(B)$ and multiply by 100:
+$$(2.5 - 1) \times 100 = 150\%$$
+
+### How to phrase it correctly
+Depending on your audience, you can use three different ways to say the same thing:
+
+* **The "Times" way (Easiest):** "Professional-class respondents have **2.5 times the odds** of voting."
+* **The "Percentage Increase" way:** "Professional-class respondents have **150% higher odds** of voting."
+* **The "Comparison" way:** "The odds of voting are **150% greater** for the professional class than for the working class."
+
+---
+
+### Why is it 150% and not 250%?
+Think of it like a price increase:
+* If a product costs **1.0**, that is your baseline (100%).
+* If the price becomes **2.5**, it has increased by **1.5**. 
+* An increase of **1.5** is a **150% increase**.
+
+### Summary Table for Interpretation
+| $Exp(B)$ | Interpretation in "Times" | Interpretation in % |
+| :--- | :--- | :--- |
+| **3.0** | 3 times the odds | 200% increase |
+| **2.5** | 2.5 times the odds | **150% increase** |
+| **1.1** | 1.1 times the odds | 10% increase |
+| **1.0** | Same odds | 0% change (Baseline) |
+| **0.4** | 0.4 times the odds | 60% decrease |
+
+Does this 150% increase make sense in the context of your specific research project?
+
+---
