@@ -15,7 +15,7 @@
 8. [Common Problems and How to Fix Them](#8-common-problems-and-how-to-fix-them)
 9. [Writing Up Your Results](#9-writing-up-your-results)
 10. [Quick Reference Summary](#10-quick-reference-summary)
-11. [$Exp(B)$ Interpretation](# 11. $Exp(B)$ Interpretation)
+11. [Exp(B) Interpretation](#11-expb-interpretation)
 
 ---
 
