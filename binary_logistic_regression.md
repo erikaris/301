@@ -709,15 +709,15 @@ Does this 150% increase make sense in the context of your specific research proj
 
 ## 12. Possible Cause of Unexpected Results. 
 
-## 1. “Not significant but expected to be significant”
+### 1. “Not significant but expected to be significant”
 
-###  Investigation:
+####  Investigation:
 
 * Check sample size (N small?)
 * Check effect size (Exp(B) near 1?)
 * Check too many predictors
 
-### Fix / explanation:
+#### Fix / explanation:
 
 * Not a technical error
 * Likely low power or weak relationship
@@ -727,15 +727,15 @@ Does this 150% increase make sense in the context of your specific research proj
 
 ---
 
-## 2. “Effect direction is opposite (B sign wrong)”
+### 2. “Effect direction is opposite (B sign wrong)”
 
-### Investigation:
+#### Investigation:
 
 * Check DV coding (0/1 reversed?)
 * Check IV coding (e.g. high vs low reversed)
 * Check reference category in categorical variables
 
-### Fix:
+#### Fix:
 
 * Recode variable or change reference category
 
