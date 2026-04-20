@@ -15,6 +15,7 @@
 8. [Common Problems and How to Fix Them](#8-common-problems-and-how-to-fix-them)
 9. [Writing Up Your Results](#9-writing-up-your-results)
 10. [Quick Reference Summary](#10-quick-reference-summary)
+11. [$Exp(B)$ Interpretation](# 11. $Exp(B)$ Interpretation)
 
 ---
 
@@ -668,7 +669,7 @@ A clear write-up follows a structured order. Below is a template with the key el
 | 0.40 | "...had 60% lower odds of [outcome]" |
 
 ---
-## 11. $Exp(B) Interpretation
+## 11. $Exp(B)$ Interpretation
 To say $Exp(B) = 2.5$ in percentage terms, you describe the **increase** in odds relative to the reference group.
 
 An $Exp(B)$ of **2.5** means the group has **150% higher odds** (or a 150% increase in odds) compared to the reference group.
