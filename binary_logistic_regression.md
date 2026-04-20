@@ -16,6 +16,7 @@
 9. [Writing Up Your Results](#9-writing-up-your-results)
 10. [Quick Reference Summary](#10-quick-reference-summary)
 11. [Exp(B) Interpretation](#11-expb-interpretation)
+12. [Possible Cause of Unexpected Results](#12-possible-cause-of-unexpected-results)
 
 ---
 
