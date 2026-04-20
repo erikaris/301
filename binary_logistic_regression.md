@@ -705,9 +705,6 @@ Think of it like a price increase:
 Does this 150% increase make sense in the context of your specific research project?
 
 ---
-You’re basically looking for a **rapid diagnostic + fix workflow**, so you don’t get stuck guessing in-session. Here’s a clean, practical guide you can follow in real time.
-
----
 
 ## 12. Possible Cause of Unexpected Results. 
 
@@ -719,7 +716,7 @@ You’re basically looking for a **rapid diagnostic + fix workflow**, so you don
 * Check effect size (Exp(B) near 1?)
 * Check too many predictors
 
-### 🛠 Fix / explanation:
+### Fix / explanation:
 
 * Not a technical error
 * Likely low power or weak relationship
@@ -729,77 +726,77 @@ You’re basically looking for a **rapid diagnostic + fix workflow**, so you don
 
 ---
 
-## ❌ 2. “Effect direction is opposite (B sign wrong)”
+## 2. “Effect direction is opposite (B sign wrong)”
 
-### 🔎 Investigation:
+### Investigation:
 
 * Check DV coding (0/1 reversed?)
 * Check IV coding (e.g. high vs low reversed)
 * Check reference category in categorical variables
 
-### 🛠 Fix:
+### Fix:
 
 * Recode variable or change reference category
 
-👉 Say:
+Say:
 
 > “In logistic regression, direction is completely dependent on coding — this is very often a coding issue, not a real contradiction.”
 
 ---
 
-## ❌ 3. “Odds ratios are extreme (very large/small)”
+## 3. “Odds ratios are extreme (very large/small)”
 
-### 🔎 Investigation:
+### Investigation:
 
 * Look for sparse categories
 * Check cross-tab DV × IV
 * Check separation (perfect prediction)
 
-### 🛠 Fix:
+### Fix:
 
 * Collapse categories
 * Remove problematic variable
 * Acknowledge instability
 
-👉 Say:
+Say:
 
 > “This usually happens when one group almost perfectly predicts the outcome.”
 
 ---
 
-## ❌ 4. “Everything is not significant”
+## 4. “Everything is not significant”
 
-### 🔎 Investigation:
+### Investigation:
 
 * Sample size too small?
 * Predictors highly correlated?
 * No real relationship in data?
 
-### 🛠 Fix:
+### Fix:
 
 * Reduce predictors
 * Check multicollinearity
 * Revisit model specification
 
-👉 Say:
+Say:
 
 > “This is actually quite common in social science data — relationships are often weaker than theory suggests.”
 
 ---
 
-## ❌ 5. “Model predicts badly / all one category”
+## 5. “Model predicts badly / all one category”
 
-### 🔎 Investigation:
+### Investigation:
 
 * Check distribution of DV (imbalanced?)
 * Example: 90% = Yes
 
-### 🛠 Fix:
+### Fix:
 
 * Use balanced sampling or weighting
 * Acknowledge limitation
 
-👉 Say:
+Say:
 
 > “The model is biased toward the dominant category, which is why accuracy looks misleading.”
 
