@@ -1,6 +1,4 @@
-# Understanding the Interquartile Range (IQR)
-### EDCU006 — Statistics Support Notes
-
+# Interquartile Range (IQR)
 ---
 
 ## What is the IQR?
