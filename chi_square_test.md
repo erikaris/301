@@ -84,7 +84,7 @@ Both use:
 * p-value
 * comparison of observed vs expected
 
-👉 That’s why students think they’re the same—but the **source of expected counts is different**
+That’s why some people might think they are the same—but the **source of expected counts is different**
 
 ---
 
