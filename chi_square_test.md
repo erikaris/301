@@ -1,7 +1,134 @@
 
 # What Is Chi-Square Test?
 
-Chi-square test is used for:
+There are 2 types of Chi-Square Test:
+1. Testing the association between categorical variables (test of independence/contingency table) --> Are these two variables associated?
+2. Goodness of fit --> Does this variable follow a specific distribution?
+
+They’re closely related but **not the same test**—they answer different questions.
+
+---
+
+# Big picture difference
+
+## 1) Chi-square *goodness-of-fit* (GOF)
+
+**One variable only**
+
+* Question:
+
+  > “Does this variable follow a specific distribution?”
+
+* You compare:
+
+  * **Observed counts** vs **expected counts (you define)**
+
+---
+
+## 2) Chi-square *test of independence* (contingency table)
+
+**Two categorical variables**
+
+* Question:
+
+  > “Are these two variables associated?”
+
+* You compare:
+
+  * **Observed counts** vs **expected counts (calculated from data)**
+
+---
+
+## Side-by-side
+
+| Feature         | GOF                                    | Contingency table                  |
+| --------------- | -------------------------------------- | ---------------------------------- |
+| Variables       | 1 categorical                          | 2 categorical                      |
+| Goal            | Fit to expected distribution           | Test association                   |
+| Expected counts | Pre-specified                          | Computed from table                |
+| Example         | “Are eye colours equally distributed?” | “Is eye colour related to gender?” |
+
+---
+
+## Case examples (use in session)
+
+### Goodness-of-fit
+
+**Question:**
+Are patients equally distributed across severity levels?
+
+* DV: Severity → Mild / Moderate / Severe
+* Expected: 33% each
+
+Test if observed differs from expected
+
+---
+
+### Contingency table (independence test)
+
+**Question:**
+Is treatment related to outcome?
+
+* Variable 1: Treatment (A / B)
+* Variable 2: Outcome (Improved / Not improved)
+
+This is the **classic chi-square test students use most**
+
+---
+
+## Why they feel similar
+
+Both use:
+
+* χ² statistic
+* p-value
+* comparison of observed vs expected
+
+👉 That’s why students think they’re the same—but the **source of expected counts is different**
+
+---
+
+## Quick way to decide (teach this)
+
+Ask:
+
+> “Do I have one variable or two?”
+
+* **One → GOF**
+* **Two → contingency table**
+
+---
+
+## SPSS difference
+
+### GOF
+
+* Analyze → Nonparametric Tests → Legacy Dialogs → Chi-square
+
+### Contingency
+
+* Analyze → Descriptive Statistics → Crosstabs
+
+  * Tick **Chi-square**
+
+---
+
+## Common student mistakes
+
+* Using GOF when they actually have **two variables**
+* Forgetting to define expected proportions in GOF
+* Not checking expected counts ≥ 5 (applies to both)
+
+---
+
+## One-line summary (good for teaching)
+
+> “Goodness-of-fit tests one variable against a theoretical distribution, while the chi-square test of independence checks whether two categorical variables are related.”
+
+---
+
+
+## Chi-Square test for Association:
 
 Testing association between **categorical variables**
 
@@ -12,7 +139,7 @@ It does NOT model counts with predictors.
 
 ---
 
-## What Is Being Tested?
+### What Is Being Tested?
 
 Null hypothesis:
 
@@ -24,7 +151,7 @@ Are two categorical variables independent?
 
 ---
 
-# Example of Chi-Square Test
+#### Example of Chi-Square Test
 
 Suppose she had:
 
@@ -46,7 +173,7 @@ If p < 0.05:
 
 ---
 
-# What Is the Difference Between Chi-Square and GLM?
+### What Is the Difference Between Chi-Square and GLM?
 
 | Chi-square                   | GLM                               |
 | ---------------------------- | --------------------------------- |
@@ -62,7 +189,7 @@ GLM = regression framework
 
 ---
 
-# When Would She Use Chi-Square Instead?
+### When Would She Use Chi-Square Instead?
 
 If the data looked like (only has 1 dependent variable)
 
@@ -80,9 +207,9 @@ But if we want:
 → Use logistic regression (GLM with binomial).
 
 
-# Quick Visual Summary
+### Quick Visual Summary
 
-### If Y is:
+#### If Y is:
 
 * Continuous → LM
 * Count → Poisson GLM
@@ -220,7 +347,7 @@ p < 0.05 → reject null → evidence of association
 
 ---
 
-✅ Key Takeaway:
+Key Takeaway:
 
 > Comparing observed vs expected counts = asking “Do the patterns we see in the data differ significantly from what we’d expect if the variables were independent?”
 
