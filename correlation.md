@@ -1,45 +1,37 @@
-Good idea — students only really understand Kendall when they see a **mixed case** (not perfect). I’ll add a **third example** and then give you the **updated full summary** with everything integrated.
-
----
-
 # 1. CORRELATION
 
 ## what it is
 
 correlation measures the **strength and direction of a relationship** between two variables
 
-it answers
-do these two variables move together
+it answers: 
+> do these two variables move together
 
 **examples of variables**
-study hours and exam score
-temperature and ice cream sales
-machine speed and production output
-advertising spend and sales revenue
+1. study hours and exam score
+2. temperature and ice cream sales
+3. machine speed and production output
+4. advertising spend and sales revenue
 
 ---
 
-## types of correlation
+## types of correlation by direction
 
-**by direction**
-
-positive → both increase together
+1. positive → both increase together
 example
 study hours ↑ → exam score ↑
 
-negative → one increases, the other decreases
+2. negative → one increases, the other decreases
 example
 speed ↑ → time ↓
 
-zero → no relationship
+3. zero → no relationship
 example
 shoe size and exam score
 
 ---
 
-## by method (important for teaching choice)
-
----
+## types of correlation by method 
 
 ### pearson → for continuous, normally distributed data
 
