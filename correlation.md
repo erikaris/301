@@ -35,7 +35,7 @@ shoe size and exam score
 
 ### pearson → for continuous, normally distributed data
 
-r = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sqrt{\sum (x - \bar{x})^2 \sum (y - \bar{y})^2}}
+$$r = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sqrt{\sum (x - \bar{x})^2 \sum (y - \bar{y})^2}}$$
 
 **intuition**
 uses actual values and distances from mean
@@ -47,7 +47,7 @@ height and weight
 
 ### spearman → for ordinal or non-normal data
 
-r_s = 1 - \frac{6 \sum d^2}{n(n^2 - 1)}
+$$r_s = 1 - \frac{6 \sum d^2}{n(n^2 - 1)}$$
 
 ---
 
@@ -59,7 +59,7 @@ r_s = 1 - \frac{6 \sum d^2}{n(n^2 - 1)}
 | B       | 2          | 1          | 1  | 1  |
 | C       | 3          | 3          | 0  | 0  |
 
-Σd² = 2 → imperfect correlation
+$$Σd² = 2$$ → imperfect correlation
 
 **teaching point**
 bigger rank differences → weaker relationship
@@ -68,7 +68,7 @@ bigger rank differences → weaker relationship
 
 ### kendall → for ordinal data, based on pairwise agreement
 
-\tau = \frac{C - D}{\frac{1}{2}n(n-1)}
+$$\tau = \frac{C - D}{\frac{1}{2}n(n-1)}$$
 
 ---
 
@@ -120,7 +120,7 @@ D = 1
 
 total pairs = 3
 
-τ = (2 − 1) / 3 = 0.33
+$$τ = (2 − 1) / 3 = 0.33$$
 
 ---
 
@@ -203,7 +203,7 @@ models how one variable predicts another
 
 ## formula
 
-genui{"math_block_widget_always_prefetch_v2":{"content":"y = a + bx"}}
+$$genui{"math_block_widget_always_prefetch_v2":{"content":"y = a + bx"}}$$
 
 ---
 
