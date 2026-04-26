@@ -251,6 +251,7 @@ $$
 ### Example
 
 * Male & Aggressive:
+  
   $$\text{E} = \frac{40 \times 45}{80} = 22.5$$
 
 * Male & Not Aggressive:
