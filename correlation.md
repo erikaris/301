@@ -203,7 +203,7 @@ models how one variable predicts another
 
 ## formula
 
-$$genui{"math_block_widget_always_prefetch_v2":{"content":"y = a + bx"}}$$
+genui{"math_block_widget_always_prefetch_v2":{"content":"y = a + bx"}}
 
 ---
 
