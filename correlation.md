@@ -205,6 +205,7 @@ models how one variable predicts another
 
 genui{"math_block_widget_always_prefetch_v2":{"content":"y = a + bx"}}
 
+
 ---
 
 ## example
