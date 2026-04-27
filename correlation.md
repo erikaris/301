@@ -203,7 +203,7 @@ models how one variable predicts another
 
 ## formula
 
-genui{"math_block_widget_always_prefetch_v2":{"content":"y = a + bx"}}
+$$y = a + bx$$
 
 
 ---
@@ -212,7 +212,7 @@ models how one variable predicts another
 
 study hours vs exam score
 
-y = 40 + 5x
+$$y = 40 + 5x$$
 
 ---
 
@@ -281,13 +281,3 @@ kendall → pairs
 correlation measures relationships, regression predicts outcomes, and hypothesis testing tells you whether results are reliable
 
 ---
-
-This version now gives you:
-
-* **perfect positive**
-* **perfect negative**
-* **realistic mixed case**
-
-which is exactly what students need to *actually understand Kendall*.
-
-If you want next step, I can turn just the Kendall section into a **2-minute board walkthrough script** — very powerful in tutoring.
