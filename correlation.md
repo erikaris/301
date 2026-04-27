@@ -1,4 +1,4 @@
-# 1. CORRELATION
+# CORRELATION
 
 ## what it is
 
