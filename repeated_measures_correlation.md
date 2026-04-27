@@ -212,7 +212,7 @@ It separates:
 
 ## Core model
 
-y_{ij} = \beta_0 + \beta_1 x_{ij} + u_j + \epsilon_{ij}
+$$y_{ij} = \beta_0 + \beta_1 x_{ij} + u_j + \epsilon_{ij}$$
 
 ---
 
