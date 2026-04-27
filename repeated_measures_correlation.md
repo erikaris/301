@@ -327,3 +327,357 @@ Both repeated measures correlation and LMM focus on **within-person relationship
 * Suitable for publication-level analysis
 
 
+----
+
+# CASE EXAMPLE: Sleep Quality vs Screen Time
+
+## Research question
+
+> How is screen time related to sleep quality over time across multiple people?
+
+---
+
+# 1. DUMMY DATASET (LONG FORMAT)
+
+We use:
+
+* 5 participants
+* 5 time points each (day)
+* Variables:
+
+  * X = ScreenTime (hours)
+  * Y = SleepQuality (0–10 scale)
+
+| participant | DAY | ScreenTime | SleepQuality |
+| ----------- | ---- | ---------- | ------------ |
+| 1           | 1    | 3.0        | 7.6          |
+| 1           | 2    | 4.0        | 7.0          |
+| 1           | 3    | 5.0        | 6.2          |
+| 1           | 4    | 6.0        | 5.6          |
+| 1           | 5    | 7.0        | 5.1          |
+| 2           | 1    | 2.0        | 8.2          |
+| 2           | 2    | 3.0        | 7.5          |
+| 2           | 3    | 4.0        | 6.9          |
+| 2           | 4    | 5.0        | 6.1          |
+| 2           | 5    | 6.0        | 5.5          |
+| 3           | 1    | 1.5        | 8.5          |
+| 3           | 2    | 2.5        | 7.9          |
+| 3           | 3    | 3.5        | 7.2          |
+| 3           | 4    | 4.5        | 6.6          |
+| 3           | 5    | 5.5        | 6.0          |
+| 4           | 1    | 3.5        | 7.3          |
+| 4           | 2    | 4.5        | 6.7          |
+| 4           | 3    | 5.5        | 6.0          |
+| 4           | 4    | 6.5        | 5.4          |
+| 4           | 5    | 7.5        | 4.9          |
+| 5           | 1    | 2.5        | 8.0          |
+| 5           | 2    | 3.5        | 7.4          |
+| 5           | 3    | 4.5        | 6.8          |
+| 5           | 4    | 5.5        | 6.2          |
+| 5           | 5    | 6.5        | 5.6          |
+
+---
+
+# 2. SCENARIO 1: Repeated Measures Correlation + LMM
+
+---
+
+# A) R CODE
+
+## Load data
+
+```r
+library(dplyr)
+library(rmcorr)
+library(lme4)
+
+data <- read.csv("sleep_data.csv")
+```
+
+---
+
+## 1. Repeated Measures Correlation
+
+```r
+rmcorr(participant, ScreenTime, SleepQuality, data)
+```
+
+---
+
+## 2. Linear Mixed Model
+
+```r
+model1 <- lmer(SleepQuality ~ ScreenTime + (1 | participant), data=data)
+summary(model1)
+```
+
+> (1 | participant) means that each participant is allowed to have their own baseline level of sleep quality. So instead of forcing everyone to start from the same point, the model adjusts for individual differences in average sleep.
+
+> A **baseline** is: the expected value of SleepQuality when ScreenTime = 0 (or at the average level in practice)
+
+So “different baseline” means:
+
+* some people naturally sleep better
+* some people naturally sleep worse
+* even if their screen time is the same
+---
+
+# B) SPSS INSTRUCTIONS
+
+---
+
+## STEP 1: Enter data
+
+* Open SPSS
+
+* Variable View:
+
+  * participant (numeric)
+  * time (numeric)
+  * ScreenTime (scale)
+  * SleepQuality (scale)
+
+* Enter data in Data View (long format)
+
+---
+
+## STEP 2: Repeated Measures Correlation (manual approach)
+
+SPSS has no direct rmcorr button, so you do:
+
+### Method: Demeaning approach
+
+Go to:
+
+**Transform → Compute Variable**
+
+Create:
+
+### 1. Participant mean ScreenTime
+
+* Target Variable: mean_X
+* Numeric Expression:
+
+```
+AGGREGATE(ScreenTime, participant, MEAN(ScreenTime))
+```
+
+(Alternatively use:)
+**Data → Aggregate → Break variable = participant**
+
+---
+
+### 2. Demeaned variables
+
+Transform → Compute:
+
+* X_centered = ScreenTime - mean_X
+* Y_centered = SleepQuality - mean_Y
+
+---
+
+### 3. Correlation
+
+Analyze → Correlate → Bivariate
+Select:
+
+* X_centered
+* Y_centered
+
+---
+
+## STEP 3: Linear Mixed Model
+
+Go to:
+
+**Analyze → Mixed Models → Linear**
+
+### Setup:
+
+**1. Subjects**
+
+* participant → Subject
+
+---
+
+**2. Repeated (optional)**
+
+* time → Repeated (optional structure)
+
+---
+
+**3. Fixed Effects**
+
+* Add ScreenTime
+
+---
+
+**4. Random Effects**
+
+* Click “Random”
+* Choose:
+
+  * Intercept
+  * Subject = participant
+
+---
+
+Click OK
+
+---
+
+# 3. DUMMY OUTPUT (SCENARIO 1)
+
+---
+
+## Repeated Measures Correlation
+
+```text
+r = -0.78  
+p < 0.001  
+95% CI [-0.85, -0.65]
+```
+
+---
+
+## Mixed Model
+
+```text
+Fixed effects:
+Intercept = 9.2
+ScreenTime = -0.65
+p < 0.001
+
+Random effects:
+Participant variance = 1.5
+```
+
+---
+
+# 4. INTERPRETATION (SCENARIO 1)
+
+## Repeated Measures Correlation
+
+* Strong negative relationship
+* Within individuals:
+
+  * when screen time increases
+  * sleep quality decreases
+
+Meaning:
+> “Within-person increase in screen time is associated with worse sleep.”
+
+---
+
+## Mixed Model
+
+* Each 1-hour increase in screen time reduces sleep quality by 0.65 points
+* Effect is statistically significant
+* Participants differ in baseline sleep quality
+
+Meaning: 
+> “Screen time has a negative effect on sleep quality after accounting for individual differences.”
+
+---
+
+# 5. SCENARIO 2: ADVANCED LMM (WITH RANDOM SLOPES)
+
+This is closer to real research.
+
+---
+
+## R CODE
+
+```r
+model2 <- lmer(SleepQuality ~ ScreenTime + 
+               (1 + ScreenTime | participant), data=data)
+
+summary(model2)
+```
+
+---
+
+## SPSS STEPS
+
+Go to:
+
+**Analyze → Mixed Models → Linear**
+
+### Fixed Effects
+
+* ScreenTime
+
+---
+
+### Random Effects
+
+Click “Random”:
+
+* Add:
+
+  * Intercept
+  * ScreenTime
+* Grouping factor = participant
+
+---
+
+### Method
+
+* REML (default)
+
+Click OK
+
+---
+
+# 6. DUMMY OUTPUT (SCENARIO 2)
+
+```text
+Fixed Effects:
+Intercept = 9.1
+ScreenTime = -0.70
+p < 0.001
+
+Random Effects:
+Intercept variance = 1.6
+Slope variance = 0.12
+```
+
+---
+
+# 7. INTERPRETATION (SCENARIO 2)
+
+## Fixed effect
+
+* Screen time negatively predicts sleep quality
+* Strong and significant effect
+
+---
+
+## Random intercept
+
+* People differ in baseline sleep quality
+
+---
+
+## Random slope (important insight)
+
+* The effect of screen time is NOT identical for everyone
+* Some people are more sensitive than others
+
+Meaning:
+> “The impact of screen time on sleep varies across individuals.”
+
+---
+
+## Two correct approaches:
+
+### 1. Repeated Measures Correlation
+
+* gives within-person relationship
+* simple and interpretable
+
+### 2. Linear Mixed Models
+
+* more flexible
+* accounts for individual differences
+* can include time and covariates
