@@ -151,6 +151,8 @@ So:
 
 Then correlation is computed on these deviations.
 
+In R, it is handled by the package [rmcorr](https://lmarusich.github.io/rmcorr/reference/rmcorr.html). Also read [this](https://rdrr.io/cran/matrixCorr/man/rmcorr.html).
+
 ---
 
 ## Example output
@@ -289,7 +291,7 @@ Use LMM when:
 
 ---
 
-# 8. Important conceptual idea (very important for your understanding)
+# 8. Important conceptual idea
 
 Your data has two types of variation:
 
@@ -319,7 +321,7 @@ Both repeated measures correlation and LMM focus on **within-person relationship
 * Good first analysis step
 
 2. **Linear Mixed Effects Model**
-3. 
+   
 * More flexible
 * Handles complex experimental design
 * Suitable for publication-level analysis
