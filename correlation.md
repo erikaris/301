@@ -1,6 +1,6 @@
 # CORRELATION
 
-Check this [cheatsheet summary](./correlation_regression_summary.png). 
+Check this [cheatsheet summary](correlation_regression_summary.png). 
 
 ## what it is
 
