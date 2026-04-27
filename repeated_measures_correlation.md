@@ -193,6 +193,7 @@ Use repeated measures correlation when:
 ---
 
 # 6. Solution 2: Linear Mixed Effects Model (LMM)
+Also read: [this notes about LMM](https://github.com/erikaris/301/blob/main/linear_mixed_model.md)
 
 ## What it is
 
@@ -309,46 +310,18 @@ Both repeated measures correlation and LMM focus on **within-person relationship
 
 ---
 
-# 9. Best recommendation for your problem
+# 9. Comparison Summary
 
-Based on your question:
-
-> “relationship between two values measured over time in multiple participants”
-
-### Best approach:
-
-### Step 1 (start simple)
-
-Use **Repeated Measures Correlation**
-
-Because:
+1. **Repeated Measures Correlation**
 
 * It directly answers your question
 * Easy to interpret
 * Good first analysis step
 
----
-
-### Step 2 (if deeper analysis is needed)
-
-Use **Linear Mixed Effects Model**
-
-Because:
-
+2. **Linear Mixed Effects Model**
+3. 
 * More flexible
 * Handles complex experimental design
 * Suitable for publication-level analysis
 
----
 
-# 10. Final takeaway (what you should remember)
-
-> You cannot use simple correlation for repeated data because measurements within the same person are not independent. The correct approach is to use repeated measures correlation for a simple within-person relationship, or linear mixed effects models for a more flexible and complete analysis.
-
----
-
-If you want, I can also turn this into:
-
-* a **1-page printable handout**
-* a **whiteboard teaching script (step-by-step delivery)**
-* or **Python/R/SPSS code examples for live demonstration**
