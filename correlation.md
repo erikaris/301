@@ -1,5 +1,7 @@
 # CORRELATION
 
+Check this [cheatsheet summary](./correlation_regression_summary.png). 
+
 ## what it is
 
 correlation measures the **strength and direction of a relationship** between two variables
