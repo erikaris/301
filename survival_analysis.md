@@ -50,6 +50,47 @@ Example:
 
 * Patient is alive at 12 months → we only know survival ≥ 12 months
 
+
+It’s called **“censoring”** because the full information is **partially hidden or cut off from observation**, even though something important is still known.
+
+A simple way to think about the word:
+
+> **To censor something means to restrict or cut off part of the information.**
+
+
+####**In survival analysis context**
+
+We are not “erasing” data. Instead:
+
+* We **cut off our observation time**
+* So we **do not see the full event time**
+* But we still know part of the story (they were event-free up to a point)
+
+#### ***Why the name makes sense (intuition)***
+
+Imagine a TV broadcast:
+
+* Censorship = you see part of the content, but not all of it
+
+Now apply it to data:
+
+#### Patient example:
+
+* You follow a patient for 10 months
+* They are still alive
+* After 10 months, you stop observing them
+
+So:
+
+* You did NOT see the full outcome
+* You only saw up to a “cut-off point”
+
+That “cut-off observation” is why it is called **censoring**.
+
+#### Key idea in one line
+
+> It is called censoring because the exact event time is partially “cut off” from observation, leaving incomplete but still useful information.
+
 ---
 
 # 3. Key outputs you interpret
