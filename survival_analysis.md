@@ -42,6 +42,7 @@ These people are **not data failures** — they are **censored observations**.
 ### Censoring (very important concept)
 
 Censoring means:
+> we stop observing someone before the event happens, but we still know they were event-free up to that point.
 
 > we know the event did NOT happen during observation time, but we don’t know what happens after.
 
