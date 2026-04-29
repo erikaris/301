@@ -2,7 +2,7 @@
 
 ---
 
-# Table of Contents
+## Table of Contents
 
 1. [The Gathered Facts](#the-gathered-facts)
 2. [Three Quick Questions Before We Start](#three-quick-questions-before-we-start)
