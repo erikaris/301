@@ -24,7 +24,7 @@ Frame everything around **outcome type**:
 
 ---
 
-# 7. Simple case walkthrough
+# Simple case walkthrough
 
 ### Case 1: Blood pressure study
 
