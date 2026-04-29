@@ -99,8 +99,20 @@ You never interpret AIC as an absolute number. It only means something when you 
 ### Why Lower AIC = Better Model
 
 - Because AIC is a penalty score, not a reward score.
-- The formula is **$$AIC = 2k − 2ln(L)$$**, where k is the number of parameters (complexity) and L is how well the model fits the data (likelihood). The fit term is subtracted, meaning better fit pulls the number down. The complexity term is added, meaning more parameters push the number up. So a model that fits well and stays simple ends up with a low number. A model that fits poorly, or uses unnecessary parameters to achieve its fit, ends up with a high number.
-- The intuition is this: you can always make a model fit better by adding more parameters — eventually you could have one parameter per data point and fit everything perfectly. But that model would be useless, because it has just memorised the data rather than learned anything general from it. AIC stops you doing this by charging a penalty of 2 for every parameter you add. A parameter is only worth including if it improves the fit by more than that penalty costs. The model that achieves the best fit for the fewest parameters wins — and that model has the lowest AIC.
+- The formula is **$$AIC = 2k − 2ln(L)$$**, where:
+  - `k` is the number of parameters (complexity)
+  - L is how well the model fits the data (likelihood).
+  - The fit term is subtracted, meaning a better fit pulls the number down.
+  - The complexity term is added, meaning more parameters push the number up.
+  - So a model that fits well and stays simple ends up with a low number.
+  - A model that fits poorly, or uses unnecessary parameters to achieve its fit, ends up with a high number.
+- The intuition is this:
+  - You can always make a model fit better by adding more parameters.
+  - Eventually, you could have one parameter per data point and fit everything perfectly.
+  - But that model would be useless, because it has just memorised the data rather than learned anything general from it.
+  - AIC stops you from doing this by charging a penalty of 2 for every parameter you add.
+  - A parameter is only worth including if it improves the fit by more than the penalty costs.
+  - The model that achieves the best fit for the fewest parameters wins, and that model has the lowest AIC.
 
 **The four models:**
 
