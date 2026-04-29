@@ -1,8 +1,8 @@
 # Nonlinear Growth Model (Tree Growth Analysis)
 
 ---
-<details>
-<summary><strong>Table of Contents</strong></summary>
+
+# Table of Contents
 
 1. [The Gathered Facts](#the-gathered-facts)
 2. [Three Quick Questions Before We Start](#three-quick-questions-before-we-start)
@@ -19,7 +19,6 @@
 10. [Your Next Steps Before the Next Session](#your-next-steps-before-the-next-session)
 11. [Two References to Keep](#two-references-to-keep)
 
-</details>
 ---
 
 ## The Gathered Facts: 
