@@ -1,11 +1,8 @@
-# Your Stats Session — Tree Growth Analysis
-**35 minutes | Written notes to keep**
+# Nonlinear Growth Model (Tree Growth Analysis)
 
 ---
 
-## What We Think You Are Trying to Do
-
-Based on what you wrote in your appointment request, here is our understanding of your project. Let us know if anything is wrong before we start.
+## The Gathered Facts: 
 
 You are comparing **two tree species** over 10 years to find out whether **environmental factors** (like rainfall or temperature) have **limited or accelerated their growth**.
 
@@ -16,7 +13,7 @@ You have already:
 
 The problem you are stuck on: **trees grow at different rates depending on their age**, and you are not sure how to account for this in your model.
 
-Your planned next steps — which we think are correct — are:
+Your planned next steps are:
 1. Fit a growth model
 2. Test environmental factors against it
 3. Measure the strength of those relationships
@@ -27,15 +24,13 @@ You are working in R.
 
 ## Three Quick Questions Before We Start
 
-These will take 2 minutes and make sure the rest of the session is right for your data.
-
 1. Do you have **the same trees measured multiple times** over 10 years, or different trees each year?
 2. What **environmental variables** do you have — rainfall, temperature, soil moisture?
 3. Which **growth equation** did you choose, and from which paper?
 
 ---
 
-## Your Data (for the examples in this guide)
+## Case Example (Dummy Data)
 
 All the examples below use this dummy dataset. It is structured the same way your data should be — two species, multiple trees, measured once a year.
 
@@ -61,7 +56,7 @@ trees <- data.frame(tree_id, species, age, height=round(height,2), rainfall)
 
 ---
 
-## Step 1 — Plot Your Data First (3 min)
+## Step 1 — Plot Your Data First
 
 **Why we do this:** Before fitting any model, you need to see the shape of your data. If height flattens off as trees get older, that tells you a nonlinear model is appropriate — which it almost certainly is for tree data.
 
@@ -86,13 +81,24 @@ plot(ash$age, ash$height,
 
 ---
 
-## Step 2 — Fit and Compare Growth Models (8 min)
+## Step 2 — Fit and Compare Growth Models
 
-**Why we do this:** There are four standard nonlinear growth models used in ecology and forestry. Rather than just picking one, we fit all four and compare them using AIC. The model with the **lowest AIC** fits your data best.
+**Why we do this:** There are four standard nonlinear growth models used in ecology and forestry. Rather than just picking one, we fit all four and compare them using Akaike Information Criterion (AIC). The model with the **lowest AIC** fits your data best.
 
 **What AIC means:** It is a score that rewards good fit but penalises unnecessary complexity. Lower is always better. A difference of more than 10 between two models is considered very strong evidence that the lower one is better.
 
+You never interpret AIC as an absolute number — it only means something when you compare two or more models fitted to the same dataset.
+
+| AIC difference (ΔAIC) | What it means |
+|---|---|
+| 0–2 | Models are roughly equivalent — little to choose between them |
+| 2–10 | Some evidence the lower model is better |
+| > 10 | Strong evidence the lower model is better |
+| > 30 | The lower model is overwhelmingly better |
+
 **The four models:**
+
+> Came across these while doing online search about 'nonlinear growth models ecology'.
 
 | Model | What makes it different |
 |---|---|
@@ -139,7 +145,7 @@ m3    4   242.8
 m4    4   271.7    <-- highest = worst fit (Von Bertalanffy)
 ```
 
-**What this means for you:**
+**What this means:**
 
 Chapman-Richards has the lowest AIC (197.3). The next best model (Gompertz) is 32 AIC points higher — that is overwhelming evidence that Chapman-Richards fits your data better. Von Bertalanffy is worst, which makes biological sense: it assumes trees never accelerate growth, but your data clearly shows a fast-growth early phase.
 
@@ -151,7 +157,7 @@ You now have empirical evidence for your model choice, not just convention. In y
 
 ---
 
-## Step 3 — Account for Individual Tree Differences: nlme() (8 min)
+## Step 3 — Account for Individual Tree Differences: nlme()
 
 **Why we do this:** The nls() model in Step 2 treats all oak trees as identical — the same maximum height, same growth rate, for every individual. But look at your data: some trees are naturally taller than others of the same species, regardless of their environment. If we ignore this, our standard errors will be wrong and our conclusions unreliable.
 
@@ -225,7 +231,7 @@ Number of Groups: 10
 
 ---
 
-## Step 4 — Test Whether Environment Explains Leftover Growth (8 min)
+## Step 4 — Test Whether Environment Explains Leftover Growth
 
 **Why we do this:** The growth model in Step 3 accounts for age-dependent growth and individual tree variation. Whatever is left unexplained — the **residuals** — may be related to your environmental variables. A positive residual means a tree grew more than the model predicted. A negative residual means it grew less.
 
@@ -281,7 +287,7 @@ F-statistic: 12.08 on 1 and 98 DF,  p-value: 0.000788
 
 ---
 
-## Step 5 — Compare the Two Species (5 min)
+## Step 5 — Compare the Two Species
 
 **Why we do this:** You want to know whether environmental factors affected both species equally, or whether one was more limited than the other. We test this with an **interaction term** — it asks: "does the effect of rainfall on growth *differ* between species?"
 
