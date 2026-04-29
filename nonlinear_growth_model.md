@@ -83,11 +83,11 @@ plot(ash$age, ash$height,
 
 ## Step 2 — Fit and Compare Growth Models
 
-**Why we do this:** There are four standard nonlinear growth models used in ecology and forestry. Rather than just picking one, we fit all four and compare them using Akaike Information Criterion (AIC). The model with the **lowest AIC** fits your data best.
+**Why we do this:** There are four standard nonlinear growth models used in ecology and forestry. Rather than just picking one, we fit all four and compare them using the Akaike Information Criterion (AIC). The model with the **lowest AIC** fits your data best.
 
 **What AIC means:** It is a score that rewards good fit but penalises unnecessary complexity. Lower is always better. A difference of more than 10 between two models is considered very strong evidence that the lower one is better.
 
-You never interpret AIC as an absolute number — it only means something when you compare two or more models fitted to the same dataset.
+You never interpret AIC as an absolute number. It only means something when you compare two or more models fitted to the same dataset.
 
 | AIC difference (ΔAIC) | What it means |
 |---|---|
@@ -95,6 +95,12 @@ You never interpret AIC as an absolute number — it only means something when y
 | 2–10 | Some evidence the lower model is better |
 | > 10 | Strong evidence the lower model is better |
 | > 30 | The lower model is overwhelmingly better |
+
+### Why Lower AIC = Better Model
+
+- Because AIC is a penalty score, not a reward score.
+- The formula is **$$AIC = 2k − 2ln(L)$$**, where k is the number of parameters (complexity) and L is how well the model fits the data (likelihood). The fit term is subtracted, meaning better fit pulls the number down. The complexity term is added, meaning more parameters push the number up. So a model that fits well and stays simple ends up with a low number. A model that fits poorly, or uses unnecessary parameters to achieve its fit, ends up with a high number.
+- The intuition is this: you can always make a model fit better by adding more parameters — eventually you could have one parameter per data point and fit everything perfectly. But that model would be useless, because it has just memorised the data rather than learned anything general from it. AIC stops you doing this by charging a penalty of 2 for every parameter you add. A parameter is only worth including if it improves the fit by more than that penalty costs. The model that achieves the best fit for the fewest parameters wins — and that model has the lowest AIC.
 
 **The four models:**
 
