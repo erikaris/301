@@ -1,6 +1,26 @@
 # Nonlinear Growth Model (Tree Growth Analysis)
 
 ---
+<details>
+<summary><strong>Table of Contents</strong></summary>
+
+1. [The Gathered Facts](#the-gathered-facts)
+2. [Three Quick Questions Before We Start](#three-quick-questions-before-we-start)
+3. [Case Example (Dummy Data)](#case-example-dummy-data)
+4. [Step 1 — Plot Your Data First](#step-1--plot-your-data-first)
+5. [Step 2 — Fit and Compare Growth Models](#step-2--fit-and-compare-growth-models)
+   - [What AIC Means](#what-aic-means)
+   - [Why Lower AIC = Better Model](#why-lower-aic--better-model)
+   - [The Four Models](#the-four-models)
+6. [Step 3 — Account for Individual Tree Differences: nlme()](#step-3--account-for-individual-tree-differences-nlme)
+7. [Step 4 — Test Whether Environment Explains Leftover Growth](#step-4--test-whether-environment-explains-leftover-growth)
+8. [Step 5 — Compare the Two Species](#step-5--compare-the-two-species)
+9. [Summary — Decisions Made Today](#summary--decisions-made-today)
+10. [Your Next Steps Before the Next Session](#your-next-steps-before-the-next-session)
+11. [Two References to Keep](#two-references-to-keep)
+
+</details>
+---
 
 ## The Gathered Facts: 
 
