@@ -85,7 +85,7 @@ plot(ash$age, ash$height,
 
 **Why we do this:** There are four standard nonlinear growth models used in ecology and forestry. Rather than just picking one, we fit all four and compare them using the Akaike Information Criterion (AIC). The model with the **lowest AIC** fits your data best.
 
-**What AIC means:** It is a score that rewards good fit but penalises unnecessary complexity. Lower is always better. A difference of more than 10 between two models is considered very strong evidence that the lower one is better.
+**What AIC means:** It is a score that rewards good fit but penalises unnecessary complexity. Lower is always better. A difference of more than 10 between two models is considered very strong evidence that the lower one is better [reference](https://www.statology.org/what-is-a-good-aic-value/).
 
 You never interpret AIC as an absolute number. It only means something when you compare two or more models fitted to the same dataset.
 
@@ -181,7 +181,7 @@ You now have empirical evidence for your model choice, not just convention. In y
 
 The solution is a **mixed effects model**. It separates two things:
 
-- **Fixed effect** = the average pattern for the whole species (e.g. average max height = 21 m)
+- **Fixed effect** = the average pattern for the whole species (e.g., average max height = 21 m)
 - **Random effect** = how much each individual tree deviates from that average (e.g. one tree is 0.5 m taller than average, another is 0.4 m shorter)
 
 **Why nlme() and not lme4():** lme4 can only fit straight-line (linear) models. The Chapman-Richards equation has parameters inside an exponential — that is nonlinear. nlme() is designed for exactly this. It is not a preference; lme4 simply cannot fit this equation.
