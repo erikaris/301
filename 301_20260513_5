@@ -1,0 +1,304 @@
+## Tutor Prep — MGT223 Business Statistics 
+
+> “Most of these topics are about making decisions from sample data.”
+
+| Topic                  | Main Question                                      |
+| ---------------------- | -------------------------------------------------- |
+| Multiple Regression    | “What factors predict an outcome?”                 |
+| Confidence Intervals   | “What range is plausible for the true value?”      |
+| Hypothesis Testing     | “Is this effect statistically significant?”        |
+| Sample Size            | “How much data is enough?”                         |
+| Non-parametric Methods | “What if assumptions fail / data not normal?”      |
+| Binomial Distribution  | “How many successes out of fixed trials?”          |
+| Poisson Distribution   | “How many events happen in a time/space interval?” |
+
+---
+
+### Core inferential workflow
+
+1. Collect sample data
+2. Estimate something (confidence interval)
+3. Test a claim (hypothesis testing)
+4. Model relationships (regression)
+5. Use alternative methods if assumptions fail (non-parametric)
+
+---
+
+# Quick explanations + business examples
+
+---
+
+## A. Multiple Regression
+
+### Main idea
+
+Predict one outcome using multiple predictors.
+
+### Business example
+
+Predicting **monthly sales** using:
+
+* advertising spend
+* product price
+* number of employees
+
+Model:
+
+[
+Sales = \beta_0 + \beta_1(Advertising) + \beta_2(Price) + \beta_3(Employees)
+]
+
+y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3
+
+### Key interpretations
+
+* coefficient = expected change in outcome
+* p-value = is predictor significant?
+* (R^2) = how much variation explained
+
+### Fast analogy
+
+> “Regression is like identifying which business factors matter most after controlling for other variables.”
+
+---
+
+## B. Confidence Intervals (CI)
+
+### Main idea
+
+A range of plausible values for the population parameter.
+
+Example:
+
+> Mean customer spending = £45
+> 95% CI = [£40, £50]
+
+Interpretation:
+
+> We are reasonably confident the true population mean lies between £40 and £50.
+
+### Important misconception
+
+NOT:
+
+> “95% probability the true mean is inside.”
+
+Better:
+
+> “Method captures the true value 95% of the time.”
+
+### Link to hypothesis testing
+
+If null value not inside CI → likely significant.
+
+---
+
+## C. Hypothesis Testing
+
+### Main structure
+
+[
+H_0:\text{ no effect}
+]
+[
+H_1:\text{ effect exists}
+]
+
+### Business example
+
+Does new advertising campaign increase sales?
+
+* (H_0): no increase
+* (H_1): increase exists
+
+### Decision rule
+
+* p < 0.05 → reject (H_0)
+* p ≥ 0.05 → fail to reject (H_0)
+
+### Most important thing
+
+Push interpretation:
+
+> “Data provides enough evidence of an effect.”
+
+NOT:
+
+> “Null hypothesis is false.”
+
+---
+
+## D. Sample Size Calculations
+
+### Main idea
+
+Need enough data for reliable conclusions.
+
+### Key intuition
+
+Larger sample:
+
+* smaller error
+* narrower CI
+* more statistical power
+
+### Business example
+
+Surveying customer satisfaction.
+
+* 20 customers → unstable estimates
+* 500 customers → more reliable
+
+### Quick intuition rule
+
+Required sample size increases when:
+
+* variability is high
+* desired precision is high
+* confidence level is high
+
+---
+
+## E. Non-parametric Methods
+
+### Main idea
+
+Used when assumptions of parametric tests fail.
+
+Usually:
+
+* data not normal
+* ordinal/ranked data
+* outliers present
+
+### Common examples
+
+| Parametric          | Non-parametric alternative |
+| ------------------- | -------------------------- |
+| t-test              | Mann–Whitney U             |
+| Pearson correlation | Spearman correlation       |
+
+### Business example
+
+Comparing customer satisfaction ratings (1–5 Likert scale).
+
+Good phrase:
+
+> “Non-parametric methods are more flexible but often less powerful.”
+
+---
+
+## F. Binomial Distribution
+
+### Main conditions
+
+* fixed number of trials
+* success/failure
+* constant probability
+* independent trials
+
+### Business example
+
+Out of 20 customers, how many buy premium membership?
+
+P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}
+
+### Key recognition clue
+
+“Fixed number of trials.”
+
+---
+
+## G. Poisson Distribution
+
+### Main idea
+
+Counts events occurring over time/space.
+
+### Business example
+
+* number of complaints per day
+* number of website crashes per month
+
+P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}
+
+### Key recognition clue
+
+“Rate of occurrence.”
+
+### Nice comparison
+
+* Binomial = fixed number of opportunities
+* Poisson = counting random events
+
+---
+
+# 3. High-yield connections between topics
+
+This is VERY useful in tutoring.
+
+| Connection                                     | Explain                             |
+| ---------------------------------------------- | ----------------------------------- |
+| Regression uses hypothesis testing             | Each coefficient has a p-value      |
+| Regression uses confidence intervals           | CI for coefficients                 |
+| Sample size affects significance               | Bigger n → easier to detect effects |
+| Non-parametric methods replace parametric ones | When assumptions violated           |
+| Binomial & Poisson are probability models      | Foundation for inference            |
+
+---
+
+# 4. Likely exam-style questions
+
+Prepare for these:
+
+### Regression
+
+* interpret coefficient
+* interpret p-value
+* explain (R^2)
+
+### Hypothesis testing
+
+* identify null/alternative
+* interpret p-value
+* type I vs type II error
+
+### Confidence interval
+
+* interpret correctly
+* relationship with significance
+
+### Distribution questions
+
+* identify whether binomial or Poisson
+
+---
+
+# 5. Super concise explanations you can say aloud
+
+### p-value
+
+> “Probability of observing results this extreme if the null hypothesis were true.”
+
+### Confidence interval
+
+> “Range of plausible values.”
+
+### Regression coefficient
+
+> “Expected change in Y when X increases by 1, holding others constant.”
+
+### Non-parametric methods
+
+> “Used when standard assumptions are not met.”
+
+### Binomial
+
+> “Fixed number of trials.”
+
+### Poisson
+
+> “Counting events over time or space.”
+
+---
+
