@@ -125,7 +125,7 @@ The table below shows 10 representative rows. A full dataset for this study woul
 
 ## 5. SPSS step-by-step
 
-> **Note on software route:** This guide uses the built-in `Data → Propensity Score Matching` menu available in SPSS v24 and later. This is the recommended route for v31. You do **not** need a separate logistic regression step, and you do **not** need the old "PS Matching" extension under the Analyze menu (that is an older R-based tool and is not required here).
+> **Note on software route:** This guide uses the built-in `Data → Propensity Score Matching` menu available in SPSS v24 and later. You do **not** need a separate logistic regression step, and you do **not** need the old "PS Matching" extension under the Analyze menu (that is an older R-based tool and is not required here).
 
 ---
 
