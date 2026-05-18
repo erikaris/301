@@ -1,4 +1,4 @@
-# Propensity Score Matching (PSM)
+# Propensity Score Matching (PSM) in SPSS and R
 ---
 
 ## Table of contents
@@ -8,9 +8,11 @@
 3. [Clinical case example](#3-clinical-case-example)
 4. [Dummy dataset](#4-dummy-dataset)
 5. [SPSS step-by-step](#5-spss-step-by-step)
-6. [Dummy outputs and how to interpret them](#6-dummy-outputs-and-how-to-interpret-them)
-7. [Common mistakes](#7-common-mistakes)
-8. [Key references](#8-key-references)
+6. [R step-by-step](#6-r-step-by-step)
+7. [SPSS vs R comparison](#7-spss-vs-r-comparison)
+8. [Dummy outputs and how to interpret them](#8-dummy-outputs-and-how-to-interpret-them)
+9. [Common mistakes](#9-common-mistakes)
+10. [Key references](#10-key-references)
 
 ---
 
@@ -259,7 +261,235 @@ Work only from the matched dataset (`CAP_matched.sav`) from here.
 
 ---
 
-## 6. Dummy outputs and how to interpret them
+## 6. R step-by-step
+
+R is a strong alternative to SPSS for PSM — it is more flexible, fully reproducible, and better supported in the academic literature. The standard package is `MatchIt` (Ho et al., 2011).
+
+### Required packages
+
+```r
+install.packages("MatchIt")    # Core PSM package
+install.packages("tidyverse")  # Data wrangling and ggplot2
+install.packages("tableone")   # Balance tables with SMDs
+install.packages("cobalt")     # Love plots for balance visualisation
+install.packages("lmtest")     # Outcome model testing
+install.packages("sandwich")   # Cluster-robust standard errors
+
+library(MatchIt)
+library(tidyverse)
+library(tableone)
+library(cobalt)
+library(lmtest)
+library(sandwich)
+```
+
+---
+
+### Step 1: Load your data
+
+```r
+# From CSV
+df <- read.csv("your_data.csv")
+
+# From SPSS .sav file
+df <- haven::read_sav("your_spss_file.sav")
+```
+
+---
+
+### Step 2: Check balance before matching
+
+```r
+confounders <- c("Age", "CURB65", "Charlson", "Smoker", "SpO2")
+
+tab_before <- CreateTableOne(
+  vars   = confounders,
+  strata = "Treatment",
+  data   = df,
+  test   = TRUE
+)
+
+print(tab_before, smd = TRUE)
+```
+
+You expect large SMDs and significant p-values here — this is the confounding problem you are about to fix.
+
+---
+
+### Step 3: Run PSM — one function call does everything
+
+Unlike SPSS, R estimates the propensity scores and runs the matching in a single step:
+
+```r
+match_out <- matchit(
+  formula     = Treatment ~ Age + CURB65 + Charlson + Smoker + SpO2,
+  data        = df,
+  method      = "nearest",   # Nearest-neighbour matching
+  distance    = "logit",     # Logistic regression for propensity scores
+  ratio       = 1,           # 1:1 matching
+  replace     = FALSE,       # Without replacement
+  caliper     = 0.2,         # Austin (2011) recommendation
+  std.caliper = TRUE         # Interprets caliper in SD units automatically
+)
+
+summary(match_out)
+```
+
+> **Note on caliper:** Setting `caliper = 0.2` with `std.caliper = TRUE` automatically applies the Austin (2011) 0.2 × SD(logit PS) rule. R calculates this for you — no manual computation needed, unlike SPSS.
+
+The `summary()` output shows:
+- How many treated and control patients were matched
+- How many were dropped (some is normal; > 30% is a concern)
+- SMDs before and after in a single table
+
+---
+
+### Step 4: Extract the matched dataset
+
+```r
+df_matched <- match.data(match_out)
+```
+
+`MatchIt` adds three new columns to the matched dataset:
+
+| Column | What it is |
+|---|---|
+| `distance` | The propensity score (0 to 1) for each patient |
+| `weights` | Matching weights (1 = matched, used in weighted analyses) |
+| `subclass` | Pair ID — which treated patient was matched to which control |
+
+The `subclass` column is important: it is used in the outcome analysis to account for the paired structure.
+
+---
+
+### Step 5: Check balance after matching
+
+```r
+tab_after <- CreateTableOne(
+  vars   = confounders,
+  strata = "Treatment",
+  data   = df_matched,
+  test   = TRUE
+)
+
+print(tab_after, smd = TRUE)
+```
+
+All SMDs should now be below 0.10. For a combined before/after view:
+
+```r
+bal.tab(match_out, un = TRUE, thresholds = c(m = 0.1))
+```
+
+---
+
+### Step 6: Visualise balance — Love plot
+
+The Love plot is the standard balance figure in PSM papers. It shows SMD for each confounder before and after matching on a single chart.
+
+```r
+love.plot(
+  match_out,
+  stats      = "mean.diffs",
+  thresholds = c(m = 0.1),
+  abs        = TRUE,
+  title      = "Covariate Balance Before and After PSM",
+  colors     = c("Before" = "#E07B54", "After" = "#3C7A5C")
+)
+```
+
+All "After" dots should fall to the left of the 0.1 reference line. Include this figure in your results section — it is more informative than a table alone.
+
+---
+
+### Step 7: Visualise propensity score overlap — histogram
+
+```r
+ps_data <- tibble(
+  ps        = match_out$distance,
+  Treatment = factor(df$Treatment, labels = c("Control", "Treated")),
+  Matched   = ifelse(match_out$weights > 0, "Matched", "Unmatched")
+)
+
+ggplot(ps_data, aes(x = ps, fill = Treatment)) +
+  geom_histogram(alpha = 0.6, bins = 30, position = "identity") +
+  facet_wrap(~Matched) +
+  scale_fill_manual(values = c("Control" = "#5B8DB8", "Treated" = "#E07B54")) +
+  labs(title = "Propensity Score Distribution Before and After Matching",
+       x = "Propensity Score", y = "Count") +
+  theme_minimal(base_size = 13)
+```
+
+The left panel (Unmatched) shows the original imbalance; the right panel (Matched) should show good overlap.
+
+---
+
+### Step 8: Outcome analysis on matched dataset
+
+**For a binary outcome (recommended approach — clustered logistic regression):**
+
+```r
+model_outcome <- glm(
+  Readmit30 ~ Treatment,
+  data   = df_matched,
+  family = binomial
+)
+
+# Cluster-robust SEs account for the matched pair structure
+coeftest(model_outcome, vcov = vcovCL(model_outcome, cluster = ~subclass))
+
+# Odds ratio and 95% CI
+exp(cbind(OR = coef(model_outcome), confint(model_outcome)))
+```
+
+The `cluster = ~subclass` argument tells R to account for the fact that matched pairs are not independent — this is the R equivalent of McNemar's test but more flexible.
+
+**For a binary outcome (simpler alternative — McNemar's test):**
+
+```r
+df_wide <- df_matched |>
+  select(subclass, Treatment, Readmit30) |>
+  pivot_wider(names_from = Treatment, values_from = Readmit30,
+              names_prefix = "group_") |>
+  rename(treated = group_1, control = group_0)
+
+mcnemar.test(table(df_wide$treated, df_wide$control))
+```
+
+**For a continuous outcome — paired t-test:**
+
+```r
+t.test(outcome ~ Treatment, data = df_matched, paired = TRUE)
+```
+
+---
+
+### Step 9: Write-up template for R
+
+> Propensity score matching was performed using the `MatchIt` package (Ho et al., 2011) in R (version x.x.x). A 1:1 nearest-neighbour matching algorithm was applied using a caliper of 0.2 standard deviations of the logit of the propensity score (Austin, 2011), based on a logistic regression model including age, CURB-65 score, Charlson Comorbidity Index, smoking status, and oxygen saturation on admission. Of 200 patients, 172 were successfully matched (86 pairs). All five covariates achieved standardised mean differences below 0.10 after matching, indicating adequate balance. In the matched sample, the 30-day readmission rate was significantly lower in the early antibiotics group (20.9%) compared to standard care (34.9%; OR = 0.50, 95% CI [0.26, 0.96], p = .030).
+
+---
+
+## 7. SPSS vs R comparison
+
+| Feature | SPSS (`Data → PSM`) | R (`MatchIt`) |
+|---|---|---|
+| Interface | Point-and-click dialog | Code — fully scripted |
+| Propensity score estimation | Internal (not shown by default) | Built into `matchit()`, inspectable |
+| Caliper calculation | Manual — compute logit PS, get SD, multiply by 0.2 | Automatic with `caliper = 0.2, std.caliper = TRUE` |
+| Balance table | Manual t-tests, manual SMD calculation | `tableone` or `cobalt::bal.tab()` — one line |
+| Love plot | Not available | `cobalt::love.plot()` — publication-ready |
+| Outcome analysis | Crosstabs / chi-square | `glm()` with cluster-robust SEs via `sandwich` |
+| Paired structure in outcome model | McNemar's test (manual) | `cluster = ~subclass` in `vcovCL()` — automatic |
+| Reproducibility | Requires re-clicking all steps | Fully reproducible from script |
+| Learning curve | Lower — familiar GUI | Higher — requires R knowledge |
+| Best for | Beginners, quick analyses | Publishable research, complex designs |
+
+> **For this student:** SPSS is appropriate given the project scope and software already in use. R is worth knowing as a future skill — the `MatchIt` approach is more commonly seen in published clinical papers.
+
+---
+
+## 8. Dummy outputs and how to interpret them
 
 > **Note:** When using `Data → Propensity Score Matching`, SPSS runs the logistic regression internally and does not display the full coefficients table in the output viewer. What you see instead is a matching summary and the new matched dataset. If you want to inspect the logistic regression coefficients (e.g. for reporting), run a separate logistic regression manually: `Analyze → Regression → Binary Logistic` with `Treatment` as dependent and all confounders as covariates, then click `Save → Probabilities`. This is optional but good practice for understanding your model.
 
@@ -345,7 +575,7 @@ The odds ratio of 0.50 means patients in the early-antibiotics group had half th
 
 ---
 
-## 7. Common mistakes
+## 9. Common mistakes
 
 | Mistake | Why it matters | How to avoid |
 |---|---|---|
@@ -360,7 +590,7 @@ The odds ratio of 0.50 means patients in the early-antibiotics group had half th
 
 ---
 
-## 8. Key references
+## 10. Key references
 
 **Foundational**
 
@@ -378,9 +608,15 @@ The odds ratio of 0.50 means patients in the early-antibiotics group had half th
 
 5. Hair, M. D. (2015). *Propensity score matching in SPSS: How to turn an audit into a RCT* [Presentation slides]. Available at: https://slideplayer.com/slide/10427780/ — Highly recommended beginner-friendly slides with a clinical example.
 
+**R-specific**
+
+6. Ho, D. E., Imai, K., King, G., & Stuart, E. A. (2011). MatchIt: Nonparametric preprocessing for parametric causal inference. *Journal of Statistical Software, 42*(8), 1–28. https://doi.org/10.18637/jss.v042.i08 — The paper describing the MatchIt package; cite this whenever using MatchIt in a publication.
+
+7. Greifer, N. (2023). *cobalt: Covariate balance tables and plots.* R package. https://cran.r-project.org/package=cobalt — The package behind Love plots and `bal.tab()`; cite when using cobalt output in a paper.
+
 **Recent clinical guide**
 
-6. Pourahmad, S., & Madadizadeh, F. (2025). Propensity score matching in non-interventional studies: A step-by-step guide for clinicians and researchers. *Iranian Journal of Medical Sciences.* DOI: 10.30476/ijms.2025.105595.3947 — Recently published, written specifically for clinicians and medical researchers.
+8. Pourahmad, S., & Madadizadeh, F. (2025). Propensity score matching in non-interventional studies: A step-by-step guide for clinicians and researchers. *Iranian Journal of Medical Sciences.* DOI: 10.30476/ijms.2025.105595.3947 — Recently published, written specifically for clinicians and medical researchers.
 
 ---
 
