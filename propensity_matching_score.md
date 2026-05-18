@@ -620,4 +620,4 @@ The odds ratio of 0.50 means patients in the early-antibiotics group had half th
 
 ---
 
-*Document prepared for MASH Statistics tutoring session. For internal teaching use only.*
+*Document prepared by [@erikaris](https://github.com/erikaris).*
