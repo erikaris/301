@@ -161,7 +161,7 @@ Because **they are asking completely different questions.**
 
 The log-rank test is probably comparing **all treated vs all untreated** subjects, ignoring which cell line they belong to. It asks: *"Does the drug work overall?"*
 
-The HR p-value she is reading is most likely from the **interaction term** `treatment:group` in the Cox model. It asks: *"Does the drug work differently in Line A vs Line B?"*
+The HR p-value is from the **interaction term** `treatment:group` in the Cox model. It asks: *"Does the drug work differently in Line A vs Line B?"*
 
 You can get a significant answer to the first question and a non-significant answer to the second — simultaneously, with no contradiction. The drug works (log-rank significant), but it works equally across both lines (interaction not significant). Both things are true at the same time.
 
@@ -175,7 +175,7 @@ You can get a significant answer to the first question and a non-significant ans
 | Cox treatment row | Does drug affect hazard, holding group constant? | p = 0.003 ✓ significant |
 | Cox interaction row | Does drug work differently across lines? | p = 0.570 ✗ not significant |
 
-The log-rank and the **treatment row** of Cox agree. The confusion arises only when she compares the log-rank to the **interaction row** — which is asking something else entirely.
+The log-rank and the **treatment row** of Cox agree. The confusion arises only when we compare the log-rank to the **interaction row** — which is asking something else entirely.
 
 **Reason 2 — Interaction tests are low-powered**
 
