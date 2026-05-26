@@ -452,4 +452,4 @@ These will help you quickly diagnose where exactly her confusion is coming from:
 
 ---
 
-*Prepared for tutoring session — Year 4 MBiolSci Biochemistry, coxme survival analysis*
+*Prepared by @erikaris for 301 MASH tutoring session*
