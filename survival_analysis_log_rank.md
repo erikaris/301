@@ -240,7 +240,7 @@ To detect a **main effect** (does the drug work?), you need one reasonable-sized
 
 ### The scenario
 
-A biochemistry student tests a drug on two cell lines (Line A and Line B) across four experimental batches. She records time to cell death and whether death was observed. The drug reduces hazard by 50% in both lines (no real interaction).
+A student tests a drug on two cell lines (Line A and Line B) across four experimental batches. She records the time to cell death and whether death was observed. The drug reduces hazard by 50% in both lines (no real interaction).
 
 ### Step 1: Create the dummy data
 
