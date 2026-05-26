@@ -44,7 +44,7 @@ The log-rank test answers one simple question:
 
 > **"Do the survival curves of two groups look meaningfully different?"**
 
-Applied to her experiment:
+In other words:
 
 > **"Do treated subjects survive differently from untreated subjects — overall?"**
 
@@ -57,7 +57,8 @@ Applied to her experiment:
 
 ### Analogy
 
-Imagine two groups of light bulbs — brand A and brand B. You switch them on and record when each one dies. The log-rank test asks: *"Do brand A bulbs tend to die at different times than brand B bulbs?"* It does not tell you by how much, or whether bulbs in cold rooms behave differently from bulbs in warm rooms. Just: different or not?
+Imagine two groups of light bulbs — brand A and brand B. You switch them on and record when each one dies. <br />
+The log-rank test asks: *"Do brand A bulbs tend to die at different times than brand B bulbs?"* It does not tell you by how much, or whether bulbs in cold rooms behave differently from bulbs in warm rooms. Just: different or not?
 
 ### In R
 
@@ -68,7 +69,7 @@ survdiff(Surv(time, event) ~ treatment, data = mydata)
 
 ### Important limitation
 
-Because the log-rank test ignores all other variables, it can give a significant result even when the effect is not consistent across subgroups. This is exactly why her results can look contradictory.
+Because the log-rank test ignores all other variables, it can give a significant result even when the effect is not consistent across subgroups. This is exactly why contradictions might happen between the log-rank and the Cox model. 
 
 ---
 
