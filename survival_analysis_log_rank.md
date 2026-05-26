@@ -380,23 +380,7 @@ GLOBAL                    1.47  3  0.689
 
 ---
 
-## Part 9 — Questions to ask the student
-
-These will help you quickly diagnose where exactly her confusion is coming from:
-
-1. **"Can you show me your exact model formula?"** — You need to see what is actually in her `coxme()` call, and specifically which p-value she is reading from the summary output.
-
-2. **"Which row in the summary output are you reading the p-value from?"** — The treatment row or the interaction row? This is the most likely source of confusion.
-
-3. **"When you ran the log-rank test, did you include the group variable, or just treatment?"** — If she ran `survdiff(~ treatment)` (ignoring group) and then compared it to the interaction term in Cox, she is directly comparing two different questions.
-
-4. **"Do you have a random effect, and why did you choose coxme over coxph?"** — Understanding whether she knows what the `(1|batch)` term is doing.
-
-5. **"Have you checked the proportional hazards assumption?"** — If she has not, this is a good practical step to walk through together.
-
----
-
-## Part 10 — Key concepts summary
+## Part 09 — Key concepts summary
 
 | Concept | Plain English definition |
 |---|---|
@@ -415,7 +399,7 @@ These will help you quickly diagnose where exactly her confusion is coming from:
 
 ---
 
-## Part 11 — References to share with the student
+## Part 10 — References
 
 ### Most accessible starting points
 
