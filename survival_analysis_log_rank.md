@@ -121,15 +121,15 @@ The `(1|batch)` part says: *"account for the fact that observations within the s
 
 ## Part 5 — What is an interaction?
 
-When she says she wants to know if *"treatment affects different groups differently"*, she is asking about an **interaction effect**.
+Asking if *"treatment affects different groups differently"* = asking about an **interaction effect**.
 
 ### Analogy
 
 Imagine a painkiller. For adults, it reduces pain by 50%. For children, it only reduces pain by 10%. The drug works in both groups, but the **size of the effect is different**. That difference between the two effects is the interaction.
 
-### In her experiment
+### Experiment example:
 
-She has:
+We have:
 - **Treatment variable**: Drug vs Control
 - **Group variable**: e.g. Cell Line A vs Cell Line B
 
@@ -147,7 +147,7 @@ coxme(Surv(time, event) ~ treatment * group + (1|batch), data = mydata)
 # Equivalent to: treatment + group + treatment:group
 ```
 
-The p-value for `treatment:group` tells her whether the treatment effect *differs across groups*. This is a much more specific question than "does treatment work at all?"
+The p-value for `treatment:group` tells us whether the treatment effect *differs across groups*. This is a much more specific question than "does treatment work at all?"
 
 ---
 
