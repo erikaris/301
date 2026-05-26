@@ -114,8 +114,6 @@ The **slope (b)** tells you:
 
 > *"For every **1 unit increase** in X, Y **increases (or decreases) by b**, on average."*
 
-This is the sentence template you should memorise and use in your exam.
-
 ---
 
 ### Visualising the slope: The Staircase
