@@ -268,7 +268,8 @@ data$time <- ifelse(
 data$event <- rbinom(n, 1, prob = 0.85)
 ```
 
-![Dataset preview](images/20260526_cox_dataset.png)
+*Dataset preview*
+<img src="images/20260526_cox_dataset.png" width="50%" align="center">
 
 
 ### Step 2: Log-rank test
