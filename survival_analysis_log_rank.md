@@ -215,7 +215,7 @@ To detect a **main effect** (does the drug work?), you need one reasonable-sized
 | Cox: `groupB` | Does Line B differ from Line A (holding treatment constant)? | p = 0.641 | Not significant |
 | Cox: `treatment:groupB` | Does drug work differently in Line B vs Line A? | p = 0.570 | Not significant |
 
-**Verdict:** This is the student's situation. Log-rank and the `treatment` row agree. The apparent contradiction only arises if she mistakenly compares the log-rank to the `treatment:groupB` interaction row instead of the `treatment` row.
+**Verdict:** This is could be a situation. Log-rank and the `treatment` row agree. The apparent contradiction only arises if we mistakenly compare the log-rank to the `treatment:groupB` interaction row instead of the `treatment` row.
 
 ---
 
