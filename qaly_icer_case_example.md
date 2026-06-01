@@ -1,8 +1,5 @@
-This is a real exam question. Let me work through it fully, step by step.
 
----
-
-## Setting up the two arms
+## QALY & ICER Case Example
 
 You are comparing **no vaccination** (comparator) versus **vaccination** (new intervention) across a population of **100 people** over **1 year (52 weeks)**.
 
@@ -99,4 +96,3 @@ $$\boxed{P = £199.03}$$
 
 ---
 
-Your student's handwritten note (P = 199.03) is exactly right.
