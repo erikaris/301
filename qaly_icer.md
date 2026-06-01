@@ -46,6 +46,7 @@ ICER tells us:
 > How much extra money must be spent to gain one additional QALY.
 
 ---
+> higher CALY the better, lower ICER the better. 
 
 # Full Case Study
 
@@ -551,6 +552,292 @@ A number alone is not enough.
 Always explain:
 
 "The intervention costs £X per additional QALY gained."
+
+---
+
+
+# QALY and ICER: Summary and Exam Questions
+**MPH (Management and Leadership) | Statistics Tutoring Session**
+
+---
+
+## Summary
+
+### Key Formulas
+
+```
+QALY  = Years of Life × Utility Score
+
+ICER  = (Cost_new − Cost_comparator) / (QALY_new − QALY_comparator)
+      = ΔCost / ΔEffect
+```
+
+---
+
+### Utility Score Reference
+
+| Utility Score | Health State |
+|---|---|
+| 1.0 | Perfect health |
+| 0.8 | Mild, well-managed chronic condition |
+| 0.6 | Moderate chronic disease with noticeable impact |
+| 0.4 | Severe disability affecting daily function |
+| 0.2 | Near-end-of-life or severely incapacitated |
+| 0.0 | Dead |
+
+---
+
+### NICE Cost-Effectiveness Thresholds (UK)
+
+| ICER | Interpretation | Likely NICE decision |
+|---|---|---|
+| Below £20,000 per QALY | Cost-effective | Recommend funding |
+| £20,000–£30,000 per QALY | Borderline | May recommend with justification |
+| Above £30,000 per QALY | Not cost-effective | Usually not recommended |
+| Negative ICER (dominant) | New is cheaper and better | Strongly recommend |
+
+---
+
+### The Four Quadrants of the Cost-Effectiveness Plane
+
+| Quadrant | ΔCost | ΔEffect | Decision |
+|---|---|---|---|
+| Top-right | Positive (new costs more) | Positive (new is better) | Calculate ICER vs threshold |
+| Top-left | Positive (new costs more) | Negative (new is worse) | Reject — dominated |
+| Bottom-left | Negative (new costs less) | Negative (new is worse) | Calculate ICER vs threshold |
+| Bottom-right | Negative (new costs less) | Positive (new is better) | Adopt — dominant |
+
+Most real-world assessments fall in the **top-right quadrant**: more costly and more effective. The ICER determines whether the benefit justifies the cost.
+
+---
+
+### Decision Logic (Step-by-Step)
+
+1. Calculate QALYs under each treatment arm: utility × years
+2. Calculate total costs under each arm over the same time horizon
+3. Compute ΔCost = Cost_new − Cost_comparator
+4. Compute ΔEffect = QALY_new − QALY_comparator
+5. Compute ICER = ΔCost / ΔEffect
+6. Compare ICER to WTP threshold (£20,000–£30,000 in the UK)
+7. Run probabilistic sensitivity analysis (PSA) to quantify uncertainty
+8. Produce a cost-effectiveness acceptability curve (CEAC) for communication
+
+---
+
+### Connection to RR and OR
+
+| Measure | Question it answers | When used |
+|---|---|---|
+| RR / OR | Does the treatment work? How strongly? | Cohort studies, case-control studies, RCTs |
+| QALY | How much does it improve quality and length of life? | Health technology assessment |
+| ICER | Is that improvement worth the cost? | Commissioning and funding decisions |
+
+RR and OR establish that an intervention works. QALY and ICER then quantify its value in health economic terms.
+
+---
+
+### Glossary
+
+| Term | Definition |
+|---|---|
+| QALY | Quality-Adjusted Life Year. One year in perfect health = 1.0 QALY. |
+| Utility score | A value between 0 (dead) and 1 (perfect health) representing health-related quality of life. |
+| ICER | Incremental Cost-Effectiveness Ratio. Extra cost per extra QALY gained versus the comparator. |
+| WTP threshold | Maximum amount a healthcare system will pay per QALY. NICE: £20,000–£30,000. |
+| EQ-5D | Standardised instrument used to derive utility scores from patient self-report. |
+| PSA | Probabilistic Sensitivity Analysis. Monte Carlo simulation to propagate parameter uncertainty. |
+| CEAC | Cost-Effectiveness Acceptability Curve. Probability of cost-effectiveness across WTP thresholds. |
+| Dominant | New treatment is both more effective and less costly. Always adopt. |
+| Dominated | New treatment is both less effective and more costly. Always reject. |
+| HTA | Health Technology Assessment. Evaluation of clinical and economic evidence to inform coverage. |
+| NICE | National Institute for Health and Care Excellence. Issues evidence-based guidance for the NHS. |
+
+---
+---
+
+## Exam Questions
+
+### Section A: Multiple Choice Questions
+
+---
+
+**Question 1**
+
+A new antidepressant is compared to standard care. Patients receiving the new drug live for 6 years at a utility score of 0.85. Patients receiving standard care live for 6 years at a utility score of 0.65. What is the QALY gain from the new drug?
+
+- A. 0.20
+- B. 1.00
+- C. 1.20
+- D. 5.10
+
+**Answer: C**
+New drug: 6 × 0.85 = 5.10 QALYs. Standard care: 6 × 0.65 = 3.90 QALYs. QALY gain = 5.10 − 3.90 = **1.20**.
+
+---
+
+**Question 2**
+
+The ICER for a new cancer drug is calculated to be £35,000 per QALY. Which of the following best describes this result under NICE guidance?
+
+- A. The drug is highly cost-effective and should be funded immediately
+- B. The drug falls within the standard cost-effectiveness threshold and is likely to be funded
+- C. The drug exceeds the standard threshold and would typically not be recommended without special justification
+- D. The drug is dominated by the comparator
+
+**Answer: C**
+£35,000 exceeds the upper bound of NICE's standard threshold (£30,000 per QALY). It would not typically be recommended unless it meets criteria such as end-of-life designation.
+
+---
+
+**Question 3**
+
+A new surgical procedure costs £5,000 less than the current procedure and produces 0.5 more QALYs. In which quadrant of the cost-effectiveness plane does this result fall?
+
+- A. Top-right (more costly, more effective)
+- B. Top-left (more costly, less effective)
+- C. Bottom-left (less costly, less effective)
+- D. Bottom-right (less costly, more effective)
+
+**Answer: D**
+ΔCost is negative (new costs less) and ΔEffect is positive (new is better). This is the bottom-right quadrant: the new procedure is **dominant**.
+
+---
+
+**Question 4**
+
+Which instrument is most commonly used in the UK to derive utility scores for use in QALY calculations?
+
+- A. SF-36
+- B. HAD scale
+- C. EQ-5D
+- D. PHQ-9
+
+**Answer: C**
+The EQ-5D (EuroQol 5-Dimension) is the instrument preferred by NICE for health utility measurement in UK health technology assessments.
+
+---
+
+**Question 5**
+
+A probabilistic sensitivity analysis (PSA) is run with 10,000 iterations. The new treatment has an ICER below £20,000 in 72% of simulations. Which of the following is the most accurate interpretation?
+
+- A. There is a 72% chance the treatment is clinically effective
+- B. There is a 72% probability the treatment is cost-effective at a threshold of £20,000 per QALY
+- C. The treatment is not cost-effective because the probability is below 80%
+- D. The ICER is £72,000 per QALY
+
+**Answer: B**
+PSA results are reported as the probability of cost-effectiveness at a given threshold. 72% means that in 72% of simulations under the assumed parameter distributions, the treatment meets the £20,000 threshold.
+
+---
+
+### Section B: Short Answer Questions
+
+---
+
+**Question 6**
+
+Define a QALY. Explain the two components it captures and why it is used in health technology assessment rather than simply using survival time alone. *(4 marks)*
+
+**Model answer:**
+A QALY (Quality-Adjusted Life Year) is a measure of health benefit that combines the quantity of life gained (survival time) with the quality of life during that time (represented by a utility score between 0 and 1, where 0 = dead and 1 = perfect health). One QALY equals one year in perfect health.
+
+Using survival time alone ignores the quality of life experienced. For example, keeping a patient alive for 5 years with severe disability and minimal function is not equivalent to 5 years in good health. The QALY allows different health states and different durations to be compared on a single scale, enabling consistent decision-making across treatments and disease areas.
+
+---
+
+**Question 7**
+
+A smoking cessation programme costs £600 per participant and produces 0.4 QALYs per participant. Standard brief GP advice costs £80 per participant and produces 0.15 QALYs per participant. Calculate the ICER and state whether the programme would be recommended under NICE criteria. *(4 marks)*
+
+**Model answer:**
+
+ΔCost = £600 − £80 = £520
+
+ΔEffect = 0.40 − 0.15 = 0.25 QALYs
+
+ICER = £520 / 0.25 = **£2,080 per QALY**
+
+£2,080 is well below the NICE lower threshold of £20,000 per QALY. The programme would be considered **highly cost-effective** and NICE would very likely recommend funding it.
+
+---
+
+**Question 8**
+
+Explain what is meant by a "dominated" treatment in the context of health economic evaluation. Give a hypothetical numerical example. *(3 marks)*
+
+**Model answer:**
+A treatment is said to be **dominated** when the new intervention is both more costly and less effective than the comparator. In this situation, there is no trade-off to consider: the comparator produces better health outcomes at lower cost, so the new treatment should be rejected regardless of the ICER.
+
+Numerical example: A new wound dressing costs £200 per patient and produces 0.3 QALYs. Standard dressings cost £120 per patient and produce 0.5 QALYs. The new dressing is more expensive (ΔCost = +£80) and produces fewer QALYs (ΔEffect = −0.2). It is dominated. The ICER is negative (−£400 per QALY), but a negative ICER arising from this quadrant signals rejection, not adoption.
+
+---
+
+**Question 9**
+
+A health commissioner is considering funding a new drug for chronic kidney disease. The ICER is £26,500 per QALY. Outline two factors that NICE might consider when deciding whether to fund a treatment that falls between £20,000 and £30,000 per QALY. *(4 marks)*
+
+**Model answer (any two of the following):**
+
+- **Severity of disease**: NICE may apply a severity modifier to treatments for conditions that have a large impact on health-related quality of life. More severe disease may justify a higher threshold.
+- **Unmet need**: If no effective alternative exists and the condition is serious, NICE may be more willing to recommend a borderline treatment.
+- **End-of-life criteria**: If the treatment is for a life-threatening condition with a short life expectancy (typically less than 24 months) and offers meaningful extension of life, NICE applies special end-of-life criteria that allow a higher threshold (up to approximately £50,000 per QALY).
+- **Certainty of the evidence**: If the clinical trial evidence is robust and the ICER estimate is precise (low uncertainty), NICE may be more confident in recommending a borderline treatment.
+- **Wider societal benefits**: If the treatment reduces carer burden, allows return to work, or produces other benefits not captured by the NHS cost perspective, this may inform the decision.
+
+---
+
+### Section C: Extended Response Question
+
+---
+
+**Question 10**
+
+A pharmaceutical company has developed a new biologic treatment for moderate-to-severe rheumatoid arthritis. The data from a randomised controlled trial are summarised below.
+
+| | Standard treatment (methotrexate) | New biologic |
+|---|---|---|
+| Annual cost per patient | £1,200 | £8,500 |
+| Utility score (EQ-5D) | 0.52 | 0.74 |
+| Life expectancy (years) | 15 | 16 |
+
+(a) Calculate the total QALYs for each treatment arm. *(2 marks)*
+
+(b) Calculate the ICER. *(3 marks)*
+
+(c) Interpret the ICER in relation to NICE guidance and make a funding recommendation. *(3 marks)*
+
+(d) The company argues that their PSA shows a 55% probability of cost-effectiveness at £30,000 per QALY. Critically evaluate whether this strengthens or weakens the case for funding, and identify one further piece of information you would want to examine before making a final recommendation. *(4 marks)*
+
+---
+
+**Model answer:**
+
+**(a) Total QALYs:**
+
+Standard treatment: 15 years × 0.52 = **7.80 QALYs**
+
+New biologic: 16 years × 0.74 = **11.84 QALYs**
+
+**(b) ICER:**
+
+ΔCost = (£8,500 × 16) − (£1,200 × 15) = £136,000 − £18,000 = **£118,000**
+
+ΔEffect = 11.84 − 7.80 = **4.04 QALYs**
+
+ICER = £118,000 / 4.04 = **£29,208 per QALY**
+
+**(c) Interpretation and recommendation:**
+
+£29,208 falls within NICE's borderline range of £20,000–£30,000 per QALY. The treatment is not clearly cost-effective but is not clearly cost-ineffective either. NICE would scrutinise the evidence carefully. Given that it falls at the upper end of the range, a recommendation to fund would likely require additional justification — for example, severity of disease, the absence of effective alternatives, or evidence of robustness in the clinical data.
+
+A provisional recommendation: **conditional approval**, pending a managed access scheme or patient access agreement to reduce the effective cost to the NHS.
+
+**(d) Critical evaluation of PSA:**
+
+A 55% probability of cost-effectiveness at £30,000 means that in nearly half of all simulations, the treatment is not cost-effective even at the upper threshold. This is weak evidence. It suggests substantial parameter uncertainty and means the ICER estimate could plausibly be much higher than the base-case figure. This weakens, rather than strengthens, the case for routine funding.
+
+One further piece of information that would be valuable: **the cost-effectiveness acceptability curve (CEAC)**, which would show how the probability of cost-effectiveness changes across a range of WTP thresholds. If the probability rises steeply just above £30,000 (e.g. reaching 80–90% by £35,000), this would indicate a concentrated range of uncertainty. If the curve rises slowly, the uncertainty is more diffuse and the case for funding even weaker.
 
 ---
 
