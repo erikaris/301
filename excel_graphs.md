@@ -1,17 +1,5 @@
 
-## Tutor Prep: HESU002 Student — Graphs & Comparing Categories in Excel
-
-**Time to read:** ~5 min | **Session type:** Practical Excel skills
-
----
-
-### What the Student is Asking
-
-They want to:
-1. **Create graphs in Excel** — likely starting from scratch or from a dataset
-2. **Compare data across categories** — i.e., visualising how a variable differs between groups (e.g., age groups, genders, conditions)
-
-Given their programme (Speech & Language Therapy), think clinical/health data contexts.
+## Excel 101: Graphs & Comparing Categories in Excel
 
 ---
 
@@ -87,56 +75,6 @@ For "comparing data within different categories", the **clustered column/bar cha
 - *"The categories are on the wrong axis"* → `Switch Row/Column`
 - *"How do I add a new group to the chart?"* → extend the data range: right-click chart → `Select Data` → adjust range
 - *"What's the difference between bar and column?"* → same chart, different orientation; column = vertical, bar = horizontal
-
----
-
-### Session Plan (suggestion for ~50 min)
-
-| Time | Activity |
-|---|---|
-| 0–5 min | Ask: do they have their own dataset, or work from an example? |
-| 5–20 min | Build a clustered column chart together from scratch |
-| 20–35 min | Format it (labels, colours, titles) |
-| 35–45 min | Try a second chart type (e.g., stacked bar or line) using the same data |
-| 45–50 min | Q&A, recap |
-
----
-
-# 10-Minute MASH Tutor Prep
-
-## 1. What is the student asking?
-
-The student wrote:
-
-> "I would like to learn more about creating graphs in Excel and how to compare data within different categories."
-
-This is likely a **very practical Excel question**, not a complex statistics question.
-
-The student probably wants to know:
-
-1. Which graph to use for different types of data.
-2. How to create graphs in Excel.
-3. How to compare groups/categories visually.
-4. How to interpret differences between groups.
-
-Since the student is in **Speech & Language Therapy**, expect healthcare-style data rather than business or data science examples.
-
----
-
-# 2. Suggested structure for the appointment
-
-### Step 1 (2 min): Understand the assignment
-
-Start with:
-
-> "Could you show me the data or assignment you're working on?"
-
-Key questions:
-
-* What variables do you have?
-* Are the categories groups of people?
-* Are you comparing means, counts, percentages, or scores?
-* Is this for a report, dissertation, or module assignment?
 
 ---
 
@@ -332,9 +270,9 @@ Worth mentioning briefly.
 
 ---
 
-# 9. If the student asks "How do I compare categories?"
+# 9. "How do I compare categories?"
 
-Teach this framework:
+The framework:
 
 ### Step 1
 
@@ -363,18 +301,3 @@ Examples:
 * Two categorical variables → Chi-square
 
 ---
-
-# 10. Likely Outcome of the Appointment
-
-The student probably needs help with:
-
-* Choosing the correct graph
-* Making graphs in Excel
-* Interpreting graphs
-* Comparing categories in a report
-
-A useful opening question:
-
-> "Can you show me the dataset or assignment question? Then we can decide which graph is most appropriate and how to compare the categories."
-
-This will quickly reveal whether the session is mainly **Excel skills**, **data visualisation**, or **statistical comparison**.
