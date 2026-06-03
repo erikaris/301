@@ -3,9 +3,11 @@
 
 ---
 
-### Core Concepts to Cover
+#### Types of comparison:
+1. Descriptive: Simply describing the graph.
+2. Statistical: Testing whether the difference is statistically significant (t-test).
 
-#### 1. Choosing the Right Chart Type for Comparison
+### Choosing the Right Chart Type for Comparison
 
 | Goal | Chart Type |
 |---|---|
@@ -18,7 +20,7 @@ For "comparing data within different categories", the **clustered column/bar cha
 
 ---
 
-#### 2. Creating a Basic Chart — Step by Step
+### Creating a Basic Chart — Step by Step
 
 **Example dataset to bring up:**
 
@@ -38,7 +40,7 @@ For "comparing data within different categories", the **clustered column/bar cha
 
 ---
 
-#### 3. Comparing Data Within Categories — Key Technique
+### Comparing Data Within Categories — Key Technique
 
 **What "categories" means here:** groups like age band, sex, diagnosis type, school year.
 
@@ -60,7 +62,7 @@ For "comparing data within different categories", the **clustered column/bar cha
 
 ---
 
-#### 4. Formatting Tips Worth Showing
+### Formatting Tips Worth Showing
 
 - **Change colours:** click a bar → `Format Data Series` → Fill
 - **Switch rows/columns:** `Chart Design` → `Switch Row/Column` (useful if groups and series are swapped)
@@ -69,7 +71,7 @@ For "comparing data within different categories", the **clustered column/bar cha
 
 ---
 
-### Likely Questions / Where Students Get Stuck
+### Common Issues:
 
 - *"My chart doesn't look right"* → usually a selection issue; reselect the data range carefully
 - *"The categories are on the wrong axis"* → `Switch Row/Column`
@@ -78,9 +80,7 @@ For "comparing data within different categories", the **clustered column/bar cha
 
 ---
 
-### Step 2 (3 min): Explain graph selection
-
-Students often struggle because they don't know which graph matches their data.
+### Graph selection
 
 Use this simple framework:
 
@@ -94,9 +94,7 @@ Use this simple framework:
 
 ---
 
-# 3. Case Example 1 (Most Likely)
-
-## Comparing speech scores across age groups
+### Case Example 1: Comparing speech scores across age groups
 
 Suppose a student has:
 
@@ -110,7 +108,7 @@ Question:
 
 > Which age group has the highest speech score?
 
-### Graph
+#### Graph
 
 Bar chart.
 
@@ -128,9 +126,7 @@ Interpretation:
 
 ---
 
-# 4. Case Example 2
-
-## Comparing males and females
+### Case Example 2: Comparing males and females
 
 | Gender | Mean Language Score |
 | ------ | ------------------- |
@@ -141,7 +137,7 @@ Question:
 
 > Is there a difference between genders?
 
-Bar chart:
+#### Bar chart:
 
 ```
 Female  ████████████████ 82
@@ -152,23 +148,11 @@ Interpretation:
 
 > Females achieved a higher average language score than males.
 
-You can explain:
-
-### Descriptive comparison
-
-Simply describing the graph.
-
-### Statistical comparison
-
-Testing whether the difference is statistically significant (t-test).
-
-Students often confuse these.
-
 ---
 
-# 5. Case Example 3
+### Case Example 3
 
-## Comparing proportions
+#### Comparing proportions
 
 Suppose:
 
@@ -192,9 +176,9 @@ Interpretation:
 
 ---
 
-# 6. Case Example 4
+### Case Example 4
 
-## Comparing change over time
+#### Comparing change over time
 
 | Week | Score |
 | ---- | ----- |
@@ -209,7 +193,7 @@ Question:
 
 Use:
 
-### Line graph
+#### Line graph
 
 Not a bar chart.
 
@@ -219,41 +203,39 @@ Interpretation:
 
 ---
 
-# 7. Excel Skills Worth Demonstrating
+### Graph-Related Excel Skills
 
-Students often need these practical skills:
-
-### Create chart
+#### Create chart
 
 Insert → Recommended Charts
 
-### Change chart title
+#### Change chart title
 
 Click title → type new title
 
-### Add axis labels
+#### Add axis labels
 
 Chart Design → Add Chart Element → Axis Titles
 
-### Change colours
+#### Change colours
 
 Chart Design → Change Colors
 
-### Edit axis scale
+#### Edit axis scale
 
 Right-click axis → Format Axis
 
-### Save chart as image
+#### Save chart as image
 
 Right-click chart → Save as Picture
 
 ---
 
-# 8. Common Graph Mistakes
+### Common Graph Mistakes
 
 Worth mentioning briefly.
 
-### Bad
+#### Bad
 
 * 3D charts
 * Too many colours
@@ -261,7 +243,7 @@ Worth mentioning briefly.
 * Missing axis labels
 * Missing units
 
-### Good
+#### Good
 
 * Simple bar charts
 * Clear labels
@@ -270,19 +252,19 @@ Worth mentioning briefly.
 
 ---
 
-# 9. "How do I compare categories?"
+### "How do I compare categories?"
 
 The framework:
 
-### Step 1
+#### Step 1
 
 Look at the graph.
 
-### Step 2
+#### Step 2
 
 Identify highest and lowest groups.
 
-### Step 3
+#### Step 3
 
 Describe differences.
 
@@ -290,7 +272,7 @@ Example:
 
 > The intervention group achieved the highest mean score (85), while the control group achieved the lowest mean score (70).
 
-### Step 4
+#### Step 4
 
 If required, perform a statistical test.
 
