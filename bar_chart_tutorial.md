@@ -42,7 +42,7 @@ Enter or paste this table into Excel or SPSS. Each row is one age group (0–17 
 | 16  | 1           | 0             | 1           | 0             |
 | 17  | 0           | 0             | 1           | 1             |
 
-> ⚠️ **Note:** Make sure Age is treated as a category label, not a continuous number. In Excel, format the Age column as text or set it explicitly as the axis label range. In SPSS, set its measurement level to *Ordinal*.
+> **Note:** Make sure Age is treated as a category label, not a continuous number. In Excel, format the Age column as text or set it explicitly as the axis label range. In SPSS, set its measurement level to *Ordinal*.
 
 ---
 
@@ -124,7 +124,7 @@ In the Element Properties panel, set Statistic to **Value**. Click **Apply**.
 **5. Run and edit**
 Click **OK**. Double-click the chart to open Chart Editor for formatting.
 
-> ⚠️ **Note:** SPSS may assign arbitrary numeric codes to your Group variable after restructuring. Go to Variable View and add Value Labels (e.g. 1 = Original A, 2 = Sampled A) so the legend reads correctly.
+> **Note:** SPSS may assign arbitrary numeric codes to your Group variable after restructuring. Go to Variable View and add Value Labels (e.g. 1 = Original A, 2 = Sampled A) so the legend reads correctly.
 
 ---
 
@@ -137,7 +137,7 @@ Once your chart is produced, consider these questions when writing up your findi
 - **Both groups peak around ages 5–7.** This is clinically relevant — it aligns with the typical age of strabismus presentation and screening programmes.
 - **A perfectly representative sample** would show bars of equal height for Original vs Sampled at every age. Minor variation is expected with n = 100.
 
-> 💡 **Tip:** If you need to report this statistically, a chi-square goodness-of-fit test can formally test whether the sampled distribution differs significantly from the original.
+> **Tip:** If you need to report this statistically, a chi-square goodness-of-fit test can formally test whether the sampled distribution differs significantly from the original.
 
 ---
 
