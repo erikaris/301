@@ -1,5 +1,4 @@
-# Plotting Clustered & Stacked Bar Charts
-*A step-by-step guide using Excel and SPSS | MMedSci Vision & Strabismus*
+# Plotting Clustered & Stacked Bar Charts using Excel and SPSS
 
 ---
 
@@ -11,7 +10,7 @@ Your data shows the age distribution (as percentages) of two patient groups — 
 
 | Chart type | When to use it |
 |---|---|
-| **Clustered bar** ✅ | Best for this data. Bars are placed side by side at each age, so you can directly compare Original vs Sampled. |
+| **Clustered bar** | Best for this data. Bars are placed side by side at each age, so you can directly compare Original vs Sampled. |
 | Stacked bar | Better when parts sum to 100% (e.g. one group broken down by category). Less useful here — your four columns are independent percentages and do not add up to 100% together. |
 
 > **Recommendation:** Use a clustered bar chart as your primary figure.
@@ -43,7 +42,7 @@ Enter or paste this table into Excel or SPSS. Each row is one age group (0–17 
 | 16  | 1           | 0             | 1           | 0             |
 | 17  | 0           | 0             | 1           | 1             |
 
-> ⚠️ **Note:** Make sure Age is treated as a category label, not a continuous number. In Excel, format the Age column as text or set it explicitly as the axis label range.
+> **Note:** Make sure Age is treated as a category label, not a continuous number. In Excel, format the Age column as text or set it explicitly as the axis label range.
 
 ---
 
@@ -94,7 +93,7 @@ In the Element Properties panel on the right, select **Bar1** from the dropdown 
 **5. Run and edit**
 Click **OK**. Double-click the chart in the Output Viewer to open **Chart Editor** for formatting, colours, and axis labels.
 
-> ⚠️ **Note:** The OK button stays greyed out until all three drop zones (X-axis, Y-axis, and Cluster) have variables assigned.
+> **Note:** The OK button stays greyed out until all three drop zones (X-axis, Y-axis, and Cluster) have variables assigned.
 
 ---
 
@@ -122,4 +121,4 @@ Once your chart is produced, consider these questions when writing up your findi
 
 ---
 
-*Prepared for MASH Statistics Tutorial | University of Sheffield*
+*Prepared by Erika Siregar for 301 MASH Statistics Tutorial | University of Sheffield*
