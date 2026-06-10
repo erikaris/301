@@ -1,5 +1,4 @@
-# Plotting Clustered & Stacked Bar Charts
-*A step-by-step guide using Excel and SPSS | MMedSci Vision & Strabismus*
+# Plotting Clustered & Stacked Bar Charts using Excel and SPSS
 
 ---
 
@@ -11,7 +10,7 @@ Your data shows the age distribution (as percentages) of two patient groups — 
 
 | Chart type | When to use it |
 |---|---|
-| **Clustered bar** ✅ | Best for this data. Bars are placed side by side at each age, so you can directly compare Original vs Sampled. |
+| **Clustered bar** | Best for this data. Bars are placed side by side at each age, so you can directly compare Original vs Sampled. |
 | Stacked bar | Better when parts sum to 100% (e.g. one group broken down by category). Less useful here — your four columns are independent percentages and do not add up to 100% together. |
 
 > **Recommendation:** Use a clustered bar chart as your primary figure.
@@ -154,4 +153,4 @@ Once your chart is produced, consider these questions when writing up your findi
 
 ---
 
-*Prepared for MASH Statistics Tutorial | University of Sheffield*
+*Prepared by Erika Siregar for 301 MASH Statistics Tutorial | University of Sheffield*
