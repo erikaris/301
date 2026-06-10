@@ -69,7 +69,7 @@ Right-click any bar → **Format Data Series** → reduce Gap Width to around 50
 **7. Optional: switch to stacked**
 Right-click the chart → **Change Chart Type** → choose *Stacked Bar* or *100% Stacked Bar*. Note the interpretation changes — see Section 1.
 
-> 💡 **Tip:** If you only want to compare Group A (original vs sampled), select just columns A, B, C before inserting the chart. You can always add Series D and E later via *Select Data*.
+>  **Tip:** If you only want to compare Group A (original vs sampled), select just columns A, B, C before inserting the chart. You can always add Series D and E later via *Select Data*.
 
 ---
 
