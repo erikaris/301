@@ -1,6 +1,4 @@
 # Moderation Analysis & Factor Analysis
-**MASH Statistics Tutoring | MSc Business & Organisational Psychology | June 2026**
-
 ---
 
 ## Overview
@@ -600,4 +598,4 @@ Item 8 (own decisions)                      .878
 
 ---
 
-*Prepared for MASH tutoring session — June 2026 | MGTT001 MSc Business & Organisational Psychology | University of Sheffield*
+*Prepared by [Erika Siregar (@erikaris)](https://github.com/erikaris) for MASH tutoring session | University of Sheffield*
