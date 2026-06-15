@@ -330,7 +330,7 @@ Pick two X values — one low, one high. Use X = 2 and X = 8.
 - Label each line by support level
 
 
-[moderation_line_graphs3.png](images/moderation_line_graphs3.png)
+<img src="images/moderation_line_graphs3.png" alt="Description" width="600">
 
 ---
 
