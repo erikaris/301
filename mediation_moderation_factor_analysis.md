@@ -1,4 +1,4 @@
-# Moderation Analysis & Factor Analysis
+# Mediation, Moderation, & Factor Analysis
 ---
 
 ## Overview
