@@ -329,27 +329,8 @@ Pick two X values — one low, one high. Use X = 2 and X = 8.
 - Draw one line per row in the table above, using your two points
 - Label each line by support level
 
-```
-Burnout
-   6 |
-     |                                        ● Low Support (W=3)
-   5 |                                    ●
-     |
-   4 |
-     |
-   3 |                                ●        ● Mean Support (W=5)
-     |
-   2 |             ●
-     |
-   1 |  ●                                      ● High Support (W=7)
-     |      ●
-   0 |
-     +----+----+----+----+----+----+----+----→
-          2                             8
-                      Workload (X)
 
-     ● = Low Support    ● = Mean Support    ● = High Support
-```
+[moderation_line_graphs3.png](images/moderation_line_graphs3.png)
 
 ---
 
