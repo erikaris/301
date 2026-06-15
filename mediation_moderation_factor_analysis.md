@@ -134,10 +134,6 @@ This is where the difference becomes most concrete. Same variables, completely d
 
 ---
 
-> **Your assignment is about moderation.** The rest of this guide focuses on moderation analysis and your three specific questions.
-
----
-
 ## Part B: Moderation Analysis
 
 ### What moderation is testing
