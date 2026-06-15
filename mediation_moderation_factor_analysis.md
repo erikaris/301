@@ -1,5 +1,4 @@
-# Moderation Analysis & Factor Analysis
-**MASH Statistics Tutoring | MSc Business & Organisational Psychology | June 2026**
+# Mediation, Moderation, & Factor Analysis
 
 ---
 
