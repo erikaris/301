@@ -366,6 +366,158 @@ W (Social Support)   X (Workload)   Ŷ (Burnout)
 These are exactly the numbers from Step 4 above — PROCESS calculated them automatically. You can paste this table straight into Excel and plot without any manual calculation.
 
 ---
+## Part B (Extended): Moderation with a Control Variable (e.g., Age)
+
+### What is a control variable?
+
+A control variable (also called a covariate) is a variable included in the model not because it is theoretically interesting, but to rule out its influence on the results. For example, age might independently affect job confidence — older employees might simply report higher confidence regardless of workload or support. By including age as a control, you ensure that the moderation effect you find is not just a hidden effect of age.
+
+Control variables are different from moderators:
+
+| | Control variable | Moderator (W) |
+|---|---|---|
+| Why included | To remove its confounding influence | To test whether it changes the X → Y relationship |
+| Interacts with X? | No | Yes |
+| Theoretically interesting? | Not the focus | Yes — it is a key variable |
+| Where in PROCESS | COV box | W box |
+
+---
+
+### How it changes the full equation
+
+Without a control variable:
+> Ŷ = b₀ + b₁X + b₂W + b₃(X × W)
+
+With age as a control variable:
+> Ŷ = b₀ + b₁X + b₂W + b₃(X × W) + b₄(Age)
+
+Age simply gets its own term and coefficient (b₄). That is the only change to the equation structure. If there were two control variables, there would be two extra terms (b₄C₁ + b₅C₂), and so on.
+
+---
+
+### How to add it in SPSS PROCESS
+
+```
+Analyze → Regression → PROCESS v5.0 by Andrew Hayes
+  Y: Job Confidence
+  X: Work Demand
+  W: Social Support
+  COV: Age          ← add control variable here
+  Model: 1
+  Click OK
+```
+
+---
+
+### How the SPSS output will look
+
+The Coefficients table now has an extra row for Age:
+
+```
+─────────────────────────────────────────────────────────────────────
+Outcome variable: Job Confidence (Y)
+
+Model Summary
+R = .89    R² = .79    F(4, 145) = 136.80    p < .001
+─────────────────────────────────────────────────────────────────────
+Coefficients
+
+                              B        SE        t        p
+─────────────────────────────────────────────────────────────────────
+(Constant)                 1.38      0.43      3.21    .002
+Work Demand (X)            0.80      0.07     11.43    <.001
+Social Support (W)        −0.28      0.06     −4.67    <.001
+Work Demand × Support     −0.09      0.01     −9.00    <.001
+Age                        0.03      0.01      3.00    .003
+─────────────────────────────────────────────────────────────────────
+```
+
+Notice R² increased slightly from .76 to .79 — age explains a small additional portion of variance in job confidence.
+
+---
+
+### How to extract intercept and slopes
+
+You read the table in exactly the same way as before. The only addition is b₄ for age:
+
+| Value | Row in SPSS | Our number |
+|---|---|---|
+| b₀ — intercept | (Constant) | **1.38** |
+| b₁ — slope for X | Work Demand | **0.80** |
+| b₂ — slope for W | Social Support | **−0.28** |
+| b₃ — interaction | Work Demand × Support | **−0.09** |
+| b₄ — control | Age | **0.03** |
+
+**Full equation:**
+> Ŷ = 1.38 + 0.80(Work Demand) − 0.28(Support) − 0.09(Work Demand × Support) + 0.03(Age)
+
+---
+
+### How to calculate the sub-equations for low, mean, and high W
+
+This step is **identical to before**. Age does not appear here because when plotting the moderation effect, age is held constant at its mean — which the model already handles automatically in the background.
+
+You only substitute values for W (and later X). Age plays no active role in this step.
+
+Using the same W values as before (Low = 3, Mean = 5, High = 7):
+
+**Low support (W = 3):**
+```
+Ŷ = 1.38 + 0.80X − 0.28(3) − 0.09X(3) + 0.03(Age)
+  = 1.38 − 0.84 + (0.80 − 0.27)X + 0.03(Age)
+  = 0.54 + 0.53X + 0.03(Age)
+```
+
+Since age is held constant, it folds into the intercept. It shifts the line up or down slightly but does not change the slope:
+```
+  ≈ 0.54 + 0.53X     (age absorbed into the constant)
+```
+
+**Mean support (W = 5):**
+```
+Ŷ ≈ 0.03 + 0.36X
+```
+
+**High support (W = 7):**
+```
+Ŷ ≈ −0.48 + 0.19X
+```
+
+> The slopes (0.53, 0.36, 0.19) are very close to the original model (0.55, 0.37, 0.19). This is typical — adding a control variable makes small adjustments to the estimates but rarely changes the overall pattern.
+
+---
+
+> ** Note: Why is the control variable held at its mean?**
+>
+> When calculating predicted values from a regression equation, every variable in the model needs a value plugged in. The variable being plotted (X) and the variable being probed (W) are deliberately varied to reveal the pattern of interest. But any other variable in the model — a control variable — needs to be fixed at a single, representative value, otherwise it would introduce unwanted variation into the prediction. The mean is the most defensible "typical" value to use for this purpose.
+>
+> This is not an arbitrary convention — it is standard practice in the moderation analysis literature. When other variables (such as demographic covariates) are included in a moderation model, the simple slopes are calculated holding those covariates at their mean (or, equivalently, a value of zero if the covariate has been mean-centred beforehand).
+>
+> Importantly, this choice affects the **intercepts** of the simple slopes lines but not their **slopes**. The slope of X on Y at each level of W does not depend on what value the control variable is fixed at — only the height of each line shifts slightly. This is why, in the example above, the slopes barely changed (0.55 → 0.53, 0.37 → 0.36, 0.19 → 0.19) while the intercepts shifted a little more.
+>
+> **References:** Aiken, L. S., & West, S. G. (1991). *Multiple Regression: Testing and Interpreting Interactions.* Sage. Hayes, A. F. (2022). *Introduction to Mediation, Moderation, and Conditional Process Analysis* (3rd ed.). Guilford Press.
+
+---
+
+### How the line graph looks
+
+The graph looks almost identical to the version without a control variable — still three lines, still the same axes, still the same diverging pattern. The only difference is that the lines may shift very slightly up or down due to the adjusted intercept values.
+
+| W Level | X = 2 | X = 8 | Slope |
+|---|---|---|---|
+| Low Support (W = 3) | 0.54 + 0.53(2) = **1.60** | 0.54 + 0.53(8) = **4.78** | 0.53 |
+| Mean Support (W = 5) | 0.03 + 0.36(2) = **0.75** | 0.03 + 0.36(8) = **2.91** | 0.36 |
+| High Support (W = 7) | −0.48 + 0.19(2) = **−0.10** | −0.48 + 0.19(8) = **1.04** | 0.19 |
+
+The three lines still diverge as workload increases. The interpretation remains the same: social support buffers the effect of work demand on job confidence, even after controlling for age.
+
+<img src="images/simple_slopes_with_control_variable.png" alt="Description" width="600">
+
+> **Key takeaway:**
+> Adding a control variable does not change *how* you construct the equation, extract the slopes, calculate the W levels, or draw the graph. It only adds one extra row to the Coefficients table and one extra term in the equation — which you then set aside when doing the simple slopes steps.
+
+---
+
 
 ## Part C: Factor Analysis Output
 
