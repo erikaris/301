@@ -487,13 +487,17 @@ Since age is held constant, it folds into the intercept. It shifts the line up o
 
 ---
 
-> ** Note: Why is the control variable held at its mean?**
+> **📝 Note: Two separate things happen when a control variable is added — don't mix them up**
 >
-> When calculating predicted values from a regression equation, every variable in the model needs a value plugged in. The variable being plotted (X) and the variable being probed (W) are deliberately varied to reveal the pattern of interest. But any other variable in the model — a control variable — needs to be fixed at a single, representative value, otherwise it would introduce unwanted variation into the prediction. The mean is the most defensible "typical" value to use for this purpose.
+> It is easy to assume that "the control variable doesn't affect the model" — but that is only true for one specific step. There are actually two separate stages, and the control variable behaves differently in each:
+>
+> **Stage 1 — Running the regression (estimating b₀, b₁, b₂, b₃).** Here, the control variable *does* change things. All coefficients in a regression are estimated simultaneously, accounting for every variable in the model at once. Adding a new variable (e.g. age) means the model now has to redistribute the variance in Y across all predictors together — so b₀, b₁, b₂, and b₃ will all shift slightly compared to the model without age, even though age itself is not part of the interaction. This is normal behaviour in regression, not an error.
+>
+> **Stage 2 — Calculating the simple slopes for low, mean, and high W (after the regression has already been run).** Here, the control variable is held constant at its mean. The variable being plotted (X) and the variable being probed (W) are deliberately varied to reveal the interaction pattern. Any other variable in the model needs to be fixed at a single, representative value, otherwise it would introduce unwanted variation into the prediction — and the mean is the most defensible "typical" value to use.
 >
 > This is not an arbitrary convention — it is standard practice in the moderation analysis literature. When other variables (such as demographic covariates) are included in a moderation model, the simple slopes are calculated holding those covariates at their mean (or, equivalently, a value of zero if the covariate has been mean-centred beforehand).
 >
-> Importantly, this choice affects the **intercepts** of the simple slopes lines but not their **slopes**. The slope of X on Y at each level of W does not depend on what value the control variable is fixed at — only the height of each line shifts slightly. This is why, in the example above, the slopes barely changed (0.55 → 0.53, 0.37 → 0.36, 0.19 → 0.19) while the intercepts shifted a little more.
+> Holding the control variable at its mean in Stage 2 affects the **intercepts** of the simple slopes lines but not their **slopes**. This is why, in the example above, the slopes barely changed (0.55 → 0.53, 0.37 → 0.36, 0.19 → 0.19) while the intercepts shifted a little more — the small shift in slopes is a Stage 1 effect (the new regression), while the intercept-only shift during the substitution step is the Stage 2 effect (holding age constant).
 >
 > **References:** Aiken, L. S., & West, S. G. (1991). *Multiple Regression: Testing and Interpreting Interactions.* Sage. Hayes, A. F. (2022). *Introduction to Mediation, Moderation, and Conditional Process Analysis* (3rd ed.). Guilford Press.
 
@@ -513,11 +517,9 @@ The three lines still diverge as workload increases. The interpretation remains 
 
 <img src="images/simple_slopes_with_control_variable.png" alt="Description" width="600">
 
-> **Key takeaway:**
-> Adding a control variable does not change *how* you construct the equation, extract the slopes, calculate the W levels, or draw the graph. It only adds one extra row to the Coefficients table and one extra term in the equation — which you then set aside when doing the simple slopes steps.
+> **Key takeaway:** Adding a control variable does not change *how* you construct the equation, extract the slopes, calculate the W levels, or draw the graph. It only adds one extra row to the Coefficients table and one extra term in the equation — which you then set aside when doing the simple slopes steps.
 
 ---
-
 
 ## Part C: Factor Analysis Output
 
