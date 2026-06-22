@@ -487,7 +487,7 @@ Since age is held constant, it folds into the intercept. It shifts the line up o
 
 ---
 
-> **📝 Note: Two separate things happen when a control variable is added — don't mix them up**
+> ** Note: Two separate things happen when a control variable is added — don't mix them up**
 >
 > It is easy to assume that "the control variable doesn't affect the model" — but that is only true for one specific step. There are actually two separate stages, and the control variable behaves differently in each:
 >
