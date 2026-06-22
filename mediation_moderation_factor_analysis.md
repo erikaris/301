@@ -728,5 +728,127 @@ Item 8 (own decisions)                      .878
 | Factor 2 | Job Autonomy — items 5–8, loadings .867–.893 |
 
 ---
+---
+
+## Part D: What Figures to Report When Writing Up Results
+
+### Multiple regression — B or Beta?
+
+This depends on what you are trying to communicate.
+
+| Statistic | Full name | What it tells you | When to report it |
+|---|---|---|---|
+| **B** | Unstandardised coefficient | The actual change in Y (in its original units) for a 1-unit change in X | When your variables have meaningful real-world units, or when you need to write the regression equation |
+| **Beta (β)** | Standardised coefficient | The change in Y (in standard deviation units) for a 1-SD change in X | When comparing the relative strength of predictors that are on different scales |
+
+**In practice, most write-ups report both.** A typical results table includes B, SE, β, t, and p for each predictor. Beta is particularly useful when your reader wants to know *which predictor matters most* — because B values cannot be compared directly across predictors measured on different scales (e.g. workload measured 1–10 vs. age measured in years), but Beta values can.
+
+> **Where to find Beta in SPSS:** it's already in the Coefficients table by default, just in a separate column to the right of SE, under the header "Standardized Coefficients." The (Constant) row will show a dash here, since intercepts are not standardised — this sometimes makes people think the column is missing when it isn't.
+>
+> **One exception to know:** if you are running moderation through the **PROCESS macro**, it only outputs B — Beta is not produced. So in a PROCESS-based moderation write-up, you report B throughout, since there is no Beta to compare it against.
+
+---
+
+#### Worked example: why B and Beta give different answers
+
+Imagine a regression predicting burnout from **two** predictors that are on very different scales — workload (1–10 scale) and age (in years, e.g. 22–65):
+
+```
+Coefficients
+
+                       B          SE        Beta        t        p
+─────────────────────────────────────────────────────────────────
+(Constant)           2.10       0.50         —        4.20    <.001
+Workload              0.74       0.06        .58      12.30    <.001
+Age                    0.03       0.01        .12       3.10    .002
+```
+
+**Using B (real-world meaning):**
+
+- "For every 1-point increase in workload, burnout increases by 0.74 points"
+- "For every 1-year increase in age, burnout increases by 0.03 points"
+
+Both sentences are meaningful on their own. But you cannot compare 0.74 to 0.03 to ask "which predictor matters more?" A 1-point shift in workload (out of a 1–10 range) is a much bigger relative change than a 1-year shift in age (out of a 22–65 range) — the two B values are measured on rulers of different lengths, so comparing them directly is misleading.
+
+**Using Beta (comparing relative strength):**
+
+- Workload: β = .58
+- Age: β = .12
+
+Beta puts both predictors onto the same ruler — standard deviation units. Now it is fair to say **workload has a much stronger relationship with burnout than age does** (.58 vs .12), because both numbers represent "how many SDs Y moves, per 1 SD move in X." B could not tell you that fairly; Beta can.
+
+**Quick reference:**
+
+| Goal | Use |
+|---|---|
+| "What does a 1-point increase in X actually do to Y?" | B |
+| Writing out the regression equation | B |
+| "Which predictor is the strongest?" (when predictors are on different scales) | Beta |
+| Reporting a PROCESS moderation analysis | B (Beta is not produced by PROCESS) |
+
+---
+
+#### Example write-up table (non-moderation regression)
+
+| Predictor | B | SE | β | t | p |
+|---|---|---|---|---|---|
+| (Constant) | 1.08 | 0.38 | — | 2.84 | .005 |
+| Workload | 0.74 | 0.06 | .71 | 12.30 | <.001 |
+
+**Narrative sentence:**
+> "Workload significantly predicted burnout, B = 0.74, β = .71, t(148) = 12.30, p < .001, indicating that for every one-unit increase in workload, burnout increased by 0.74 points."
+
+---
+
+### PART E: Mediation path diagram
+
+Mediation is drawn as a **chain** — arrows flow through the mediator.
+
+```
+                    a              b
+            ┌──────────────► M ──────────────┐
+            │            (Coping)             │
+            │                                 ▼
+    Workload (X) ─────────────────────────► Burnout (Y)
+                          c′ (direct effect)
+```
+
+**What to label on the diagram:**
+
+| Path | Label | Our value |
+|---|---|---|
+| a | X → M | −0.81 |
+| b | M → Y (controlling for X) | −0.53 |
+| c′ | X → Y direct effect (controlling for M) | 0.31 |
+| c | X → Y total effect (not shown if a/b/c′ are shown — usually one or the other) | 0.74 |
+
+Each arrow is labelled with its unstandardised coefficient (B) and significance. Some write-ups use standardised (β) instead — check what your supervisor or department expects, but be consistent throughout the diagram.
+
+---
+
+### PART F: Moderation path diagram
+
+Moderation is drawn differently — the moderator does **not** sit between X and Y. Instead, it is shown affecting the *arrow itself*, usually drawn as a separate arrow pointing into the X→Y path.
+
+```
+                    Social Support (W)
+                            │
+                            │ b₃ (interaction)
+                            ▼
+       Workload (X) ═══════════════════► Burnout (Y)
+                       b₁ (main effect)
+```
+
+**What to label on the diagram:**
+
+| Path | Label | Our value |
+|---|---|---|
+| X → Y | Main effect (b₁) | 0.82 |
+| W → (X→Y arrow) | Interaction effect (b₃) | −0.09 |
+| W → Y | Main effect of moderator (b₂), sometimes shown as a direct arrow too | −0.29 |
+
+Some versions draw W with a direct arrow to Y *and* an arrow into the interaction — both are acceptable conventions, but the defining visual feature of moderation is that **W's arrow points at the relationship itself**, not at a position between X and Y.
+
+---
 
 *Prepared by [Erika Siregar (@erikaris)](https://github.com/erikaris) for MASH tutoring session | University of Sheffield*
