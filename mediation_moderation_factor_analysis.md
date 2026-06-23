@@ -521,6 +521,8 @@ The three lines still diverge as workload increases. The interpretation remains 
 
 ---
 
+---
+
 ## Part C: Factor Analysis Output
 
 ### What is factor analysis?
@@ -728,9 +730,209 @@ Item 8 (own decisions)                      .878
 | Factor 2 | Job Autonomy — items 5–8, loadings .867–.893 |
 
 ---
+
+## Part D: Reliability and Validity After Exploratory Factor Analysis
+
+### Why do this at all?
+
+Running EFA tells you *how many factors exist* and *which items belong to which factor*. But it does not tell you whether each factor is **measured consistently** (reliability) or whether it is **measuring what it claims to measure** (validity). These are separate questions, checked with separate analyses, usually run right after EFA.
+
+Using our example: EFA told us Items 1–4 form "Work Engagement" and Items 5–8 form "Job Autonomy." Now we ask — is each of those four-item sets actually a trustworthy, coherent measure?
+
 ---
 
-## Part D: What Figures to Report When Writing Up Results
+### Reliability: Cronbach's Alpha
+
+**What it tests:** Do the items within a single factor consistently measure the same thing? If they do, someone who scores high on one item should tend to score high on the others too.
+
+**Rule of thumb for interpreting Alpha:**
+
+| Alpha value | Interpretation |
+|---|---|
+| < .60 | Poor — items are not measuring the same construct consistently |
+| .60 – .69 | Questionable |
+| .70 – .79 | Acceptable |
+| .80 – .89 | Good |
+| ≥ .90 | Excellent (but check for redundant items if much higher) |
+
+---
+
+#### How to run it in SPSS
+
+Run this **separately for each factor** — do not mix items from different factors in one reliability analysis.
+
+```
+Analyze → Scale → Reliability Analysis
+
+For Work Engagement:
+  Items: Item1, Item2, Item3, Item4
+  Model: Alpha
+  Statistics tab → tick "Scale if item deleted"
+  Click OK
+
+Repeat separately for Job Autonomy:
+  Items: Item5, Item6, Item7, Item8
+```
+
+---
+
+#### Example SPSS output — Work Engagement (Items 1–4)
+
+```
+─────────────────────────────────────────────────────
+Reliability Statistics
+
+Cronbach's Alpha          N of Items
+      .891                     4
+─────────────────────────────────────────────────────
+
+Item-Total Statistics
+
+                          Corrected Item-     Cronbach's Alpha
+                          Total Correlation   if Item Deleted
+Item 1 (enthusiastic)          .768                .862
+Item 2 (absorbed)              .741                .871
+Item 3 (time flies)            .719                .879
+Item 4 (energised)             .801                .851
+─────────────────────────────────────────────────────
+```
+
+**How to interpret this:**
+
+| Statistic | Our value | What it tells you |
+|---|---|---|
+| Cronbach's Alpha | .891 | Good reliability — the four items consistently measure the same construct |
+| Corrected Item-Total Correlation | .719 – .801 | All well above the recommended minimum of .30 — every item correlates well with the rest of the scale |
+| Alpha if Item Deleted | .851 – .879 | All lower than the overall Alpha (.891) — meaning removing any item would *weaken* reliability, so keep all four items |
+
+> ✓ Work Engagement has good reliability (α = .891). All four items contribute positively and none should be removed.
+
+**What to watch for:** if "Alpha if Item Deleted" for one item is *higher* than the overall Alpha, that item is dragging reliability down and may be a candidate for removal.
+
+---
+
+### Validity: What to check after EFA
+
+Validity is broader than reliability — reliability asks if items are consistent, validity asks if they are measuring the right thing. After EFA, there are a few accessible checks at this stage of a Master's-level project:
+
+---
+
+#### 1. Convergent validity — do items within a factor correlate strongly with their own factor?
+
+This is essentially what the factor loadings from the Rotated Component Matrix already tell you. A loading of .856–.902 (as in our Work Engagement example) indicates strong convergent validity — items converge well onto a single underlying construct.
+
+> No separate test needed here — point back to the loadings table already produced during EFA.
+
+---
+
+#### 2. Discriminant validity — are the two factors actually distinct from each other?
+
+**How to check in SPSS:**
+
+```
+Analyze → Correlate → Bivariate
+  Variables: Work_Engagement_MeanScore, Job_Autonomy_MeanScore
+  (first compute mean scores for each factor using Transform → Compute Variable)
+```
+
+**Example output:**
+
+```
+─────────────────────────────────────────────
+Correlations
+
+                    Work Engagement   Job Autonomy
+Work Engagement          1.000           .342**
+Job Autonomy             .342**          1.000
+
+** p < .01
+─────────────────────────────────────────────
+```
+
+**How to interpret this:**
+
+A correlation of .342 is moderate, not extremely high. If the two factors correlated at .85 or above, that would suggest they are not really separate constructs — they would be overlapping too much to count as distinct factors. A moderate correlation like this supports discriminant validity — the two factors are related (as you might expect — both are workplace experiences) but clearly distinct.
+
+> ✓ r = .342 indicates the two factors are meaningfully related but statistically distinct, supporting discriminant validity.
+
+---
+
+#### 3. Construct validity — does the factor structure make theoretical sense?
+
+This is not a statistical test but a judgement check: do the items that loaded together actually make conceptual sense as a single construct? In our example, Items 1–4 (enthusiasm, absorption, energy, time flying) clearly reflect existing theoretical definitions of "engagement" in organisational psychology literature. This alignment with established theory is itself a form of validity evidence and is usually written up as a sentence or two referencing the relevant theoretical framework.
+
+---
+
+### Summary: what to report for reliability and validity
+
+| What | Example write-up |
+|---|---|
+| Reliability (Work Engagement) | Cronbach's α = .891, indicating good internal consistency |
+| Reliability (Job Autonomy) | Run the same way — report Alpha and item-total correlations |
+| Convergent validity | Supported by factor loadings ranging from .856–.902 |
+| Discriminant validity | r = .342 between factors, indicating distinct but related constructs |
+| Construct validity | Factor structure aligns with established theoretical definitions of engagement and autonomy |
+
+> **Note:** If your assignment specifically asks for *confirmatory* validity testing (e.g., Confirmatory Factor Analysis, convergent/discriminant validity using AVE in CFA), that is a separate, more advanced step usually done in AMOS or R rather than SPSS base, and is generally beyond what is expected following an exploratory factor analysis at this stage. Worth checking your assignment brief or asking your supervisor whether EFA-level reliability and validity checks (as above) are sufficient, or whether CFA is expected.
+
+---
+
+## Part E: What Figures to Report When Writing Up Results
+
+### How to interpret a standard multiple regression, step by step
+
+Before deciding what to report, it helps to know what order to check things in. Using a simple example — predicting burnout from workload and age (n = 150):
+
+**Step 1 — Check the Model Summary first**
+
+```
+Model Summary
+R = .73    R² = .53    Adjusted R² = .52    F(2, 147) = 82.40    p < .001
+```
+
+- **R²** — how much variance in Y the whole model explains (53% here)
+- **Adjusted R²** — a slightly more conservative version; use this with 2+ predictors
+- **F and its p-value** — is the model *as a whole* significant? If p > .05, stop here — nothing else is worth interpreting
+
+**Step 2 — Check the ANOVA table** (just confirms the F-test above — usually not interpreted separately)
+
+**Step 3 — Check each predictor in the Coefficients table**
+
+```
+Coefficients
+
+                       B          SE        Beta        t        p
+─────────────────────────────────────────────────────────────────
+(Constant)           2.10       0.50         —        4.20    <.001
+Workload              0.74       0.06        .58      12.30    <.001
+Age                    0.03       0.01        .12       3.10    .002
+```
+
+For each predictor, check the p-value (is it significant?), then B (real-world effect size) and Beta (relative strength).
+
+---
+
+#### Full example write-up
+
+> A multiple regression analysis was conducted to examine whether workload and age predict burnout. The overall model was statistically significant, F(2, 147) = 82.40, p < .001, and explained 53% of the variance in burnout (R² = .53, Adjusted R² = .52).
+>
+> Workload was a significant positive predictor of burnout, B = 0.74, SE = 0.06, β = .58, t(147) = 12.30, p < .001, indicating that for every one-point increase in workload, burnout increased by 0.74 points. Age was also a significant, though weaker, predictor, B = 0.03, SE = 0.01, β = .12, t(147) = 3.10, p = .002.
+>
+> Comparing standardised coefficients, workload (β = .58) had a substantially stronger relationship with burnout than age (β = .12), indicating that workload is the more influential predictor in this model.
+
+---
+
+#### Quick checklist for interpreting any multiple regression
+
+| Check | What it tells you |
+|---|---|
+| F-test (Model Summary/ANOVA) | Is the model significant overall? |
+| R² / Adjusted R² | How much variance is explained? |
+| Each predictor's p-value | Is that specific predictor significant? |
+| B | What does a real-world unit change in X do to Y? |
+| Beta | Which predictor is relatively stronger? |
+
+---
 
 ### Multiple regression — B or Beta?
 
@@ -800,7 +1002,101 @@ Beta puts both predictors onto the same ruler — standard deviation units. Now 
 
 ---
 
-### PART E: Mediation path diagram
+### Hierarchical multiple regression with moderation — what to report
+
+Hierarchical regression means you enter predictors in **separate steps (blocks)**, so you can see how much variance each block adds. For moderation, this typically means:
+
+- **Step 1:** Enter the main effects (X and W)
+- **Step 2:** Enter the interaction term (X × W)
+
+This lets you report whether the interaction adds *significant explanatory power* on top of the main effects alone — which is actually the core evidence for moderation.
+
+---
+
+#### What to report from each step
+
+| Report this | Why |
+|---|---|
+| R² for Step 1 | Variance explained by main effects alone |
+| R² for Step 2 | Variance explained once the interaction is added |
+| ΔR² (R² change) | How much *additional* variance the interaction explains — this is the key moderation statistic |
+| F for ΔR² | Whether that increase in variance is statistically significant |
+| B (or β) for the interaction term in Step 2 | The actual moderation effect size and direction |
+
+---
+
+#### Example write-up table
+
+```
+─────────────────────────────────────────────────────────────────
+Hierarchical Regression: Predicting Burnout
+
+                          Step 1              Step 2
+                       B      β            B       β
+─────────────────────────────────────────────────────────────────
+Workload              0.74   .71          0.82    .79
+Social Support       −0.31   −.28         −0.29   −.26
+Workload × Support      —      —         −0.09    −.31
+
+R²                     .58                  .76
+ΔR²                                          .18
+F for ΔR²                                  81.00***
+─────────────────────────────────────────────────────────────────
+*** p < .001
+```
+
+**Narrative sentence:**
+> "The interaction term was entered in Step 2 and significantly improved the model, ΔR² = .18, F(1, 145) = 81.00, p < .001. The interaction was significant, B = −0.09, β = −.31, p < .001, indicating that social support moderates the relationship between workload and burnout."
+
+> **Key point:** ΔR² and its F-test are what *prove* moderation exists in a hierarchical write-up — even more so than the interaction's own p-value, because it shows the interaction adds something beyond the main effects alone.
+
+---
+
+### Hierarchical regression in general — when the second block is not an interaction
+
+Hierarchical regression is also used outside moderation — for example, entering workload in Step 1, then adding a new predictor (age) in Step 2, just to see if it adds explanatory power. The logic is the same: ΔR² tells you whether the new block improved the model.
+
+```
+Hierarchical Regression: Predicting Burnout
+
+                          Step 1              Step 2
+                       B      β            B       β
+─────────────────────────────────────────────────────────
+Workload              0.78   .73          0.74    .58
+Age                     —      —          0.03    .12
+
+R²                     .53                 .56
+ΔR²                                         .03
+F for ΔR²                                  10.13**
+─────────────────────────────────────────────────────────
+** p < .01
+```
+
+**Full example write-up:**
+
+> A hierarchical multiple regression was conducted to examine whether age explained additional variance in burnout beyond workload. In Step 1, workload was entered and significantly predicted burnout, explaining 53% of the variance, R² = .53, F(1, 148) = 166.80, p < .001.
+>
+> In Step 2, age was added to the model. This addition significantly improved the model, ΔR² = .03, F(1, 147) = 10.13, p < .01, indicating that age explained an additional 3% of the variance in burnout beyond workload alone. In the final model, both workload (B = 0.74, β = .58, p < .001) and age (B = 0.03, β = .12, p < .01) were significant predictors, with workload showing a substantially stronger relationship with burnout.
+
+**B or Beta in hierarchical regression — use both, for different purposes:**
+
+| Question | Use |
+|---|---|
+| Did this step/block improve the model? | **ΔR² and its F-test** (not B or Beta) |
+| What's the real-world effect of each predictor? | **B** |
+| Which predictor is relatively stronger, given different scales? | **Beta** |
+
+> The statistic unique to hierarchical regression — compared to standard regression — is **ΔR²**. It's the figure that justifies running the analysis in steps rather than entering everything at once.
+
+---
+
+## Part F: Path Diagrams for Mediation vs Moderation
+
+Path diagrams are visual representations of the model, usually included as a figure in the results or methods section. Mediation and moderation are drawn very differently, because they represent different relationships.
+
+---
+
+### Mediation path diagram
 
 Mediation is drawn as a **chain** — arrows flow through the mediator.
 
@@ -826,7 +1122,7 @@ Each arrow is labelled with its unstandardised coefficient (B) and significance.
 
 ---
 
-### PART F: Moderation path diagram
+### Moderation path diagram
 
 Moderation is drawn differently — the moderator does **not** sit between X and Y. Instead, it is shown affecting the *arrow itself*, usually drawn as a separate arrow pointing into the X→Y path.
 
@@ -848,6 +1144,286 @@ Moderation is drawn differently — the moderator does **not** sit between X and
 | W → Y | Main effect of moderator (b₂), sometimes shown as a direct arrow too | −0.29 |
 
 Some versions draw W with a direct arrow to Y *and* an arrow into the interaction — both are acceptable conventions, but the defining visual feature of moderation is that **W's arrow points at the relationship itself**, not at a position between X and Y.
+
+---
+
+### Side-by-side comparison
+
+| | Mediation diagram | Moderation diagram |
+|---|---|---|
+| Where the third variable sits | In the middle, in a chain (X → M → Y) | To the side, with an arrow pointing into the X→Y path |
+| Number of arrows from X | One (to M) and one (direct to Y, if partial mediation) | One (straight to Y) |
+| What is labelled | a, b, and c′ (or c) paths | Main effects (b₁, b₂) and interaction (b₃) |
+| Typical software for drawing | PowerPoint, Word shapes, or R packages (e.g. `DiagrammeR`, `lavaan` plots) | Same — usually hand-drawn or built in PowerPoint/Word for a Master's level write-up |
+
+> **Tip:** Most Master's-level write-ups draw these diagrams manually in PowerPoint or Word using simple boxes and arrows — you do not need specialist software unless your programme specifically expects software-generated path diagrams (more common in advanced SEM/CFA work).
+
+---
+
+### What exactly to annotate on each diagram
+
+**Mediation — every arrow gets its own coefficient**, because each arrow represents a separate causal step:
+
+| What | Where | Example |
+|---|---|---|
+| Path a (X → M) | On the arrow from X to M | a = −0.81, p < .001 |
+| Path b (M → Y) | On the arrow from M to Y | b = −0.53, p < .001 |
+| Path c′ (direct effect) | On the arrow straight from X to Y | c′ = 0.31, p < .001 |
+| Indirect effect (a × b) | Written below/beside the diagram, not on an arrow | Indirect effect = 0.43, 95% CI [0.31, 0.56] |
+
+> Some versions also show c (the total effect, with no mediator in the model) as a footnote — not usually a separate arrow, since c = c′ + indirect effect and can be calculated.
+
+**Moderation — only two coefficients really matter**, because W is not a step in a chain, it's a modifier of one relationship:
+
+| What | Where | Example |
+|---|---|---|
+| Main effect of X (b₁) | On the arrow from X to Y | b₁ = 0.82, p < .001 |
+| Interaction effect (b₃) | On the arrow from W into the X→Y path | b₃ = −0.09, p < .001 |
+| Main effect of W (b₂), optional | On a separate arrow from W to Y, if shown | b₂ = −0.29, p < .001 |
+
+> Some conventions skip the b₂ arrow entirely and only show b₁ and b₃, since b₃ is the actual evidence of moderation. Check what your supervisor or module expects — both are acceptable.
+
+---
+
+### What value goes on the arrow — B, β, or p-value?
+
+The standard convention is: **the coefficient (B or β) plus a significance marker** — not the full statistical detail.
+
+| Element | Include on the diagram? | Why |
+|---|---|---|
+| B or β | ✓ Yes — always | This is the actual effect size; the whole point of the diagram |
+| Significance stars (\*, \*\*, \*\*\*) | ✓ Yes — almost always | Quick visual indicator of significance without cluttering the figure |
+| Full p-value (e.g. p < .001) | Optional | Some write-ups use this instead of stars — pick one convention, not both |
+| Standard error (SE) | ✗ No | Table material, not diagram material |
+| t-value | ✗ No | Same — belongs in the Coefficients table, not the figure |
+
+**Significance star convention** (define this once in a figure note, then use it consistently):
+- \* p < .05
+- \*\* p < .01
+- \*\*\* p < .001
+
+**B or β on the diagram?** Same logic as the write-up tables: use B if you want the diagram to match the regression equation already written in your results text (most common at Master's level); use β only if you specifically want to show relative path strength across variables on different scales.
+
+**Full example with everything in place:**
+
+```
+                    a = −0.81***          b = −0.53***
+            ┌──────────────────► M ──────────────────┐
+            │                (Coping)                 │
+            │                                          ▼
+    Workload (X) ────────────────────────────────► Burnout (Y)
+                       c′ = 0.31***
+
+*** p < .001
+```
+
+> **Consistency matters more than the specific choice.** Whichever convention you pick — B with stars, or B with p-values — use it on every arrow, in every diagram, throughout the document. Mixing conventions within the same write-up looks inconsistent to markers.
+
+---
+
+### Do you add a control variable to the path diagram?
+
+Generally **no, not as a labelled path.** Control variables don't have a theoretically interesting path of their own — they exist to clean up the estimates, so most diagrams leave them out to keep the figure focused on the relationships that matter.
+
+**What's typically done instead:**
+
+1. **Footnote below the diagram (most common):**
+   > *Note: Age was included as a control variable but is not shown in the diagram.*
+
+2. **A dashed arrow with no coefficient label**, if you want it visually acknowledged without cluttering the figure — dashed lines are a common convention for distinguishing "controlled for" variables from variables of theoretical interest.
+
+3. **Mentioned in the figure caption** rather than the diagram itself:
+   > *Figure 1. Simple moderation model. Age was entered as a covariate in the model but omitted from the diagram for clarity.*
+
+The same logic applies to mediation diagrams with a control variable — the diagram still just shows X → M → Y with a, b, and c′ labelled; the control variable goes in a footnote or caption, not as a drawn arrow.
+
+---
+
+### Can you have more than one moderator?
+
+Yes — two different scenarios, depending on whether the moderators interact with each other.
+
+**Scenario 1 — two independent moderators (PROCESS Model 2)**
+
+You're testing two separate questions: does W moderate X→Y, AND does Z also moderate X→Y, independently of W?
+
+> Equation: Ŷ = b₀ + b₁X + b₂W + b₃Z + b₄(X×W) + b₅(X×Z)
+
+```
+        Social Support (W)         Coworker Trust (Z)
+                │                          │
+                │ b₄                       │ b₅
+                ▼                          ▼
+   Workload (X) ═══════════════════════════════► Burnout (Y)
+                          b₁
+```
+
+Two separate arrows pointing into the same X→Y relationship, each with its own interaction coefficient.
+
+**Scenario 2 — moderated moderation / three-way interaction (PROCESS Model 3)**
+
+A stronger claim: does the moderating effect of W on X→Y itself depend on Z? This requires a three-way interaction term.
+
+> Equation: Ŷ = b₀ + b₁X + b₂W + b₃Z + b₄(X×W) + b₅(X×Z) + b₆(W×Z) + b₇(X×W×Z)
+
+```
+                    Coworker Trust (Z)
+                            │
+                            │ (moderates the W effect itself)
+                            ▼
+        Social Support (W)
+                │
+                │ b₄ (now conditional on Z)
+                ▼
+   Workload (X) ═══════════════════► Burnout (Y)
+```
+
+Z's arrow points into W's arrow, rather than directly into the X→Y line, to show Z is moderating the moderation effect itself. Some write-ups skip the nested visual (it gets cluttered fast) and instead add a note: "the X×W interaction is itself conditional on Z."
+
+> **Practical note:** two independent moderators (Model 2) is manageable at Master's level. Moderated moderation (Model 3) is noticeably more advanced — check whether your assignment brief actually calls for a three-way interaction before attempting it.
+
+---
+
+### Can you have more than one mediator?
+
+Yes — also two scenarios, depending on whether the mediators influence each other.
+
+**Scenario 1 — parallel mediation (PROCESS Model 4)**
+
+Two mediators sit between X and Y but don't influence each other — e.g. does workload affect burnout through both coping AND sleep quality, as two separate, unrelated pathways?
+
+```
+                    a₁              b₁
+            ┌──────────────► M1 ──────────────┐
+            │            (Coping)             │
+            │                                  │
+            │                                  ▼
+    Workload (X) ──────────────────────────► Burnout (Y)
+            │                  c′                ▲
+            │                                     │
+            │              a₂              b₂     │
+            └──────────────► M2 ────────────────┘
+                         (Sleep Quality)
+```
+
+| Path | Meaning |
+|---|---|
+| a₁, b₁ | Indirect effect through Coping |
+| a₂, b₂ | Indirect effect through Sleep Quality |
+| c′ | Direct effect of X on Y, controlling for both mediators |
+
+You report **two separate indirect effects** (a₁×b₁ and a₂×b₂), each with its own bootstrapped CI. PROCESS also provides a contrast test for whether one pathway is significantly stronger than the other.
+
+**Scenario 2 — serial (sequential) mediation (PROCESS Model 6)**
+
+The mediators influence each other in sequence — e.g. does workload reduce sleep quality, which then reduces coping, which then increases burnout?
+
+```
+              a₁                  d₁                  b₂
+    Workload ────► Sleep Quality ────► Coping ────► Burnout
+       (X)              (M1)                (M2)        (Y)
+       │                                                  ▲
+       └──────────────────────────────────────────────────┘
+                              c′ (direct effect)
+```
+
+| Path | Meaning |
+|---|---|
+| a₁ (X → M1) | Workload's effect on sleep quality |
+| d₁ (M1 → M2) | Sleep quality's effect on coping |
+| b₂ (M2 → Y) | Coping's effect on burnout |
+| c′ | Direct effect of workload on burnout |
+
+The indirect effect is the product of all three paths combined: a₁ × d₁ × b₂ — a single pathway running through both mediators in order, rather than two separate pathways.
+
+**Quick comparison:**
+
+| | Parallel mediation | Serial mediation |
+|---|---|---|
+| Do mediators affect each other? | No — independent | Yes — one feeds into the next |
+| PROCESS model | Model 4 | Model 6 |
+| Diagram shape | Two mediators side by side, both pointing into Y | Mediators in a straight chain |
+| Indirect effects reported | Two separate ones (a₁b₁ and a₂b₂) | One combined pathway (a₁ × d₁ × b₂) |
+
+---
+
+## Part G: Further Analyses for Validity and Reliability in EFA — Going Further
+
+Part D already covered Cronbach's Alpha, convergent validity (via loadings), and discriminant validity (via factor correlations). If more depth is wanted, here are the next analyses typically used:
+
+---
+
+### 1. Parallel Analysis — a stronger check on number of factors retained
+
+The eigenvalue > 1 rule (Kaiser criterion) is known to sometimes over-retain factors. **Parallel analysis** compares your actual eigenvalues against eigenvalues generated from random data of the same sample size. You only retain factors whose eigenvalue exceeds the *random-data* eigenvalue at that position.
+
+This is not available in base SPSS — it requires either:
+- The SPSS syntax add-on by O'Connor (a free downloadable .sps file), or
+- R: `psych::fa.parallel()`
+
+**Example output (R):**
+```
+Parallel analysis suggests that the number of factors = 2
+and the number of components = 2
+```
+
+This converges with our Kaiser criterion and scree plot result (2 factors), strengthening confidence in the structure.
+
+---
+
+### 2. McDonald's Omega — an alternative/complement to Cronbach's Alpha
+
+Cronbach's Alpha assumes all items contribute equally to the factor (a strict assumption rarely fully met). **Omega** does not require this assumption and is increasingly recommended as a more accurate reliability statistic, especially when loadings vary across items (as ours do: .856 to .902).
+
+In R:
+```r
+library(psych)
+omega(df_engagement_items)
+```
+
+If Omega and Alpha are close (e.g. both around .85–.90), this adds confidence that reliability is genuinely good and not an artefact of Alpha's assumptions.
+
+---
+
+### 3. Split-half reliability
+
+Splits the items in a factor into two halves and correlates the two halves' total scores. A supplementary, simpler reliability check, less commonly required but sometimes requested alongside Alpha.
+
+```
+Analyze → Scale → Reliability Analysis → Model: Split-half
+```
+
+---
+
+### 4. Test-retest reliability (if your design allows it)
+
+If the same participants complete the survey at two time points, correlating their scores at Time 1 and Time 2 demonstrates *stability* over time — a different facet of reliability than internal consistency. This requires a longitudinal design, so it is only relevant if your data collection included a second wave.
+
+---
+
+### 5. Moving toward Confirmatory Factor Analysis (CFA)
+
+This is the most rigorous next step, but a larger undertaking. CFA tests whether your EFA-derived factor structure holds up when formally specified and tested as a model, and allows for proper statistical validity indices:
+
+| Validity check | What it shows | Typical threshold |
+|---|---|---|
+| AVE (Average Variance Extracted) | Convergent validity at the construct level | AVE > .50 |
+| CR (Composite Reliability) | Construct-level reliability | CR > .70 |
+| Heterotrait-Monotrait Ratio (HTMT) | Discriminant validity between constructs | HTMT < .85 (or < .90 for conceptually similar constructs) |
+
+CFA requires specialist software (AMOS, R's `lavaan`, or Mplus) and is generally a **separate study or a later stage** of a project, often beyond what is expected directly after an exploratory factor analysis at Master's level — but worth knowing about if your project develops further or your supervisor requests it.
+
+---
+
+### Summary: where to stop, depending on what is required
+
+| Level of rigour | What to include |
+|---|---|
+| Standard EFA write-up | Cronbach's Alpha + loadings (convergent) + factor correlations (discriminant) — *covered in Part D* |
+| Stronger EFA write-up | Add Parallel Analysis (factor retention) and/or Omega (reliability) |
+| Moving toward CFA-level rigour | AVE, CR, HTMT — requires separate CFA analysis and specialist software |
+
+> As with Part D, it's worth checking directly with your supervisor which level is expected for your assignment — this determines whether the extra analyses in this section are necessary or optional.
 
 ---
 
