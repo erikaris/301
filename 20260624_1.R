@@ -1,5 +1,5 @@
 ## =========================================================
-## MASH tutoring prep — Eleanor (MBChB Y3)
+## MASH tutoring prep (R)
 ## Dummy data mimicking Pima Diabetes dataset structure
 ## =========================================================
 
@@ -75,7 +75,7 @@ model_additive <- lm(BMI ~ SkinThickness + Outcome_factor, data = diabetes_data)
 summary(model_additive)
 
 ## ---------------------------------------------------------
-## LIKELY NEXT QUESTION TODAY: do the slopes actually differ?
+## do the slopes actually differ?
 ## -> Interaction term (different slope AND intercept per group)
 ## ---------------------------------------------------------
 model_interaction <- lm(BMI ~ SkinThickness * Outcome_factor, data = diabetes_data)
