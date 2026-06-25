@@ -1,4 +1,4 @@
-Here is the step-by-step text you can copy or use to guide you through the exercise in SPSS:
+## SPSS Ultra Beginner: Exercise 1
 
 ### Step 1: Set Up Variables in "Variable View"
 
