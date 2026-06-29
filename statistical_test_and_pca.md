@@ -1,4 +1,4 @@
-# Choosing the right statistical approach for your sensory biodiversity study
+# Choosing the right statistical approach and PCA (Biodiversity case example)
 
 ## Your research, in two questions
 
@@ -9,11 +9,13 @@
 
 ## Question 1: from separate tests to one combined model
 
+> Q1: 1) Is there a relationship between participants’ underlying socio-cultural factors and background mental wellbeing and aesthetic/affective responses in urban green spaces? 
+
 ### What you've done
 Several separate tests: wellbeing vs gender, wellbeing vs age, wellbeing vs education.
 
 ### The issue
-Each test only looks at two variables at a time. None of them show how the factors work *together*, and running many tests increases the risk of finding a "significant" result purely by chance.
+Each test only looks at two variables at a time. None of them show how the factors work *together*, and running lots of separate tests increases the risk of finding a "significant" result purely by chance.
 
 **Analogy:** imagine trying to work out what determines a plant's height by testing sunlight alone, then water alone, then soil alone — three separate experiments. You'd miss the fact that sunlight only matters *if* there's enough water. A single experiment varying all three at once tells you much more.
 
