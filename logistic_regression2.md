@@ -1,9 +1,5 @@
 # Understanding Your Logistic Regression Output
 
-This guide walks through the R output line by line, so you can see exactly where each number comes from and what it tells you.
-
----
-
 ## 1. What is logistic regression?
 
 **Linear regression** predicts a continuous outcome (like height or temperature) — a straight line, with coefficients you can interpret directly.
@@ -149,17 +145,6 @@ Now every coefficient is expressed **relative to MOI = 5**:
 
 **Takeaway:** Releveling doesn't change what the model has learned, only how the results are *expressed*. It's a useful trick when you want to directly compare every group against a specific category of interest (here, the best-performing dose).
 
-**How do you actually tell which category is the reference, just from the table?**
-
-Two clues:
-
-1. **A text label may say so directly** — here, the heading above the second printout literally states `using 5 MOI as the reference level for NGN2 treatment`.
-2. **The missing-row trick (the one that works even without a label):** the reference category never gets its own row in the coefficients table, because it's the baseline everything else is compared to.
-   - In the **first** printout, the rows are `NGN2_MOI2, NGN2_MOI5, NGN2_MOI10` — MOI = 0 is missing → MOI = 0 is the reference.
-   - In the **second** printout, the rows are `NGN2_MOI0, NGN2_MOI2, NGN2_MOI10` — MOI = 5 is missing → MOI = 5 is the reference.
-
-> **Rule of thumb:** whichever category from a categorical predictor *isn't listed* in the coefficients table is the reference level.
-
 ---
 
 ## 8. The bottom section
@@ -183,34 +168,4 @@ AIC: 890.95
 
 ---
 
-## 9. Quick-reference checklist for writing your conclusions
 
-When summarising results like these, ask yourself:
-
-- [ ] Which predictors have significant effects (look at the p-values / stars)?
-- [ ] What is the *direction* of each effect (positive = increases odds, negative = decreases odds)?
-- [ ] How do effect *sizes* compare to each other (which predictor matters most)?
-- [ ] Is the relationship simple/linear, or is there a peak/optimum (as with MOI 5 vs 10)?
-- [ ] How well does the model fit overall (deviance reduction)?
-
-You don't need to mention every number in the printout — focus on translating the most important coefficients into a plain-English biological story.
-
----
-
-## 10. [TUTOR ONLY — hide before sharing] Draft answer to the actual task
-
-> The student's task asks for 2–4 bullet points summarising key conclusions. The draft below is for tutor reference during session prep — not for sharing directly with the student. Use the discussion points above to help them construct their own version instead.
-
-- Increasing the NGN2 viral dose (MOI) strongly increases the likelihood of cells becoming neurons (MAP2+), with all doses showing highly significant effects compared to no virus (p < 2e-16).
-- The relationship isn't simply "more virus = more neurons": MOI = 5 produced the largest increase in MAP2 expression of any dose tested, slightly outperforming the highest dose (MOI = 10), suggesting an optimal dose around MOI = 5 rather than a maximum dose being best.
-- NT3 treatment also significantly increases the odds of MAP2 expression, but its effect is much smaller than the effect of NGN2 dose, indicating NGN2 is the main driver of neuronal differentiation.
-- Overall, the model fits the data well, with NGN2 dose and NT3 treatment together explaining most of the variation in MAP2 expression across the dataset.
-
----
-
-## 11. [TUTOR ONLY — hide before sharing] Session prompts to test understanding rather than hand over answers
-
-- Cover the second printout and ask the student to predict what releveling to MOI = 5 would do to the signs/values of each coefficient, then check against the real output.
-- Show just the list of row names from each table (without labels) and ask: "which dose is missing here, and what does that tell you?" — tests the missing-row trick directly.
-- Ask the student to explain, in their own words, why MOI 5 outperforming MOI 10 is biologically interesting, before confirming — tests whether they can move from coefficient table to scientific reasoning.
-- Ask them to convert one coefficient (e.g. NT3_ng10 = 0.31) into an odds multiplier themselves using exp(), to check they've understood the log-odds-to-odds conversion rather than just memorised the numbers from this session.
