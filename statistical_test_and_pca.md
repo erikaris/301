@@ -67,14 +67,7 @@ Now the regression coefficients directly answer "how important is each trait" �
 You included the 8 emotions *inside* the same PCA as the sensory variables. This blurs cause and effect — emotions are likely your **outcome**, not part of the same group as the **traits causing it**. Keep them separate: traits go into PCA, emotions go into the regression as the outcome.
 
 ### Optional next step: structural equation modelling (SEM)
-If you want to model a chain — traits → perception → affective response → preference — SEM lets you test the whole pathway at once rather than two separate regressions. Mentioned as an option if you want to go further than PCA + regression, not a requirement.
+If you want to model a chain — traits → perception → affective response → preference — SEM lets you test the whole pathway at once rather than two separate regressions. 
 
 ---
 
-## Quick checklist for today's session
-
-- [ ] Clarify: is wellbeing an outcome or a predictor?
-- [ ] Discuss replacing multiple t-tests/ANOVAs with one regression model
-- [ ] Discuss separating predictors (sensory traits) from outcomes (emotions) before running PCA
-- [ ] Discuss PCA scores feeding into a regression to answer "how important"
-- [ ] If time allows, briefly introduce SEM as a future option
