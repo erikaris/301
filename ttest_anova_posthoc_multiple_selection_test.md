@@ -59,7 +59,7 @@ This gives you **three results**:
 2. Main effect of **treatment** — do groups differ overall?
 3. **Time × Treatment interaction** — does the *trajectory over time* differ between groups?
 
-👉 The interaction is usually the most biologically meaningful result — "does treatment change the time-course pattern?" — not just whether each main effect is significant.
+The interaction is usually the most biologically meaningful result — "does treatment change the time-course pattern?" — not just whether each main effect is significant.
 
 **If you have missing timepoints** (an animal died early, a sample failed), classical repeated-measures ANOVA struggles — it typically needs complete data. A **mixed-effects model** solves this: it handles missing/unbalanced data, models the same within-subject correlation, and is now the standard approach in biology for this reason.
 
