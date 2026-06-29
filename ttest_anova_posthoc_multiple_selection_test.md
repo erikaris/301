@@ -121,7 +121,7 @@ This is one of the most common sources of error in biology — worth understandi
 
 **Why this matters:** your statistical *n* should be the number of **biological** replicates — not the number of images, wells, or technical repeats.
 
-❌ **Pseudoreplication** = treating technical replicates as if they were independent biological replicates. This artificially inflates your sample size and makes your statistics look far more confident than they should be.
+**Pseudoreplication** = treating technical replicates as if they were independent biological replicates. This artificially inflates your sample size and makes your statistics look far more confident than they should be.
 
 **How to handle it correctly:**
 1. Average your technical replicates *within* each biological replicate first (e.g., average all 5 image fields from one dish into a single value).
@@ -280,9 +280,9 @@ anova(model)
 ### Example E: Pseudoreplication — what NOT to do
 **Scenario:** You image 3 fields of view from each of 3 dishes per group (Control vs. Treated), giving 9 images per group.
 
-❌ **Wrong:** Run a t-test treating all 9 images per group as n = 9. This is pseudoreplication — your real biological n is 3 (the dishes), not 9 (the images).
+**Wrong:** Run a t-test treating all 9 images per group as n = 9. This is pseudoreplication — your real biological n is 3 (the dishes), not 9 (the images).
 
-✅ **Correct approach in R:**
+**Correct approach in R:**
 ```r
 # Step 1: average the 3 images within each dish first
 df_images <- data.frame(
