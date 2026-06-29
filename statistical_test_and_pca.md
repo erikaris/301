@@ -44,6 +44,8 @@ Is wellbeing the thing you're trying to explain (an outcome), or is it one of th
 
 ## Question 2: from PCA alone to PCA + regression (or SEM)
 
+> 2)  How important are visual biodiversity traits as a driver of aesthetic perception, preference and affective response? 
+
 ### What you've done
 PCA on three variable sets: visual only; visual+sound+smell; visual+sound+smell+8 emotions.
 
