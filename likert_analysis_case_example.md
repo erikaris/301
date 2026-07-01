@@ -1,4 +1,4 @@
-# Analysing Likert-scale data: a comprehensive step-by-step guide
+# Analysing Likert-scale data: a comprehensive step-by-step guide and example
 
 ---
 
