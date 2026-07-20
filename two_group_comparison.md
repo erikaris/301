@@ -1,4 +1,4 @@
-# Comparing Two Groups — Tutoring Reference
+# Comparing Two Groups
 
 ## Step 1: Ask these questions first
 1. **Independent or paired?**
