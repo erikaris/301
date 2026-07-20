@@ -104,13 +104,49 @@ summary(result)   # prints the numbers: pooled OR, confidence interval, p-value
 forest(result)     # draws a visual "forest plot" - the standard picture for this
 ```
 
+### What the output actually looks like
+
+Using the example data from Step 2, running `summary(result)` with the standard 0.5 correction (Method 1) would print something like this:
+
+```
+                     OR            95%-CI %W(common) %W(random)
+Study A         0.2308 [0.0459; 1.1604]       40.1       40.1
+Study B         0.0928 [0.0050; 1.7091]        8.6        8.6
+Study C         0.2963 [0.0761; 1.1541]       51.3       51.3
+
+Number of studies combined: k = 3
+
+                        OR           95%-CI     z p-value
+Common effect model  0.2564 [0.1095; 0.6003] -2.98  0.0029
+Random effects model 0.2564 [0.1095; 0.6003] -2.98  0.0029
+
+Quantifying heterogeneity:
+ tau^2 = 0; tau = 0; I^2 = 0.0% [0.0%; 89.6%]; H = 1.00
+
+Test of heterogeneity:
+    Q d.f. p-value
+ 0.62    2  0.7334
+```
+
+If Study B had zero events in BOTH arms (a double-zero study) and the code used `MH.exact = TRUE` (Method 2, no correction) instead, the same study would print like this in the per-study table, showing it's excluded from the pooled number rather than patched:
+
+```
+Study B             --   [excluded: 0/0]         --         --
+```
+
 ### Step 5: How to read the output
 
-Look for these three things in the printed summary:
+Look for these things in the printed summary, using the dummy output above as a worked example:
 
-1. **Pooled OR** — the single combined number. Is it below 1 (treatment looks better), above 1 (treatment looks worse), or close to 1 (no real difference)?
-2. **95% Confidence Interval (CI)** — the range next to the OR. If this range does NOT include 1, the result is statistically significant.
-3. **I² (heterogeneity)** — a percentage telling you how much the studies disagree with each other. Near 0% = studies agree well, pooling them is reasonable. Above about 50% = studies disagree a lot, pooling is more questionable and worth investigating further.
+1. **Per-study rows (Study A, B, C)** — each study's own OR and 95% CI, plus its %weight (how much it influences the pooled result). In the example, Study B has a very wide CI (0.0050 to 1.7091) and a small weight (8.6%) — a sign it's a small or sparse study contributing little certainty on its own.
+2. **Pooled OR** — the single combined number, found in the "Common effect model" / "Random effects model" row. In the example this is 0.2564: below 1, so the treatment is associated with lower odds of the event.
+3. **95% Confidence Interval (CI)** — the range next to the pooled OR. In the example, 0.1095 to 0.6003 does NOT include 1, so the result is statistically significant. If the range did include 1 (e.g. 0.7 to 1.4), that would mean "no significant difference detected."
+4. **p-value** — in the example, 0.0029, well below the usual 0.05 threshold, consistent with the CI not crossing 1. These two should always agree with each other — if the CI crosses 1 but the p-value is under 0.05, something is inconsistent and worth double-checking.
+5. **I² (heterogeneity)** — a percentage telling you how much the studies disagree with each other, found under "Quantifying heterogeneity." In the example, I² = 0.0%, meaning the three studies agree closely, so pooling them is statistically reasonable. Above roughly 50% would mean the studies disagree a lot, and pooling becomes more questionable.
+6. **Test of heterogeneity (Q, p-value)** — a formal test of the same thing as I². In the example, p = 0.7334 (not significant), which supports the low I² reading: no evidence the studies are meaningfully different from each other.
+7. **Common effect vs random effects model** — in the example these give identical numbers because tau² = 0 (no between-study variance detected). If they differed, the random effects model is usually the more conservative/appropriate one to report when heterogeneity is present.
+
+Quick way to summarise the example output in one sentence: "Pooling three studies, the odds of the event were about 74% lower with treatment than control (OR 0.26, 95% CI 0.11 to 0.60, p = 0.003), and the studies agreed well with each other (I² = 0%)."
 
 ---
 
