@@ -1,204 +1,305 @@
-# Mediation Analysis: A Practical Tutorial for Students
+# Mediation Analysis: A Practical Tutorial with R and SPSS
 
-This tutorial explains how to approach a simple mediation study from the initial research question through sample-size planning, questionnaire preparation, data analysis and interpretation.
+Mediation analysis is used when we are interested not only in whether two variables are associated, but also in whether that association may operate indirectly through another variable.
+
+This tutorial explains mediation analysis from beginning to end, including:
+
+- what mediation means;
+- mediation versus moderation;
+- how to choose a mediator;
+- the meaning of a, b, c and c';
+- sample-size and power considerations;
+- questionnaire scoring;
+- how to run mediation in R;
+- how to use bootstrapping;
+- how to read the statistical output;
+- how to run simple mediation in SPSS PROCESS;
+- what to do when the bootstrap confidence interval includes or excludes zero;
+- how to report and interpret the results.
 
 A running example is used throughout:
 
 > **Is social media use associated with disordered eating indirectly through body dissatisfaction?**
 
-The proposed model is:
+The variables are:
 
-```text
-Social media use (X)
-        │
-        │ a
-        ↓
-Body dissatisfaction (M)
-        │
-        │ b
-        ↓
-Disordered eating (Y)
+```text id="x5xdy1"
+X = Social media use
 
-X ───────────── c' ─────────────→ Y
+M = Body dissatisfaction
+
+Y = Disordered eating
 ```
 
 ---
 
-# 1. The three main questions
+# 1. What is mediation?
 
-## Question 1: Is a simple mediation model appropriate?
+A simple mediation model investigates whether the association between a predictor **X** and an outcome **Y** operates statistically through another variable **M**.
 
-### Straightforward answer
+The model is:
 
-**Potentially yes, if the research question concerns a proposed mechanism rather than simply whether X is associated with Y.**
-
-For example:
-
-### Regression question
-
-> Is social media use associated with disordered eating?
-
-This asks about:
-
-```text
-Social media use → Disordered eating
+```text id="1kh5n5"
+                 a                    b
+Social media ─────────→ Body ───────────────→ Disordered
+    use                dissatisfaction          eating
+      │                                           ↑
+      │                                           │
+      └──────────────── c' ──────────────────────┘
 ```
 
-### Mediation question
+The question is:
 
-> Is social media use associated with disordered eating indirectly through body dissatisfaction?
+> **Is social media use associated with disordered eating indirectly through body dissatisfaction?**
 
-This asks about:
+More generally:
 
-```text
-Social media use → Body dissatisfaction → Disordered eating
-```
-
-If the research question is specifically about **how** social media use might relate to disordered eating, mediation is more aligned with that question than a simple X → Y regression.
-
-However, the mediator should not simply be chosen because it produces a statistically significant result.
-
-Ask:
-
-> **What theory or previous literature suggests that body dissatisfaction sits between social media use and disordered eating?**
-
-If there is a strong theoretical and empirical rationale for:
-
-> X → M → Y
-
-then a simple mediation model is reasonable.
-
----
-
-# 2. Important caution: mediation does not automatically establish causality
-
-Suppose X, M and Y are measured at approximately the same time in a cross-sectional online survey.
-
-We can statistically estimate:
-
-```text
+```text id="t3q8p1"
 X → M → Y
 ```
 
-but the analysis itself does not establish the temporal sequence.
-
-Therefore, avoid automatically concluding:
-
-> “Social media use causes body dissatisfaction, which causes disordered eating.”
-
-A safer interpretation is:
-
-> “The results provide evidence of an indirect association between social media use and disordered eating through body dissatisfaction.”
-
-A longitudinal design can provide stronger evidence about temporal ordering if X, M and Y are appropriately measured at different time points.
+where M is called the **mediator**.
 
 ---
 
-# 3. What exactly is mediation?
+# 2. When is mediation appropriate?
 
-For a simple mediation model:
+Mediation is useful when the research question concerns a proposed **pathway or mechanism**, rather than simply whether X and Y are associated.
 
-```text
+Compare the following questions.
+
+## Ordinary regression question
+
+> Is social media use associated with disordered eating?
+
+```text id="tvjdap"
+Social media use → Disordered eating
+```
+
+This investigates the X–Y association.
+
+## Mediation question
+
+> Is social media use associated with disordered eating indirectly through body dissatisfaction?
+
+```text id="hghfpu"
+Social media use
+        ↓
+Body dissatisfaction
+        ↓
+Disordered eating
+```
+
+This investigates a proposed pathway connecting X and Y.
+
+However, a mediator should not be selected simply because it produces a statistically significant result.
+
+The proposed pathway should have a theoretical or substantive justification.
+
+---
+
+# 3. An important caution about causality
+
+Mediation terminology often uses words such as:
+
+- effect;
+- direct effect;
+- indirect effect;
+- mechanism.
+
+However, statistical mediation alone does not establish causality.
+
+This is particularly important with cross-sectional observational data.
+
+If X, M and Y are measured at approximately the same time, a model such as:
+
+```text id="94jdcq"
+X → M → Y
+```
+
+can be estimated statistically, but the analysis itself does not establish that X occurred before M or that M occurred before Y.
+
+Therefore, instead of automatically concluding:
+
+> “X causes M, which causes Y,”
+
+it may be more appropriate to say:
+
+> **“The results provide evidence of an indirect association between X and Y through M.”**
+
+Longitudinal or experimental designs can provide stronger evidence regarding temporal or causal processes, depending on how they are designed.
+
+---
+
+# 4. What are a, b, c, c' and a×b?
+
+The standard simple mediation model is:
+
+```text id="mgdwyu"
                  a                 b
 X ─────────────────→ M ─────────────────→ Y
-│
-└───────────────────────────────────────→ Y
-                       c'
+│                                         ↑
+│                                         │
+└──────────────── c' ─────────────────────┘
 ```
 
-where:
+## Path a
 
-- **X** = predictor/exposure
-- **M** = mediator
-- **Y** = outcome
-- **a** = X → M
-- **b** = M → Y, controlling for X
-- **c'** = direct X → Y association, controlling for M
-- **a × b** = indirect effect
-- **c** = total effect
+The **a path** represents:
 
-The main mediation question is:
+> X → M
 
-> **Is there evidence of an indirect effect of X on Y through M?**
+In the running example:
+
+> Social media use → body dissatisfaction
 
 ---
 
-# 4. What are a and b?
+## Path b
 
-## The a path
+The **b path** represents:
 
-The **a path** asks:
+> M → Y, controlling for X
 
-> Is X associated with M?
+In the example:
 
-For our example:
-
-> Is social media use associated with body dissatisfaction?
-
-The regression is:
-
-```r
-model_a <- lm(M ~ X, data = dat)
-summary(model_a)
-```
+> Body dissatisfaction → disordered eating after accounting for social media use.
 
 ---
 
-## The b path
+## Direct effect c'
 
-The **b path** asks:
+The **c' path** represents:
 
-> Is M associated with Y after accounting for X?
+> X → Y while M is included in the model.
 
-For our example:
+This is usually called the **direct effect**.
 
-> Is body dissatisfaction associated with disordered eating after accounting for social media use?
+---
 
-The regression is:
+## Total effect c
 
-```r
-model_b <- lm(Y ~ X + M, data = dat)
-summary(model_b)
+The **c path** represents:
+
+> X → Y without M included in the outcome model.
+
+This is the **total effect**.
+
+---
+
+## Indirect effect a×b
+
+The indirect effect is:
+
+```text id="p5tjnc"
+a × b
 ```
+
+It represents the estimated indirect pathway:
+
+```text id="ps3pbk"
+X → M → Y
+```
+
+The indirect effect and its confidence interval are central to the mediation analysis.
 
 ---
 
 # 5. What does “controlling for X” mean?
 
-It simply means that **X is also included in the regression model** when estimating the association between M and Y.
+The b path is estimated from a regression containing both X and M:
 
-For example:
-
-```text
+```text id="yd2rpn"
 Y = intercept + c'X + bM + error
 ```
 
-The coefficient for M represents its association with Y **after statistically accounting for X**.
+Therefore, b represents the association between M and Y **after statistically accounting for X**.
 
-A simple explanation for students is:
+For example:
 
-> **“We are asking whether body dissatisfaction is associated with disordered eating after accounting for differences in social media use.”**
+> “Body dissatisfaction is associated with disordered eating after accounting for differences in social media use.”
 
-It does not mean physically holding social media use constant.
+It does not mean physically holding X constant. It means including X in the statistical model.
 
 ---
 
-# 6. How do we choose the mediator?
+# 6. Mediation versus moderation
 
-The mediator should primarily come from:
+Mediation and moderation answer different questions.
 
-1. theory
-2. conceptual reasoning
-3. previous empirical literature
-4. the research hypothesis
+A useful shorthand is:
 
-Ask:
+> **Mediation = HOW or WHY might X relate to Y?**
 
-> **“Why should X be associated with M, and why should M subsequently be associated with Y?”**
+> **Moderation = WHEN or FOR WHOM does the relationship between X and Y differ?**
 
-For example, previous theory and evidence might support:
+## Mediation example
 
-```text
+```text id="kyswrv"
+Social media use
+        ↓
+Body dissatisfaction
+        ↓
+Disordered eating
+```
+
+Body dissatisfaction is the **mediator**.
+
+The question is whether there is an indirect X → M → Y pathway.
+
+---
+
+## Moderation example
+
+Suppose the association between social media use and disordered eating differs depending on age.
+
+Age would be a **moderator**.
+
+Statistically, moderation usually involves an interaction:
+
+```r id="cvyl1e"
+lm(Y ~ X * Age, data = dat)
+```
+
+The model contains:
+
+```text id="m6fzvi"
+X
+
+Age
+
+X × Age
+```
+
+The interaction term tells us whether the relationship between X and Y changes depending on age.
+
+A useful summary is:
+
+| | Mediation | Moderation |
+|---|---|---|
+| Main question | How/why? | When/for whom? |
+| Third variable | Mediator | Moderator |
+| Main quantity | a×b | X×W interaction |
+| Structure | X → M → Y | Effect of X depends on W |
+
+---
+
+# 7. How should a mediator be selected?
+
+A mediator should primarily be selected using:
+
+1. theory;
+2. conceptual reasoning;
+3. previous empirical evidence;
+4. an a priori research hypothesis.
+
+A useful question is:
+
+> **Why should X be associated with M, and why should M subsequently be associated with Y?**
+
+For example, a body of literature might suggest:
+
+```text id="mkr57z"
 Greater social media exposure
             ↓
 Greater appearance comparison
@@ -208,218 +309,173 @@ Greater body dissatisfaction
 Greater disordered eating
 ```
 
-The mediation analysis then tests the proposed indirect pathway.
+The literature does not necessarily need to contain exactly the same mediation analysis.
 
-Importantly:
+Evidence may come from studies investigating different parts of the proposed pathway.
 
-> X being associated with M and M being associated with Y does not, by itself, prove mediation.
+The important principle is:
 
-The indirect effect must be evaluated.
+> **Do not select the mediator simply because it produces a statistically significant result.**
 
 ---
 
-# 7. The complete workflow
+# 8. The overall mediation workflow
 
-For a new study, a sensible order is:
+A sensible workflow is:
 
-```text
-1. Define the research question
-             ↓
-2. Define X, M and Y
-             ↓
-3. Justify the mediator using theory/literature
-             ↓
-4. Decide how variables/questionnaires will be measured
-             ↓
-5. Obtain plausible expected effect sizes
-             ↓
-6. Conduct prospective power/sample-size analysis
-             ↓
-7. Recruit participants and collect data
-             ↓
-8. Clean the raw data
-             ↓
-9. Score questionnaires/create analysis variables
-             ↓
-10. Descriptive statistics and data checks
-             ↓
-11. Fit the mediation model
-             ↓
-12. Estimate a, b, c', c and a×b
-             ↓
-13. Bootstrap the indirect effect
-             ↓
-14. Check model assumptions/sensitivity
-             ↓
-15. Interpret and report
-```
-
-The important distinction is:
-
-```text
-BEFORE MAIN DATA COLLECTION
-
-Literature / previous studies / pilot
-                  ↓
-          Expected effects
-                  ↓
-           Power analysis
-                  ↓
-        Required sample size
-
-
-AFTER DATA COLLECTION
-
-              Raw data
-                 ↓
-          Clean + score
-                 ↓
-       Mediation analysis
-                 ↓
-       Estimate a, b, c'
-                 ↓
-         Indirect a × b
-                 ↓
-        Bootstrap 95% CI
-                 ↓
-       Interpret + report
+```text id="zdjnzg"
+Define research question
+        ↓
+Define X, M and Y
+        ↓
+Justify proposed mediator
+        ↓
+Decide measurement/scoring
+        ↓
+Obtain plausible expected effects
+        ↓
+Conduct power/sample-size analysis
+        ↓
+Collect data
+        ↓
+Clean and score data
+        ↓
+Descriptive analysis and data checks
+        ↓
+Estimate a
+        ↓
+Estimate b and c'
+        ↓
+Estimate c
+        ↓
+Calculate a×b
+        ↓
+Bootstrap a×b
+        ↓
+Obtain confidence interval
+        ↓
+Check model assumptions
+        ↓
+Interpret and report
 ```
 
 ---
 
-# 8. Question 2: How do I calculate the sample size/power?
+# 9. Power comes before the main data collection
 
-### Straightforward answer
-
-If the **indirect effect** is the main hypothesis, a standard regression power calculation is not necessarily sufficient.
-
-The indirect effect depends particularly on:
-
-> **a × b**
-
-Therefore, prospective power planning needs plausible assumptions about these paths and the rest of the planned model.
-
-Useful sources include:
-
-- previous studies
-- meta-analyses
-- pilot data
-- comparable published research
-- sensitivity analysis when effects are uncertain
-
----
-
-# 9. Where do a and b come from?
-
-This is one of the most important distinctions.
+It is important to distinguish **expected effects** from **observed effects**.
 
 ## Before collecting the main data
 
-We need **expected a and b** for power planning.
-
-These might come from previous research.
-
-Suppose comparable research suggests approximately:
-
-> Expected a = 0.25
-
-> Expected b = 0.30
-
-These become assumptions for the power calculation.
+```text id="v4ev4p"
+Previous research
+        ↓
+Expected effects
+        ↓
+Power analysis
+        ↓
+Required sample size
+```
 
 ## After collecting the data
 
-We estimate the **observed a and b** from the actual dataset.
+```text id="hfcamj"
+Observed data
+        ↓
+Estimate effects
+        ↓
+Mediation analysis
+        ↓
+Bootstrap confidence interval
+        ↓
+Interpretation
+```
 
-Therefore:
-
-> **Before the study: expected a and b → power calculation.**
-
-> **After the study: observed a and b → mediation analysis.**
-
-Do not confuse the two.
+Observed effects from the completed study should not be used retrospectively to determine how many participants the study should originally have recruited.
 
 ---
 
-# 10. Worked power example
+# 10. Where do expected a and b come from?
 
-Suppose previous evidence suggests:
+Before the main study, a and b are unknown.
 
-> a = 0.25
+For power planning, plausible expected values can come from:
 
-> b = 0.30
+- previous studies;
+- meta-analyses;
+- pilot data;
+- comparable published research;
+- theoretically defensible assumptions.
 
-The expected indirect effect is:
+For example, suppose previous evidence suggests:
 
-> a × b = 0.25 × 0.30 = **0.075**
+```text id="2a2jv3"
+Expected a = 0.25
 
-Suppose we want:
+Expected b = 0.30
+```
 
-- α = 0.05
-- power = 0.80
-- simple mediation
-- continuous X, M and Y
+The expected indirect effect would be:
 
-A mediation-specific power calculation or simulation can then investigate the sample size required.
+```text id="wbx4pn"
+a × b
+
+= 0.25 × 0.30
+
+= 0.075
+```
+
+These are assumptions for prospective power planning.
+
+They are not the eventual observed results.
+
+---
+
+# 11. Power analysis for mediation
+
+If the indirect effect is the primary hypothesis, the power calculation should ideally target:
+
+```text id="vau5yq"
+a × b
+```
+
+One approach is simulation-based power analysis.
 
 Conceptually:
 
-```text
-Specify expected model/effects
-             ↓
-Choose N
-             ↓
-Simulate dataset
-             ↓
-Fit mediation
-             ↓
-Test indirect effect
-             ↓
+```text id="th0gnk"
+Specify expected model
+        ↓
+Choose sample size N
+        ↓
+Generate artificial dataset
+        ↓
+Fit mediation model
+        ↓
+Estimate/test indirect effect
+        ↓
 Repeat many times
-             ↓
-Power = proportion detecting
-        the indirect effect
+        ↓
+Power =
+proportion of simulations
+detecting the indirect effect
 ```
 
-Suppose we test:
+An illustrative result might look like:
 
-|   N | Illustrative power |
-| --: | -----------------: |
-| 100 |               0.42 |
-| 150 |               0.55 |
-| 200 |               0.66 |
-| 250 |               0.74 |
-| 300 |               0.81 |
-| 350 |               0.86 |
-| 400 |               0.90 |
+| N | Illustrative power |
+|---:|---:|
+| 100 | .42 |
+| 150 | .55 |
+| 200 | .66 |
+| 250 | .74 |
+| 300 | .81 |
+| 350 | .86 |
+| 400 | .90 |
 
-**These values are illustrative only and must not be used as the student's actual power calculation.**
+These numbers are **illustrative only** and should not be used as a real sample-size calculation.
 
-Under this hypothetical scenario:
-
-> approximately **N = 300** would provide 80% power.
-
----
-
-# 11. Allow for incomplete responses
-
-Suppose:
-
-> Required analyzable N = 300
-
-and:
-
-> Expected incomplete/unusable data = 15%
-
-Calculate:
-
-> 300 / (1 − 0.15)
-
-> \= 352.9
-
-Therefore, the recruitment target would be approximately:
-
-> **353 participants**
+Under this hypothetical scenario, approximately N = 300 would provide 80% power.
 
 ---
 
@@ -427,174 +483,146 @@ Therefore, the recruitment target would be approximately:
 
 Expected effects are rarely known precisely.
 
-Instead of relying on only one assumption, consider several plausible scenarios:
+Instead of assuming only one pair of a and b values, several plausible scenarios can be considered.
 
-| Scenario        |    a |    b | a × b |
-| --------------- | ---: | ---: | ----: |
-| Smaller         | 0.15 | 0.20 | 0.030 |
-| Main assumption | 0.25 | 0.30 | 0.075 |
-| Larger          | 0.35 | 0.40 | 0.140 |
+| Scenario | a | b | a×b |
+|---|---:|---:|---:|
+| Smaller | .15 | .20 | .030 |
+| Main assumption | .25 | .30 | .075 |
+| Larger | .35 | .40 | .140 |
 
-Then ask:
+The analysis can then investigate how required sample size changes under different assumptions.
 
-> **How does the required sample size change under each scenario?**
-
-This can be much more informative than pretending the effect sizes are known exactly.
+This is often more informative than pretending the true effect sizes are known exactly.
 
 ---
 
-# 13. Can G\*Power be used?
+# 13. Allowing for incomplete responses
 
-### Straightforward answer
+Suppose the required **analyzable** sample is:
 
-**G\*Power can be useful for ordinary regression components, but it does not directly calculate power for the mediation indirect effect a × b.**
-
-G\*Power is useful for analyses such as:
-
-- correlations
-- t-tests
-- ANOVA
-- multiple regression
-
-If the primary hypothesis concerns:
-
-> **a × b**
-
-then a mediation-specific power procedure or Monte Carlo simulation is preferable.
-
----
-
-# 14. Can R be used for power analysis?
-
-Yes.
-
-R is particularly useful for simulation-based power analysis because the assumed model can be explicitly specified.
-
-Conceptually:
-
-```r
-# Expected effects
-a <- 0.25
-b <- 0.30
-
-# Desired alpha
-alpha <- 0.05
-
-# Candidate sample sizes
-sample_sizes <- c(100, 150, 200, 250, 300, 350, 400)
-
-# For each N:
-# 1. Simulate many datasets
-# 2. Fit the planned mediation model
-# 3. Estimate the indirect effect
-# 4. Determine whether it is detected
-# 5. Power = proportion of simulations detecting it
+```text id="nmbvtb"
+N = 300
 ```
 
-For a real PhD sample-size justification, use an appropriate validated mediation-power method/package or carefully specified Monte Carlo simulation.
+and 15% of responses are expected to be incomplete or unusable.
 
----
+Calculate:
 
-# 15. Question 3: What should I do with the questionnaires?
+```text id="bxqsl8"
+300 / (1 - .15)
 
-This question needs to be split into **two different situations**:
+= 300 / .85
 
-### A. Existing validated questionnaires
-
-versus:
-
-### B. Questions developed by the researcher herself
-
-They should not automatically be handled in the same way.
-
----
-
-# 16. Existing validated questionnaires
-
-Suppose the researcher uses an established body-image questionnaire containing eight items.
-
-Do not automatically decide:
-
-> “I'll average all eight.”
-
-Instead, follow the questionnaire's **published scoring instructions**.
-
-These are instructions from the questionnaire's developers explaining:
-
-- which items belong to which scale
-- whether items require reverse scoring
-- whether to calculate a sum or mean
-- whether there are separate subscales
-- how missing items are handled
-- how scores should be interpreted
-
-These can often be found in:
-
-1. the questionnaire manual/scoring manual
-2. the original development/validation paper
-3. the questionnaire developer's official materials
-4. later validation papers, if clarification is necessary
-
-For example, instructions might say:
-
-```text
-Items 1, 2, 4, 5, 7 → score normally
-
-Items 3 and 6 → reverse-score
-
-Then SUM all items
+= 352.94
 ```
 
-Or:
+Therefore:
 
-```text
-Reverse items 3 and 6
+> **Recruit approximately 353 participants.**
 
-Then calculate the MEAN
-of all seven items
+This is different from simply adding 15% to 300.
+
+---
+
+# 14. Can G*Power be used?
+
+G*Power is useful for analyses such as:
+
+- t-tests;
+- correlations;
+- ANOVA;
+- multiple regression.
+
+However:
+
+> **G*Power does not directly calculate power for the mediation indirect effect a×b.**
+
+It may be useful for power calculations for individual regression components, but this is not equivalent to directly powering the indirect effect.
+
+A mediation-specific method or appropriately specified simulation is preferable when the indirect effect is the primary hypothesis.
+
+---
+
+# 15. Questionnaire scoring: established questionnaires
+
+For an established validated questionnaire:
+
+> **Follow the published scoring instructions.**
+
+Do not automatically decide to calculate a sum or average.
+
+Scoring instructions may specify:
+
+- which items belong to the scale;
+- which items belong to different subscales;
+- reverse-coded items;
+- response coding;
+- whether to calculate a sum or mean;
+- missing-item rules;
+- score interpretation.
+
+These instructions can often be found in:
+
+1. the questionnaire manual;
+2. the original development/validation paper;
+3. official materials from the questionnaire developer;
+4. later validation papers when clarification is needed.
+
+For example:
+
+```text id="eujhfl"
+Items 1, 2, 4, 5 and 7
+    → score normally
+
+Items 3 and 6
+    → reverse-score
+
+Then calculate the specified
+total or mean score
 ```
 
-Follow the validated instrument's specified method rather than choosing arbitrarily.
+---
+
+# 16. Researcher-developed questionnaire items
+
+If researchers create their own questions, there are no existing published scoring instructions.
+
+The first questions should therefore be:
+
+> **What is each item intended to measure?**
+
+and:
+
+> **Are several items deliberately intended to measure the same underlying construct, or are they measuring different things?**
+
+These lead to very different approaches.
 
 ---
 
-# 17. Researcher-developed questions
+# 17. Researcher-developed questions measuring different things
 
-If the researcher has **written the questions herself**, there are no existing published scoring instructions.
+Consider:
 
-The first question should therefore be:
+```text id="a52d69"
+Hours per day using social media
 
-> **“What is each question intended to measure?”**
+Main social media platform
 
-Then ask:
+Number of social media accounts
 
-> **“Are several questions deliberately intended to measure one underlying construct, or are they measuring different things?”**
+Whether someone follows appearance-related influencers
 
-This distinction determines what happens next.
-
----
-
-# 18. Scenario A: The researcher-developed questions measure different things
-
-Suppose the researcher asks:
-
-> How many hours per day do you use social media?
-
-> Which platform do you use most?
-
-> How many social media accounts do you have?
-
-> Do you follow appearance-related influencers?
-
-> How often do you post photographs?
+Posting frequency
+```
 
 These measure different characteristics.
 
-Do **not** simply add or average them.
+They should not simply be added or averaged.
 
-Instead:
+Instead, they may remain separate variables:
 
-```text
+```text id="i4f4dh"
 Hours/day
     ↓
 Continuous variable
@@ -610,111 +638,65 @@ Number of accounts
 Count variable
 
 
-Follow appearance-related influencers
+Follows appearance influencers
     ↓
 Binary/categorical variable
 
 
 Posting frequency
     ↓
-Ordinal or appropriately coded variable
+Ordinal/appropriately coded variable
 ```
 
-Some may only be useful for describing the sample.
+Some may only be descriptive variables.
 
-Others may potentially be predictors or covariates if the research question and theory justify that role.
-
-They do not all need to enter the mediation model.
+Others may potentially be predictors or covariates if justified by the research question.
 
 ---
 
-# 19. Scenario B: The researcher-developed questions are intended to measure one construct
+# 18. Researcher-developed items intended to measure one construct
 
-Suppose the researcher creates six Likert items intended to measure:
+Suppose six Likert items are deliberately created to measure:
 
 > **Appearance-focused social media engagement**
 
-For example:
+Before adding or averaging the items, consider whether treating them as one scale is defensible.
 
-> Q1. I compare my appearance with influencers.
+Relevant considerations include:
 
-> Q2. I compare my body with people I see online.
+### Conceptual coherence
 
-> Q3. Social media makes me think about how my body compares with others.
+Do all items genuinely represent the intended construct?
 
-> Q4. I compare my appearance with friends' photographs.
+### Item distributions
 
-> Q5. I compare my appearance with people I follow.
+Are there unusual response patterns or serious floor/ceiling effects?
 
-> Q6. I pay attention to how my appearance compares with people online.
-
-Now it may make sense to investigate whether these items can form a scale.
-
-But do **not immediately calculate**:
-
-> Q1 + Q2 + Q3 + Q4 + Q5 + Q6
-
-or:
-
-> (Q1 + Q2 + Q3 + Q4 + Q5 + Q6) / 6
-
-First ask:
-
-> **“Is there sufficient conceptual and empirical justification for treating these six questions as indicators of one construct?”**
-
----
-
-# 20. How do we investigate whether researcher-developed items can form a scale?
-
-Depending on the purpose and stage of questionnaire development, consider:
-
-### 1. Conceptual coherence
-
-Do all items genuinely represent the same intended construct?
-
-This should be considered **before** looking at statistics.
-
-### 2. Item distributions
-
-Are there problematic floor/ceiling effects or unusual response patterns?
-
-### 3. Inter-item relationships
+### Inter-item relationships
 
 Do the items behave as expected in relation to one another?
 
-### 4. Reliability
+### Reliability
 
-Measures such as internal-consistency reliability may be useful.
+Internal-consistency reliability may be informative.
 
 However:
 
 > **A high Cronbach's alpha alone does not prove that the items measure one construct.**
 
-### 5. Dimensionality/factor structure
+### Dimensionality
 
-Depending on the research purpose and questionnaire-development stage, factor analysis may be appropriate to investigate whether the proposed items behave as one dimension or several dimensions.
+Depending on the purpose and stage of scale development, factor analysis may be appropriate to investigate whether the items represent one or several dimensions.
 
 ---
 
-# 21. Sum or average?
+# 19. Sum or mean?
 
-If there is sufficient justification for combining the items, the researcher must then decide how to construct the composite score.
-
-Two common approaches are:
-
-### Sum
-
-> Q1 + Q2 + Q3 + Q4 + Q5 + Q6
-
-### Mean
-
-> (Q1 + Q2 + Q3 + Q4 + Q5 + Q6) / 6
-
-If every participant answers all items and every item uses the same response scale, the sum and mean contain essentially the same ordering information.
+If combining the items is justified and all items use the same response scale, both sum and mean scores may be possible.
 
 For example:
 
-```text
+```text id="fb9dfk"
 Q1 = 4
 Q2 = 3
 Q3 = 5
@@ -725,163 +707,83 @@ Q6 = 3
 
 Sum:
 
-> **23**
+```text id="z9vzrk"
+4 + 3 + 5 + 4 + 4 + 3
+
+= 23
+```
 
 Mean:
 
-> 23 / 6 = **3.83**
+```text id="sqy0kb"
+23 / 6
 
-If responses were on a 1–5 scale, a mean of:
+= 3.83
+```
+
+If the response scale runs from 1–5, a mean of:
 
 > **3.83 out of 5**
 
-may be easier to interpret than a total of 23.
+may be easier to interpret than a total score of 23.
 
-For researcher-developed Likert items on the same scale, a mean score can therefore be convenient.
+However, the most important question comes first:
 
-However:
-
-> **The important decision is not “sum or mean?”**
-
-The important first decision is:
-
-> **“Should these items be combined at all?”**
+> **Should these items be combined at all?**
 
 ---
 
-# 22. What should I recommend for researcher-developed questions?
+# 20. Preparing the data for mediation
 
-A useful decision rule is:
+After data cleaning and questionnaire scoring, an analysis dataset might look like:
 
-```text
-Researcher-developed questions
-             ↓
-Do they measure the same construct?
-       ↙                  ↘
-     NO                    YES
-      ↓                     ↓
-Keep separate          Investigate whether
-variables              they function as a scale
-                            ↓
-                     If justified:
-                            ↓
-                    Create composite score
-                    (e.g. mean or sum)
+```text id="5w4s1u"
+ID    X_social_media    M_body_dissatisfaction    Y_disordered_eating
+
+1          2.1                   15                       8
+2          2.5                   17                       9
+3          2.8                   18                      11
+4          3.0                   20                      12
+5          3.2                   21                      13
+6          3.5                   23                      14
+7          3.7                   24                      16
+8          4.0                   27                      17
+9          4.2                   28                      19
+10         4.5                   30                      21
+...
 ```
 
-A practical recommendation is:
+Suppose the variables in R are called:
 
-> **If the questions measure different things, keep them separate. If several items were deliberately designed to measure one construct, first establish whether treating them as a scale is defensible. Only then decide whether to calculate a sum, mean or another score.**
+```text id="vudmzy"
+X = social media use
 
----
+M = body dissatisfaction
 
-# 23. A particularly important question for the researcher
-
-Ask:
-
-> **“Are your researcher-developed questions intended to measure your main social-media-use variable X, or are they additional descriptive/background questions?”**
-
-This matters considerably.
-
-If the researcher is creating her **own measure of the main predictor X**, measurement validity becomes an important part of the study design.
-
-If they are simply additional questions about participants' social-media habits, they may not need to form a scale or enter the main mediation model.
-
----
-
-# 24. After power planning: collect the data
-
-Suppose the power calculation suggested:
-
-> Required analyzable N ≈ 300
-
-and the recruitment target was:
-
-> approximately 353
-
-Suppose the study eventually obtains:
-
-```text
-Started survey            = 380
-Incomplete/ineligible     = 47
-Final analyzable sample   = 333
+Y = disordered eating
 ```
 
-Now the main analysis begins.
-
 ---
 
-# 25. Example raw data
-
-Before scoring questionnaires, the dataset may look like:
-
-| ID | SM1 | SM2 | SM3 | ... | BD1 | BD2 | ... | DE1 | DE2 | ... | Age |
-| -: | --: | --: | --: | --- | --: | --: | --- | --: | --: | --- | --: |
-|  1 |   4 |   3 |   5 | ... |   3 |   4 | ... |   2 |   3 | ... |  16 |
-|  2 |   2 |   2 |   3 | ... |   2 |   1 | ... |   1 |   2 | ... |  15 |
-|  3 |   5 |   4 |   5 | ... |   4 |   5 | ... |   4 |   4 | ... |  17 |
-|  4 |   3 |   4 |   3 | ... |   3 |   3 | ... |   2 |   3 | ... |  16 |
-
-Do not immediately run mediation on the individual item columns.
-
-First prepare the data appropriately.
-
----
-
-# 26. Clean the raw data
+# 21. Examine the data before running mediation
 
 Check:
 
-- missing values
-- impossible values
-- duplicate cases where relevant
-- eligibility criteria
-- reverse-coded items
-- coding errors
-- questionnaire completion rules
+- sample size;
+- missingness;
+- impossible values;
+- means;
+- standard deviations;
+- minimum and maximum;
+- distributions;
+- scatterplots;
+- unusual observations;
+- questionnaire scoring;
+- correlations.
 
-For example, if a questionnaire item should range from 1–5 and the dataset contains:
+For example:
 
-> SM3 = 55
-
-investigate before analysis.
-
----
-
-# 27. Create the final analysis variables
-
-After following the relevant questionnaire scoring procedures, the analysis dataset might look like:
-
-|  ID | Social media X | Body dissatisfaction M | Disordered eating Y | Age |
-| --: | -------------: | ---------------------: | ------------------: | --: |
-|   1 |           3.80 |                     26 |                  15 |  16 |
-|   2 |           2.30 |                     15 |                   8 |  15 |
-|   3 |           4.60 |                     34 |                  24 |  17 |
-|   4 |           3.20 |                     22 |                  13 |  16 |
-|   5 |           4.10 |                     29 |                  19 |  15 |
-| ... |            ... |                    ... |                 ... | ... |
-
-Now X, M and Y are ready for the planned mediation analysis.
-
----
-
-# 28. Explore the data first
-
-Before running mediation, examine:
-
-- sample size
-- missingness
-- means
-- standard deviations
-- minimum/maximum
-- distributions
-- scatterplots
-- unusual observations
-- correlations
-
-In R:
-
-```r
+```r id="ccp9rx"
 summary(dat)
 
 cor(
@@ -890,57 +792,60 @@ cor(
 )
 ```
 
-Suppose:
-
-|   |    X |    M |    Y |
-| - | ---: | ---: | ---: |
-| X | 1.00 | 0.31 | 0.24 |
-| M | 0.31 | 1.00 | 0.42 |
-| Y | 0.24 | 0.42 | 1.00 |
-
-These are useful preliminary results.
-
-But:
+Correlations provide useful preliminary information, but:
 
 > **Correlations alone do not demonstrate mediation.**
 
 ---
 
-# 29. Estimate the a path
+# 22. A complete worked mediation example
+
+The following section demonstrates:
+
+> **script → output → number to extract → interpretation**
+
+The numerical results are dummy values designed to demonstrate how mediation output is read. Real analyses will produce values from the actual dataset.
+
+---
+
+# 23. Step 1: Estimate path a
+
+Path a is:
+
+```text id="nmvy6p"
+X → M
+```
 
 Run:
 
-```r
+```r id="op4j2i"
 model_a <- lm(M ~ X, data = dat)
+
 summary(model_a)
 ```
 
-Hypothetical output:
+Suppose R produces:
 
-```text
+```text id="vcxdyc"
 Call:
 lm(formula = M ~ X, data = dat)
 
-Residuals:
-     Min       1Q   Median       3Q      Max
--10.542   -3.126   -0.184    3.052   11.374
-
 Coefficients:
-             Estimate Std. Error t value Pr(>|t|)
-(Intercept)   12.4800     1.3200    9.455  <2e-16 ***
-X              3.5400     0.5900    6.000  5.3e-09 ***
 
-Residual standard error: 4.71
-Multiple R-squared: 0.098
-Adjusted R-squared: 0.095
-F-statistic: 36.00, p-value: 5.3e-09
+             Estimate   Std. Error   t value   Pr(>|t|)
+(Intercept)    12.480       1.320      9.455     <.001
+X               3.540       0.590      6.000     <.001
 ```
+
+## What number should be extracted?
 
 Look at:
 
-```text
+```text id="51q8a2"
              Estimate
-X              3.5400   ← a
+X              3.540
+               ↑
+               a
 ```
 
 Therefore:
@@ -949,130 +854,270 @@ Therefore:
 
 Interpretation:
 
-> A one-unit increase in social media score is associated with an estimated 3.54-unit increase in body dissatisfaction.
+> A one-unit increase in X is associated with an estimated 3.54-unit increase in M.
+
+In the running example:
+
+> A one-unit increase in social media use is associated with an estimated 3.54-unit increase in body dissatisfaction.
 
 ---
 
-# 30. Estimate b and c'
+# 24. Step 2: Estimate b and c'
 
 Run:
 
-```r
+```r id="sc8cr8"
 model_b <- lm(Y ~ X + M, data = dat)
+
 summary(model_b)
 ```
 
-Hypothetical output:
+Suppose the output is:
 
-```text
+```text id="1yb7sv"
 Call:
 lm(formula = Y ~ X + M, data = dat)
 
-Residuals:
-     Min       1Q   Median       3Q      Max
--9.220   -2.431   -0.105    2.357   10.811
-
 Coefficients:
-             Estimate Std. Error t value Pr(>|t|)
-(Intercept)    2.1400     1.0900    1.963   0.0505 .
-X              0.9200     0.4300    2.140   0.0331 *
-M              0.4800     0.0580    8.276  <2e-16 ***
 
-Residual standard error: 3.82
-Multiple R-squared: 0.244
-Adjusted R-squared: 0.239
-F-statistic: 53.2, p-value: <2e-16
+             Estimate   Std. Error   t value   Pr(>|t|)
+(Intercept)     2.140       1.090      1.963      .051
+X               0.920       0.430      2.140      .033
+M               0.480       0.058      8.276     <.001
 ```
 
-Look at:
+There are two important numbers.
 
-```text
+## Find b
+
+Look at the M row:
+
+```text id="7i8kvb"
              Estimate
-X              0.920   ← c'
-M              0.480   ← b
+M              0.480
+               ↑
+               b
 ```
 
 Therefore:
 
 > **b = 0.48**
 
-> **c' = 0.92**
+Interpretation:
+
+> A one-unit increase in M is associated with an estimated 0.48-unit increase in Y after accounting for X.
 
 ---
 
-# 31. Calculate the indirect effect
+## Find c'
 
-We have:
+Look at the X row:
 
-> a = 3.54
-
-> b = 0.48
+```text id="83s32h"
+             Estimate
+X              0.920
+               ↑
+               c'
+```
 
 Therefore:
 
-> **a × b = 3.54 × 0.48**
+> **c' = 0.92**
 
-> **= 1.70 approximately**
+This is the direct X–Y association after accounting for M.
 
-So:
+---
+
+# 25. Step 3: Estimate total effect c
+
+To estimate the total X–Y association without M in the outcome model:
+
+```r id="b42ef3"
+model_c <- lm(Y ~ X, data = dat)
+
+summary(model_c)
+```
+
+Suppose:
+
+```text id="0o7ioy"
+Call:
+lm(formula = Y ~ X, data = dat)
+
+Coefficients:
+
+             Estimate   Std. Error   t value   Pr(>|t|)
+(Intercept)     8.130       1.210      6.719     <.001
+X               2.619       0.510      5.135     <.001
+```
+
+Look at:
+
+```text id="q2b3yl"
+             Estimate
+X              2.619
+               ↑
+               c
+```
+
+Therefore:
+
+> **c = 2.619 ≈ 2.62**
+
+---
+
+# 26. Step 4: Calculate the indirect effect
+
+We have:
+
+```text id="h3j5bx"
+a = 3.54
+
+b = 0.48
+```
+
+The indirect effect is:
+
+```text id="3ky7cx"
+a × b
+
+= 3.54 × 0.48
+
+= 1.6992
+```
+
+Therefore:
 
 > **Indirect effect ≈ 1.70**
 
-But do not stop there.
+We can also see:
 
-This is only the point estimate.
+```text id="yfq4j9"
+c ≈ c' + ab
+```
 
-We need to quantify its uncertainty.
+Using the dummy values:
 
----
+```text id="p44u3v"
+0.920 + 1.699
 
-# 32. Bootstrap the indirect effect
+= 2.619
+```
 
-Suppose a bootstrap analysis gives:
-
-> Indirect effect = **1.70**
-
-> Bootstrap 95% CI = **[1.02, 2.46]**
-
-Zero is not contained in this hypothetical interval.
-
-Therefore, the model provides statistical evidence of an indirect effect.
-
-If instead:
-
-> 95% CI = **[-0.11, 1.03]**
-
-zero is contained in the interval.
-
-Then:
-
-> **There is insufficient evidence of an indirect effect.**
-
-Do not automatically conclude:
-
-> “There is definitely no mediation.”
+which corresponds to the total effect.
 
 ---
 
-# 33. Run the complete mediation in R
+# 27. Why isn't a×b enough?
 
-Using `lavaan`:
+The value:
 
-```r
+> **1.70**
+
+is a point estimate.
+
+A point estimate does not tell us how uncertain the estimate is.
+
+For the indirect effect, a common approach is therefore to calculate a **bootstrap confidence interval**.
+
+---
+
+# 28. What is bootstrapping?
+
+Bootstrapping repeatedly resamples observations from the original dataset **with replacement**.
+
+Suppose a dataset contains 300 participants.
+
+A bootstrap procedure creates another sample of 300 observations by repeatedly drawing from those original participants.
+
+Because sampling is with replacement:
+
+- some participants may appear more than once;
+- some may not appear in a particular bootstrap sample.
+
+For each bootstrap sample:
+
+```text id="b5nyy6"
+Estimate a
+     ↓
+Estimate b
+     ↓
+Calculate a×b
+```
+
+For example:
+
+```text id="vvq58e"
+Bootstrap 1       a×b = 1.55
+
+Bootstrap 2       a×b = 1.82
+
+Bootstrap 3       a×b = 1.43
+
+Bootstrap 4       a×b = 2.01
+
+...
+
+Bootstrap 5000    a×b = 1.67
+```
+
+This produces a distribution of bootstrap indirect-effect estimates.
+
+The software uses that distribution to construct a confidence interval.
+
+The researcher does **not** manually calculate 5,000 indirect effects.
+
+---
+
+# 29. What is `lavaan`?
+
+`lavaan` is an **R package**.
+
+Its name comes from:
+
+> **latent variable analysis**
+
+It is commonly used for:
+
+- structural equation modelling;
+- path analysis;
+- confirmatory factor analysis;
+- mediation analysis.
+
+Install it once:
+
+```r id="o3sw76"
+install.packages("lavaan")
+```
+
+Then load it:
+
+```r id="4vnn3e"
+library(lavaan)
+```
+
+---
+
+# 30. Complete mediation analysis using `lavaan`
+
+Run:
+
+```r id="dnnxjp"
 library(lavaan)
 
 model <- '
+
   # a path
   M ~ a*X
 
-  # b and direct paths
+  # b and direct c-prime paths
   Y ~ b*M + cprime*X
 
   # indirect effect
   indirect := a*b
 
   # total effect
-  total := cprime + (a*b)
+  total := cprime + indirect
 '
 
 fit <- sem(
@@ -1084,432 +1129,949 @@ fit <- sem(
 
 summary(
   fit,
-  standardized = TRUE,
-  ci = TRUE
+  ci = TRUE,
+  standardized = TRUE
 )
 ```
 
-A simplified hypothetical result:
+---
 
-```text
+# 31. What does each line do?
+
+## Estimate a
+
+```r id="ld8nyv"
+M ~ a*X
+```
+
+This means:
+
+> Regress M on X and label the X coefficient `a`.
+
+---
+
+## Estimate b and c'
+
+```r id="ehy7aa"
+Y ~ b*M + cprime*X
+```
+
+This means:
+
+> Regress Y on M and X.
+
+The M coefficient is labelled:
+
+```text id="7idmd7"
+b
+```
+
+and the X coefficient is labelled:
+
+```text id="jng8xc"
+cprime
+```
+
+---
+
+## Define the indirect effect
+
+```r id="t5p0v3"
+indirect := a*b
+```
+
+This tells `lavaan`:
+
+> Calculate a×b and call the resulting parameter `indirect`.
+
+The `:=` operator is used to define a new parameter.
+
+---
+
+## Define the total effect
+
+```r id="6enw1p"
+total := cprime + indirect
+```
+
+This tells `lavaan`:
+
+> Calculate c' + ab and call the result `total`.
+
+---
+
+## Request bootstrapping
+
+```r id="wlyl5d"
+se = "bootstrap",
+bootstrap = 5000
+```
+
+This requests:
+
+> **5,000 bootstrap samples.**
+
+---
+
+## Request confidence intervals
+
+```r id="93ad2h"
+ci = TRUE
+```
+
+This asks the summary output to display confidence intervals.
+
+---
+
+# 32. Example `lavaan` output
+
+Suppose the relevant output is:
+
+```text id="2jrmkv"
 Regressions:
 
+                   Estimate   Std.Err   z-value   P(>|z|)
 M ~
-  X        (a)        3.540
+  X        (a)        3.540      0.590     6.000    <.001
 
 Y ~
-  M        (b)        0.480
-  X   (cprime)        0.920
+  M        (b)        0.480      0.058     8.276    <.001
+  X   (cprime)        0.920      0.430     2.140     .032
 
 
 Defined Parameters:
 
-                   Estimate       95% CI
-indirect             1.699      1.02 – 2.46
-total                2.619
+                   Estimate   Std.Err   ci.lower   ci.upper
+indirect              1.699      0.367      1.020      2.460
+total                 2.619      0.520      1.650      3.590
+```
+
+These numerical values are **dummy values for teaching purposes**.
+
+The important task is learning where to find each result.
+
+---
+
+# 33. Where does “Defined Parameters” come from?
+
+`Defined Parameters` is generated automatically by `lavaan`.
+
+It appears because the model contains:
+
+```r id="5u5fzz"
+indirect := a*b
+
+total := cprime + indirect
+```
+
+These lines tell `lavaan` to create two additional parameters called:
+
+```text id="1x2pwm"
+indirect
+
+total
+```
+
+Therefore, `lavaan` reports them under:
+
+```text id="4m0cqj"
+Defined Parameters:
 ```
 
 ---
 
-# 34. What is the total effect?
+# 34. Exactly what should be extracted from the output?
 
-The total effect **c** represents the association between X and Y without M included in the outcome regression.
+## Find a
 
-Run:
-
-```r
-model_total <- lm(Y ~ X, data = dat)
-summary(model_total)
+```text id="n9ef6h"
+M ~
+  X        (a)        3.540
+                       ↑
 ```
-
-Suppose:
-
-> **c = 2.62**
-
-We approximately have:
-
-> c = c' + ab
 
 Therefore:
 
-> 0.92 + 1.70 = **2.62**
+> **a = 3.540**
 
-So:
+---
 
-```text
-Total effect c       = 2.62
+## Find b
 
-Direct effect c'     = 0.92
+```text id="mr6yhs"
+Y ~
+  M        (b)        0.480
+                       ↑
+```
 
-Indirect effect a×b  = 1.70
+Therefore:
+
+> **b = 0.480**
+
+---
+
+## Find c'
+
+```text id="dqqo9c"
+Y ~
+  X   (cprime)        0.920
+                       ↑
+```
+
+Therefore:
+
+> **c' = 0.920**
+
+---
+
+## Find the indirect effect
+
+Go to:
+
+```text id="ms6ekj"
+Defined Parameters:
+```
+
+Then find:
+
+```text id="blv5fw"
+                   Estimate
+indirect              1.699
+                      ↑
+```
+
+Therefore:
+
+> **a×b = 1.699**
+
+---
+
+## Find the bootstrap confidence interval
+
+Stay on the `indirect` row:
+
+```text id="c59b58"
+                   Estimate   ci.lower   ci.upper
+
+indirect              1.699      1.020      2.460
+                                 ↑          ↑
+                               lower      upper
+```
+
+Therefore:
+
+> **Bootstrap 95% CI = [1.020, 2.460]**
+
+The confidence interval comes from the bootstrap procedure.
+
+It is **not manually calculated from 1.699**.
+
+---
+
+## Find c
+
+Look at:
+
+```text id="tt4j1a"
+total                 2.619
+```
+
+Therefore:
+
+> **c = 2.619**
+
+because:
+
+```text id="3zebvw"
+c = c' + ab
+
+= 0.920 + 1.699
+
+= 2.619
 ```
 
 ---
 
-# 35. Put the mediation model together
+# 35. Quick output-reading table
 
-```text
-                 a = 3.54               b = 0.48
-Social media ─────────────────→ Body ─────────────────→ Disordered
-    use                         dissatisfaction          eating
-      │                                                   ↑
-      │                                                   │
-      └──────────────── c' = 0.92 ───────────────────────┘
+| Quantity | Where to look | Dummy result |
+|---|---|---:|
+| **a** | `M ~ X (a)` → Estimate | **3.540** |
+| **b** | `Y ~ M (b)` → Estimate | **0.480** |
+| **c'** | `Y ~ X (cprime)` → Estimate | **0.920** |
+| **a×b** | `indirect` → Estimate | **1.699** |
+| Lower CI | `indirect` → `ci.lower` | **1.020** |
+| Upper CI | `indirect` → `ci.upper` | **2.460** |
+| **c** | `total` → Estimate | **2.619** |
+
+So the key results are:
+
+```text id="u0ftwg"
+a             = 3.540
+
+b             = 0.480
+
+c'            = 0.920
+
+indirect a×b  = 1.699
+
+95% CI        = [1.020, 2.460]
+
+total c       = 2.619
 ```
 
-Indirect effect:
-
-> **a × b = 1.70**
-
-Bootstrap 95% CI:
-
-> **[1.02, 2.46]**
-
-Total effect:
-
-> **c = 2.62**
-
-All values are hypothetical.
-
 ---
 
-# 36. Do a and b individually have to be statistically significant?
+# 36. The most important question: does the CI contain zero?
 
-Do not rely on the rule:
+The bootstrap confidence interval provides the main inferential information about the indirect effect.
 
-> “a must be significant AND b must be significant before mediation can exist.”
+The simple rule is:
 
-The main inferential quantity is:
+```text id="nlrb2d"
+Does the bootstrap CI for a×b contain 0?
 
-> **a × b**
+                 ↓
 
-Therefore, directly examine the estimated indirect effect and its confidence interval.
-
----
-
-# 37. What assumptions and checks should be considered?
-
-Mediation using ordinary linear regression inherits relevant regression considerations.
-
-Consider:
-
-- linearity
-- influential observations
-- residual behaviour
-- heteroscedasticity
-- independence where required by the design
-- multicollinearity
-- appropriate measurement/scaling
-
-Also consider substantive issues:
-
-- Is X → M → Y theoretically defensible?
-- Are important confounders omitted?
-- Is the study cross-sectional?
-- Are measurements sufficiently reliable?
-- Are covariates justified?
-
-Do not rely exclusively on assumption-test p-values. Graphical diagnostics and study design also matter.
-
----
-
-# 38. What about covariates?
-
-Suppose age is a theoretically justified pre-specified covariate.
-
-The model could become:
-
-```r
-model <- '
-  M ~ a*X + age
-  Y ~ b*M + cprime*X + age
-
-  indirect := a*b
-  total := cprime + (a*b)
-'
+          ┌──────┴──────┐
+          │             │
+         YES            NO
+          │             │
+          ↓             ↓
+   Insufficient      Evidence of
+   evidence of       an indirect
+   an indirect          effect
+      effect
 ```
 
-Do not select covariates simply because including them makes the mediation significant.
+---
 
-Covariate selection should have substantive justification.
+# 37. Case 1: the CI does NOT contain zero
+
+Suppose:
+
+```text id="np2y7s"
+Indirect effect = 1.699
+
+95% CI = [1.020, 2.460]
+```
+
+Is zero between 1.020 and 2.460?
+
+> **No.**
+
+Therefore:
+
+> **There is statistical evidence of an indirect effect.**
+
+A possible report is:
+
+> The estimated indirect effect of social media use on disordered eating through body dissatisfaction was 1.70, with a bootstrap 95% confidence interval of [1.02, 2.46]. Because the confidence interval did not contain zero, there was statistical evidence of an indirect association through body dissatisfaction.
+
+The result should then be considered in relation to:
+
+- the original hypothesis;
+- theory;
+- previous literature;
+- study design;
+- measurement;
+- limitations.
+
+For cross-sectional observational data, avoid treating the result as proof of a causal mechanism.
 
 ---
 
-# 39. Running mediation in SPSS
+# 38. Case 2: the CI DOES contain zero
+
+Suppose the output instead shows:
+
+```text id="i13nbg"
+Defined Parameters:
+
+                   Estimate   Std.Err   ci.lower   ci.upper
+
+indirect              0.420      0.290     -0.110      1.030
+```
+
+Extract:
+
+```text id="h2qr46"
+Indirect effect = 0.420
+
+95% CI = [-0.110, 1.030]
+```
+
+Is zero between -0.110 and 1.030?
+
+> **Yes.**
+
+Therefore:
+
+> **There is insufficient statistical evidence of an indirect effect.**
+
+A possible report is:
+
+> The estimated indirect effect was 0.42, with a bootstrap 95% confidence interval of [-0.11, 1.03]. Because the confidence interval included zero, there was insufficient statistical evidence of an indirect association through the proposed mediator.
+
+---
+
+# 39. What should be done when the CI contains zero?
+
+This is an important practical question.
+
+## 1. Report the result
+
+A non-significant indirect effect is still a research result.
+
+Do not hide it or treat it as an analysis failure.
+
+---
+
+## 2. Check the analysis
+
+Check whether:
+
+- X, M and Y were specified correctly;
+- questionnaires were scored correctly;
+- reverse-coded items were handled correctly;
+- the planned mediation model was fitted correctly;
+- variables were appropriate for the chosen model;
+- missing data were handled appropriately;
+- planned covariates were handled appropriately;
+- there are serious data-quality problems;
+- influential observations are affecting the model;
+- the confidence interval is very wide, indicating considerable uncertainty.
+
+---
+
+## 3. Do not change the mediator simply to obtain significance
+
+For example, do not automatically test:
+
+```text id="4og3qj"
+Mediator 1
+Mediator 2
+Mediator 3
+Mediator 4
+Mediator 5
+...
+```
+
+until one produces a confidence interval excluding zero.
+
+Similarly, do not repeatedly add and remove covariates simply to make the indirect effect statistically significant.
+
+---
+
+## 4. Reconsider the theoretical interpretation
+
+If the analysis is correctly specified but the proposed indirect effect is not supported, consider what the result means for the original hypothesis and theory.
+
+Questions may include:
+
+- Was the proposed mediator theoretically appropriate?
+- Was the expected indirect effect perhaps smaller than anticipated?
+- Is measurement quality adequate?
+- Was statistical precision sufficient?
+- Could the design adequately investigate the proposed pathway?
+- Does previous literature show similar or conflicting findings?
+
+In supervised research, major changes to the theoretical model or planned analyses should normally be discussed with the relevant supervisor/research team rather than being driven solely by statistical significance.
+
+---
+
+## 5. Alternative models can still be investigated when scientifically justified
+
+A non-significant result does not mean that no further research or analysis is permitted.
+
+Alternative models may be scientifically meaningful.
+
+However, analyses developed **after observing the original result** should be clearly distinguished as exploratory or post hoc where appropriate.
+
+---
+
+# 40. Do a and b individually have to be significant?
+
+Avoid using a rigid rule such as:
+
+> “a must have p < .05 AND b must have p < .05 before mediation can be tested.”
+
+The main inferential quantity for the mediation hypothesis is:
+
+```text id="8qifrr"
+a × b
+```
+
+Therefore, directly examine:
+
+> **the estimated indirect effect and its confidence interval.**
+
+---
+
+# 41. Running simple mediation in SPSS
 
 A commonly used approach is **Hayes' PROCESS macro**.
 
 For simple mediation:
 
-> **Model 4**
+```text id="9z5nr4"
+Model = 4
+```
 
 Specify:
 
-```text
-X = Social media use
+```text id="8ay92w"
+X = predictor
 
-M = Body dissatisfaction
+M = mediator
 
-Y = Disordered eating
+Y = outcome
 
 Model = 4
 
-Bootstrap samples = 5,000
+Bootstrap samples = 5000
 ```
 
-Then identify:
-
-- **a** = X → M
-- **b** = M → Y controlling for X
-- **c'** = X → Y controlling for M
-- **c** = total X → Y effect
-- **a × b** = indirect effect
-- bootstrap CI for the indirect effect
-
-The indirect effect and its bootstrap confidence interval are central to the mediation conclusion.
+PROCESS performs the bootstrap automatically.
 
 ---
 
-# 40. How should the hypothetical result be reported?
+# 42. Example SPSS PROCESS output: a
 
-For example:
+Suppose PROCESS reports:
 
-> Social media use was positively associated with body dissatisfaction (a = 3.54). Body dissatisfaction was positively associated with disordered eating after accounting for social media use (b = 0.48). The estimated indirect effect of social media use on disordered eating through body dissatisfaction was 1.70, with a bootstrap 95% confidence interval of [1.02, 2.46].
+```text id="v47i7r"
+OUTCOME VARIABLE:
+Body dissatisfaction
 
-For cross-sectional data, add:
+              coeff       se         t         p
+
+constant      12.480      1.320      9.455     <.001
+
+SocialMedia    3.540      0.590      6.000     <.001
+               ↑
+               a
+```
+
+Extract:
+
+> **a = 3.540**
+
+---
+
+# 43. Example PROCESS output: b and c'
+
+Suppose:
+
+```text id="29z7ao"
+OUTCOME VARIABLE:
+Disordered eating
+
+                       coeff       se         t         p
+
+constant                2.140      1.090      1.963      .051
+
+SocialMedia             0.920      0.430      2.140      .033
+                        ↑
+                        c'
+
+BodyDissatisfaction     0.480      0.058      8.276     <.001
+                        ↑
+                        b
+```
+
+Extract:
+
+> **b = 0.480**
+
+> **c' = 0.920**
+
+---
+
+# 44. Example PROCESS output: c
+
+Suppose:
+
+```text id="zljl4h"
+Total effect of X on Y
+
+              effect       se         t         p
+
+SocialMedia    2.619       0.510      5.135     <.001
+               ↑
+               c
+```
+
+Extract:
+
+> **c = 2.619**
+
+---
+
+# 45. Example PROCESS output: indirect effect and bootstrap CI
+
+Suppose:
+
+```text id="trgjci"
+Indirect effect(s) of X on Y:
+
+                         Effect    BootSE    BootLLCI    BootULCI
+
+BodyDissatisfaction       1.699      .367       1.020       2.460
+                          ↑                    ↑           ↑
+                         a×b               lower CI    upper CI
+```
+
+Extract:
+
+> **Indirect effect = 1.699**
+
+and:
+
+> **Bootstrap 95% CI = [1.020, 2.460]**
+
+The important PROCESS columns are:
+
+```text id="rf78nx"
+Effect
+    ↓
+Estimated indirect effect
+
+
+BootLLCI
+    ↓
+Bootstrap lower confidence limit
+
+
+BootULCI
+    ↓
+Bootstrap upper confidence limit
+```
+
+Again:
+
+```text id="22l6ga"
+BootLLCI > 0
+and
+BootULCI > 0
+
+→ CI excludes zero
+```
+
+or:
+
+```text id="zqqltm"
+BootLLCI < 0
+and
+BootULCI > 0
+
+→ CI contains zero
+```
+
+---
+
+# 46. Assumptions and model checks
+
+Mediation based on ordinary linear regression inherits relevant regression considerations.
+
+These include:
+
+- linearity;
+- influential observations;
+- residual behaviour;
+- heteroscedasticity;
+- independence where required by the design;
+- multicollinearity;
+- appropriate measurement/scaling.
+
+Substantive considerations are equally important:
+
+- Is X → M → Y theoretically defensible?
+- Are important confounders omitted?
+- Is the study cross-sectional?
+- Are the measurements sufficiently reliable?
+- Are covariates justified?
+
+Do not rely exclusively on assumption-test p-values.
+
+Graphical diagnostics and study design should also be considered.
+
+---
+
+# 47. What about covariates?
+
+Suppose age is a theoretically justified pre-specified covariate.
+
+A `lavaan` model could be:
+
+```r id="h3e6pk"
+model <- '
+
+  M ~ a*X + age
+
+  Y ~ b*M + cprime*X + age
+
+  indirect := a*b
+
+  total := cprime + indirect
+'
+```
+
+Covariates should have substantive justification.
+
+Do not add or remove covariates simply because doing so changes statistical significance.
+
+---
+
+# 48. Example reporting: CI excludes zero
+
+A report might state:
+
+> Social media use was positively associated with body dissatisfaction (a = 3.54). Body dissatisfaction was positively associated with disordered eating after accounting for social media use (b = 0.48). The estimated indirect effect of social media use on disordered eating through body dissatisfaction was 1.70, with a bootstrap 95% confidence interval of [1.02, 2.46]. As the interval did not contain zero, there was statistical evidence of an indirect association through body dissatisfaction.
+
+For cross-sectional data, it may be appropriate to add:
 
 > The results are consistent with the proposed indirect association, but the cross-sectional design does not establish the temporal or causal sequence implied by the mediation model.
 
 ---
 
-# 41. Practical checklist for a tutoring appointment
+# 49. Example reporting: CI contains zero
 
-## Research question
+Suppose:
 
-Ask:
+```text id="f85vx7"
+Indirect effect = 0.42
 
-- What exactly is X?
-- What exactly is M?
-- What exactly is Y?
-- Is the question about association or a proposed mechanism?
+95% CI = [-0.11, 1.03]
+```
 
-## Mediator
+A report might state:
 
-Ask:
+> The estimated indirect effect was 0.42, with a bootstrap 95% confidence interval of [-0.11, 1.03]. Because the confidence interval included zero, there was insufficient statistical evidence of an indirect association through the proposed mediator.
 
-- Why is M proposed as the mediator?
-- What theory supports it?
-- What previous literature supports X → M?
-- What previous literature supports M → Y?
+The discussion can then consider:
 
-## Study design
-
-Ask:
-
-- Cross-sectional or longitudinal?
-- When are X, M and Y measured?
-- What causal claims are appropriate?
-
-## Validated questionnaires
-
-Ask:
-
-- What are the questionnaire names?
-- Where did they come from?
-- What are the published scoring instructions?
-- Are there subscales?
-- Are any items reverse-coded?
-
-## Researcher-developed questions
-
-Ask:
-
-- Which questions did you write yourself?
-- What is each intended to measure?
-- Are they descriptive/background variables?
-- Are several intended to measure one construct?
-- Are you proposing to use them as X, M or Y?
-- If you want to combine them, what evidence supports treating them as a scale?
-
-## Power
-
-Ask:
-
-- What are the expected a and b?
-- Where did those estimates come from?
-- What α is planned?
-- Is 80% or 90% power required?
-- What incomplete/missing-data rate is expected?
-- Would sensitivity analysis be useful?
-
-## Analysis
-
-Ask:
-
-- What covariates are theoretically justified?
-- Are X, M and Y continuous?
-- How will missing data be handled?
-- What diagnostics will be examined?
-- Will the indirect effect be bootstrapped?
+- theory;
+- previous literature;
+- uncertainty around the estimate;
+- measurement quality;
+- statistical precision;
+- study design;
+- limitations.
 
 ---
 
-# 42. Straightforward answers to likely questions
+# 50. Common questions
 
-## “Should I use mediation?”
+## “What is mediation?”
 
-> **If your research question is about whether the association between social media use and disordered eating operates indirectly through body dissatisfaction, and theory/literature supports that pathway, then simple mediation is a reasonable approach. Because your survey is cross-sectional, however, interpret it as an indirect association rather than proof of a causal mechanism.**
-
-## “Why can't I just use regression?”
-
-> **Regression can tell you whether X is associated with Y. Mediation specifically evaluates whether part of that association operates statistically through M.**
-
-## “How do I choose the mediator?”
-
-> **Use theory, previous literature and your research hypothesis, rather than choosing whichever variable produces significance.**
+> **Mediation investigates whether the association between X and Y operates indirectly through another variable M.**
 
 ## “What is a?”
 
-> **The regression coefficient for X predicting M.**
+> **The coefficient for X predicting M.**
 
 ## “What is b?”
 
-> **The regression coefficient for M predicting Y while accounting for X.**
+> **The coefficient for M predicting Y while accounting for X.**
 
-## “What does controlling for X mean?”
+## “What is c?”
 
-> **X is included in the regression so that the M–Y association is estimated after statistically accounting for X.**
+> **The total X–Y association without M included in the outcome model.**
+
+## “What is c'?”
+
+> **The X–Y association after M is included in the outcome model.**
 
 ## “What is the indirect effect?”
 
-> **a × b.**
+> **a×b.**
 
-## “Where do a and b come from for my power calculation?”
+## “Where do a and b for a prospective power calculation come from?”
 
-> **Before the main study, use plausible expected values based on previous research, meta-analysis, pilot data or sensitivity assumptions. After data collection, a and b are estimated from your actual dataset.**
+> **Plausible expected values can come from previous research, meta-analysis, comparable studies, pilot data or defensible sensitivity assumptions.**
 
-## “Can I use G\*Power?”
+## “Can G*Power calculate mediation power?”
 
-> **It can help with ordinary regression power calculations, but it does not directly power the mediation indirect effect a × b. A mediation-specific power method or simulation is preferable for that hypothesis.**
+> **Not directly for the indirect effect a×b. A mediation-specific power procedure or appropriately specified simulation is preferable when the indirect effect is the main hypothesis.**
 
-## “Can I use SPSS?”
+## “What is `lavaan`?”
 
-> **Yes. PROCESS Model 4 is commonly used for simple mediation.**
+> **`lavaan` is an R package commonly used for structural equation modelling, path analysis, confirmatory factor analysis and mediation analysis.**
 
-## “Can I use R?”
+## “How is bootstrapping requested in `lavaan`?”
 
-> **Yes. `lavaan` is a common option for mediation analysis, and R is also useful for simulation-based power analysis.**
+```r id="ux8rcp"
+fit <- sem(
+  model,
+  data = dat,
+  se = "bootstrap",
+  bootstrap = 5000
+)
+```
 
-## “What tells me whether there is evidence of an indirect effect?”
+Then request confidence intervals:
 
-> **Look primarily at a × b and its bootstrap confidence interval.**
+```r id="tk5qav"
+summary(
+  fit,
+  ci = TRUE,
+  standardized = TRUE
+)
+```
 
-## “If the bootstrap CI doesn't contain zero?”
+## “Where does the confidence interval come from?”
 
-> **There is statistical evidence of an indirect effect under the specified model.**
+> **It comes from the bootstrap distribution generated by repeatedly resampling the observed data and re-estimating the indirect effect.**
 
-## “Does that prove the mechanism?”
+## “What if the bootstrap CI excludes zero?”
 
-> **No. Statistical mediation alone does not establish causality, particularly with cross-sectional observational data.**
+> **There is statistical evidence of an indirect effect under the specified model. Report and interpret the result.**
 
-## “I made some questionnaire questions myself. Should I add them together?”
+## “What if the bootstrap CI contains zero?”
 
-> **Not automatically. First decide what each question measures. If they measure different things, keep them as separate variables. If several were deliberately designed to measure one construct, investigate whether treating them as a scale is justified before creating a composite score.**
+> **There is insufficient statistical evidence of an indirect effect. Report the result, check that the analysis and measurement are appropriate, and consider the theoretical and methodological implications. Do not change the model simply to obtain significance.**
 
-## “Should I use a sum or average?”
+## “Should researcher-developed questionnaire items be added together?”
 
-> **For a validated questionnaire, follow its published scoring instructions. For researcher-developed items, first establish whether the items should be combined at all. If a single scale is justified and the items share the same response scale, a mean can be convenient because it retains the original response metric, but the scoring choice should still be justified.**
+> **Not automatically. First determine what each item measures. If the items measure different things, keep them separate. If several were deliberately designed to measure one construct, investigate whether treating them as a scale is justified before creating a composite score.**
 
-## “Where do I find the scoring instructions?”
+## “Should I use a sum or mean?”
 
-> **For an existing questionnaire, look at its scoring manual, original development/validation paper or official materials from the questionnaire developers. If you created the questions yourself, there are no existing published scoring instructions, so you need to develop and justify the scoring approach.**
+> **For validated questionnaires, follow the published scoring instructions. For researcher-developed items, first establish whether combining the items is justified. If a single scale is justified and all items use the same response scale, a mean can be convenient because it retains the original response metric.**
 
 ---
 
-# 43. The whole process in one picture
+# 51. Complete mediation cheat sheet
 
-```text
-RESEARCH QUESTION
-       ↓
-Define X, M and Y
-       ↓
-Does theory/literature support X → M → Y?
-       ↓
-MEASUREMENT PLAN
-       ↓
-Validated questionnaire?
-       │
-       ├── YES → Follow published scoring method
-       │
-       └── NO / researcher-developed
-                   ↓
-          What does each item measure?
-                   ↓
-          Same construct or different?
-             ↙               ↘
-        Different             Same
-           ↓                   ↓
-     Keep separate       Evaluate whether
-                         a scale is justified
-                               ↓
-                       Create score if justified
-                               ↓
-POWER PLANNING
-       ↓
-Expected a + expected b
-       ↓
-Required sample size
-       ↓
-COLLECT DATA
-       ↓
-CLEAN + SCORE DATA
-       ↓
-DESCRIPTIVE ANALYSIS
-       ↓
-M ~ X
-       ↓
-Estimate a
-       ↓
-Y ~ X + M
-       ↓
-Estimate b + c'
-       ↓
-INDIRECT EFFECT
-a × b
-       ↓
-BOOTSTRAP 95% CI
-       ↓
-CHECK ASSUMPTIONS
-       ↓
-INTERPRET
-       ↓
-REPORT WITH APPROPRIATE CAUTION
+```text id="j2ad3i"
+                 MEDIATION
+
+                 a                 b
+X ─────────────────→ M ─────────────────→ Y
+│                                         ↑
+│                                         │
+└──────────────── c' ─────────────────────┘
+
+
+a
+│
+└── X → M
+
+
+b
+│
+└── M → Y controlling for X
+
+
+c'
+│
+└── X → Y controlling for M
+
+
+c
+│
+└── total X → Y association
+
+
+a×b
+│
+└── INDIRECT EFFECT
 ```
 
-# 44. The three things to remember
+In R:
 
-### 1. Mediation should come from the research question and theory
+```text id="9r1l00"
+M ~ a*X
 
-Do not choose a mediator simply because it produces a significant result.
+Y ~ b*M + cprime*X
 
-### 2. Power comes before the main data
+indirect := a*b
 
-Before data collection:
+total := cprime + indirect
+```
 
-> **expected effects → power analysis → required N**
+Bootstrap:
 
-After data collection:
+```text id="l5e1op"
+se = "bootstrap"
 
-> **observed data → estimated effects → inference**
+bootstrap = 5000
 
-### 3. Do not automatically combine questionnaire items
+ci = TRUE
+```
 
-For validated instruments:
+Read the output:
 
-> **follow the established scoring method.**
+```text id="12h9jd"
+M ~ X (a)
+      ↓
+      a
 
-For researcher-developed questions:
 
-> **first determine what the items measure and whether combining them is conceptually and empirically defensible.**
+Y ~ M (b)
+      ↓
+      b
 
-Only then decide whether a sum, mean, subscale or separate-variable approach is appropriate.
+
+Y ~ X (cprime)
+      ↓
+      c'
+
+
+indirect Estimate
+      ↓
+      a×b
+
+
+indirect ci.lower
+      ↓
+lower confidence limit
+
+
+indirect ci.upper
+      ↓
+upper confidence limit
+
+
+total Estimate
+      ↓
+      c
+```
+
+Then:
+
+```text id="egq3bg"
+DOES THE BOOTSTRAP CI CONTAIN ZERO?
+
+              ↓
+
+       ┌──────┴──────┐
+       │             │
+      YES            NO
+       │             │
+       ↓             ↓
+Insufficient       Evidence
+evidence of        of an
+indirect effect    indirect effect
+       │             │
+       ↓             ↓
+Report result      Report result
+       │             │
+       ↓             ↓
+Check analysis     Interpret in
+and measurement    relation to theory
+       │             │
+       ↓             ↓
+Consider theory, design and limitations
+```
+
+---
+
+# 52. Three key take-home messages
+
+### 1. Mediation should be driven by theory and the research question
+
+A mediator should not be selected simply because it produces statistical significance.
+
+### 2. The indirect effect is the central quantity
