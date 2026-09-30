@@ -1,302 +1,318 @@
-# Interim Analysis, Power, Sample-Size Re-estimation and Final Analysis Planning
+# Using Pilot and Interim Data to Review Power, Sample Size and the Final Analysis Plan
 
-## Quick summary: what is the statistical problem?
+## Introduction
 
-A common situation in clinical research is:
+Researchers often reach a point part-way through a study where some data have been collected, but recruitment or follow-up is not yet complete. At this stage, common questions include:
 
-- a study was designed with help from a statistician;
-- a target sample size was established, for example **60 patients**;
-- an interim review was planned after some patients had been recruited;
-- data are now available for the first **30 of the planned 60 patients**;
-- the researcher wants to know:
-  1. whether the original sample size is still appropriate;
-  2. whether the study is adequately powered;
-  3. how the interim data should be used;
-  4. what the final statistical analysis should be.
+- Is the original sample size still appropriate?
+- Is the study adequately powered?
+- Can the data collected so far be used to revise the sample-size calculation?
+- What should be examined during an interim analysis?
+- Can the observed effect from the current data be used for a new power calculation?
+- What statistical method should be used for the final analysis?
 
-These are related questions, but they should be handled separately.
+These questions are related, but they are not the same.
 
-The overall process is:
+A useful way to approach the problem is:
 
 ```text
-UNDERSTAND ORIGINAL STUDY
+Understand the study design
         ↓
-Identify primary research question and outcome
+Identify the primary research question and outcome
         ↓
-Reconstruct original sample-size calculation
+Reconstruct the original sample-size calculation
         ↓
-Understand purpose of planned interim analysis
+Determine the purpose of the pilot/interim analysis
         ↓
-Examine the first 30 patients appropriately
+Examine the accumulating data appropriately
         ↓
-Assess assumptions behind original calculation
+Review the assumptions behind the original calculation
         ↓
 Consider sample-size re-estimation if appropriate
         ↓
-Confirm final statistical analysis plan
+Specify the final statistical analysis
         ↓
-Continue recruitment
+Complete the study
         ↓
-Perform final analysis when study is complete
+Perform the final analysis
 ```
 
----
-
-# 1. How to start the tutoring session
-
-Start with:
-
-> “From your appointment notes, I think there are two main things we need to work out. First, how the data you already have can inform the power and required sample size for the completed study. Second, what the final statistical analysis should look like.”
-
-Then immediately clarify:
-
-> **“Are these 30 patients a separate pilot sample, or are they the first 30 patients of the planned total of 60?”**
-
-This distinction is extremely important.
+The central principle is that **sample size should be connected to the research question, primary outcome, effect of interest and planned statistical analysis**. It should not simply be increased or decreased according to whether an interim p-value is statistically significant.
 
 ---
 
-# 2. Two possible situations
+# 1. External pilot study or internal pilot?
 
-## Situation A: The 30 patients are a separate pilot study
+Before using preliminary data for power or sample-size planning, establish where the data came from.
 
-The pilot participants are separate from the eventual main study.
+## External pilot study
 
-In this situation, the pilot can potentially provide estimates such as:
+An **external pilot** is conducted separately from the main study.
+
+For example:
+
+```text
+Pilot study
+N = 30
+     ↓
+Estimate useful design parameters
+     ↓
+Design main study
+     ↓
+Recruit a new main-study sample
+```
+
+Pilot data may provide estimates of:
 
 - standard deviation;
 - event rate;
 - within-person correlation;
 - dropout;
-- feasibility information.
+- recruitment rate;
+- feasibility of measurements.
 
-These quantities can then help design and power the main study.
-
----
-
-## Situation B: The 30 patients are the first 30 of the planned 60
-
-This is probably better described as an **internal pilot/interim review**.
-
-The first 30 patients will eventually form part of the final dataset.
-
-This requires more care because the same data are being used during the study and will later contribute to the final analysis.
-
-If this is the situation, ask:
-
-> **“Was an interim analysis or sample-size reassessment after approximately 30 patients specified in the original protocol?”**
-
-And:
-
-> **“What exactly did the original statistician intend the interim analysis to assess?”**
+These estimates can help plan the main study.
 
 ---
 
-# 3. What is an interim analysis?
+## Internal pilot
 
-An interim analysis is an examination of specified aspects of a study **before data collection is complete**.
+An **internal pilot** consists of participants who are already part of the main study.
 
 For example:
 
 ```text
-Planned N = 60
+Planned study N = 60
 
-Recruit first 30
-       ↓
-Interim review
-       ↓
+First 30 participants
+        ↓
+Internal pilot/interim review
+        ↓
 Continue recruitment
-       ↓
-Final N
-       ↓
-Final analysis
+        ↓
+Final study sample
 ```
 
-However, “interim analysis” can mean different things.
+Under an appropriately designed procedure, the internal-pilot participants may remain part of the final analysis.
 
-It might mean:
-
-### A. Reviewing study assumptions
-
-For example:
-
-- variability;
-- event rate;
-- dropout;
-- missing data;
-- recruitment;
-- data quality.
-
-### B. Sample-size re-estimation
-
-For example:
-
-> “We originally assumed SD = 6. Does the accumulating data suggest this assumption remains reasonable?”
-
-### C. Formal interim hypothesis testing
-
-For example:
-
-> “Is Treatment A already significantly better than Treatment B after 30 patients?”
-
-This is statistically different.
-
-Formal interim hypothesis testing can affect Type I error because the primary hypothesis is being tested multiple times.
-
-Therefore, always establish:
-
-> **“What was the interim analysis originally intended to do?”**
+However, because the same participants contribute to both the interim assessment and final study, changes based on the interim data require more care.
 
 ---
 
-# 4. The first thing to find: the original sample-size calculation
+# 2. What is an interim analysis?
 
-Before doing a new power calculation, ask:
+An interim analysis is an examination of specified aspects of a study **before data collection is complete**.
 
-> **“Can you show me the original protocol or sample-size calculation?”**
+The term can refer to several quite different activities.
+
+## Descriptive or feasibility review
+
+This may examine:
+
+- recruitment;
+- dropout;
+- missing data;
+- data quality;
+- variability;
+- event rates;
+- feasibility of collecting planned variables.
+
+## Sample-size re-estimation
+
+The interim data may be used to examine whether assumptions underlying the original sample-size calculation remain reasonable.
+
+For example:
+
+> The original calculation assumed SD = 6. Does the accumulating data suggest that variability is substantially different?
+
+## Formal interim hypothesis testing
+
+The study may formally test a treatment or group difference before recruitment is complete.
+
+For example:
+
+> Is Treatment A already superior to Treatment B?
+
+This is different from simply examining variability or missingness. Repeated formal testing of the primary hypothesis can affect the overall Type I error and usually requires an appropriate sequential design.
+
+Therefore, before analysing interim data, establish:
+
+> **What was the interim analysis intended to assess?**
+
+---
+
+# 3. Start with the original sample-size calculation
+
+Before calculating a new sample size, reconstruct the original calculation.
+
+Useful sources include:
+
+- study protocol;
+- statistical analysis plan;
+- ethics application;
+- grant application;
+- previous statistical report;
+- thesis/research proposal.
+
+For a continuous two-group outcome, an original calculation might have been based on:
+
+| Parameter | Assumption |
+|---|---:|
+| Clinically meaningful difference | 5 points |
+| Standard deviation | 6 |
+| Significance level | 0.05 |
+| Desired power | 80% |
+| Required complete sample | approximately 46 |
+| Expected attrition | 20% |
+| Recruitment target | approximately 58–60 |
+
+The important question is then:
+
+> **Are the assumptions that generated the original sample size still reasonable?**
+
+---
+
+# 4. What determines statistical power?
+
+Statistical power is the probability of detecting an effect of a specified size when that effect exists, under the assumptions used in the calculation.
+
+For a simple comparison, power depends on quantities such as:
+
+```text
+Effect to detect
+       +
+Variability
+       +
+Sample size
+       +
+Significance level
+       ↓
+Statistical power
+```
+
+Therefore, knowing only the number of participants is not enough to determine whether a study is adequately powered.
+
+---
+
+# 5. Two different power questions
+
+It is important to distinguish two common questions.
+
+## Question A: What power will a particular sample size provide?
+
+Suppose:
+
+\[
+N=60
+\]
+
+is fixed.
+
+The question becomes:
+
+> What power does N = 60 provide for detecting a specified clinically meaningful effect?
+
+Here, **power is the unknown quantity**.
+
+---
+
+## Question B: How many participants are required?
+
+Suppose:
+
+\[
+Power=80\%
+\]
+
+is the target.
+
+The question becomes:
+
+> How many participants are required to detect the specified effect with 80% power?
+
+Here, **sample size is the unknown quantity**.
+
+These are different calculations.
+
+---
+
+# 6. Where should the effect size come from?
+
+A sample-size calculation requires an effect worth detecting.
+
+For a continuous outcome this may be expressed as:
+
+\[
+\Delta = \mu_1-\mu_2
+\]
+
+For example:
+
+\[
+\Delta=5
+\]
+
+points.
+
+Ideally, the target difference should have a **clinical or scientific interpretation**.
 
 Possible sources include:
 
-- study protocol;
-- ethics application;
-- statistical analysis plan;
-- previous statistician's report;
-- grant application;
-- thesis protocol.
+- a recognised minimum clinically important difference (MCID);
+- previous research;
+- systematic reviews;
+- clinical expertise;
+- a scientifically meaningful threshold.
 
-You are looking for something like:
-
-> “A sample of 60 participants will provide 80% power to detect a clinically meaningful difference of 5 points, assuming an SD of 6, a two-sided significance level of 0.05, and allowing for attrition.”
-
-Extract the assumptions.
-
-For example:
-
-| Parameter                        | Original assumption |
-| -------------------------------- | ------------------: |
-| Primary outcome                  |       Symptom score |
-| Clinically meaningful difference |            5 points |
-| SD                               |                   6 |
-| Alpha                            |                0.05 |
-| Desired power                    |                 80% |
-| Required complete sample         | approximately 46–48 |
-| Expected attrition               |   approximately 20% |
-| Recruitment target               |                  60 |
-
-The central question then becomes:
-
-> **Are the assumptions that produced N = 60 still reasonable?**
+The target effect should not automatically be whatever difference happens to appear in a small pilot or interim sample.
 
 ---
 
-# 5. Understanding power
+# 7. Worked example: continuous outcome
 
-Power is the probability that a statistical test will detect an effect of a specified size when that effect exists, under the assumptions of the calculation.
+Consider a hypothetical study comparing two treatments.
 
-Conceptually:
+## Study design
 
-[\
-\boxed{\
-Effect + Variability + Alpha + Sample\ Size\
-\rightarrow Power\
-}\
-]
-
-For study planning, we usually reverse this:
-
-[\
-\boxed{\
-Effect + Variability + Alpha + Desired\ Power\
-\rightarrow Required\ Sample\ Size\
-}\
-]
-
-Therefore:
-
-> **Knowing that there are currently 30 patients is not sufficient to determine whether the study is adequately powered.**
-
-We need the other quantities.
-
----
-
-# 6. “What is my power?” versus “How many patients do I need?”
-
-These are two different questions.
-
-## Question 1
-
-> “If I eventually have 60 patients, what power will I have to detect a specified effect?”
-
-Here:
-
-- sample size is known;
-- power is calculated.
-
-## Question 2
-
-> “How many patients do I need to achieve 80% power?”
-
-Here:
-
-- desired power is known;
-- sample size is calculated.
-
-This distinction is useful when working with power software.
-
----
-
-# 7. Worked example
-
-Consider a hypothetical clinical study.
-
-## Research question
-
-Does Treatment B reduce symptom severity compared with Treatment A?
-
-## Design
-
-- two independent groups;
-- continuous primary outcome;
-- baseline and follow-up measurements;
-- planned N = 60;
-- currently N = 30;
-- 15 participants per group.
+- two independent treatment groups;
+- continuous symptom score as the primary outcome;
+- baseline and six-month measurements;
+- planned total recruitment = 60;
+- interim review after approximately 30 participants.
 
 Suppose the original calculation assumed:
 
-[\
-\text{Clinically meaningful difference}=5\
-]
+\[
+\Delta=5
+\]
 
-[\
-SD=6\
-]
+\[
+SD=6
+\]
 
-[\
-\alpha=.05\
-]
+\[
+\alpha=.05
+\]
 
-[\
-Power=80%\
-]
+\[
+Power=.80
+\]
 
----
+The standardised effect is:
 
-# 8. Reconstruct the original sample-size calculation
-
-For two independent groups:
-
-[\
-d=\frac{\Delta}{SD}\
-]
+\[
+d=\frac{\Delta}{SD}
+\]
 
 Therefore:
 
-[\
-d=\frac{5}{6}=0.83\
-]
+\[
+d=\frac{5}{6}=0.83
+\]
 
-In R:
+---
+
+# 8. Reconstructing the original calculation in R
 
 ```r
 power.t.test(
@@ -312,179 +328,124 @@ power.t.test(
 This gives approximately:
 
 ```text
-n ≈ 23 per group
+n ≈ 23 participants per group
 ```
 
-Therefore:
+Therefore approximately:
 
-[\
-N\approx46\
-]
+\[
+N=46
+\]
 
-complete participants.
+complete participants are required.
 
-If approximately 20% dropout is anticipated:
+If 20% attrition is expected:
 
-\frac{46}{1-.20}\
-]
+\[
+N_{\text{recruit}}
+=
+\frac{46}{1-0.20}
+\]
 
-[\
-\=57.5\
-]
+\[
+N_{\text{recruit}}
+=
+57.5
+\]
 
-So recruiting approximately **58–60 patients** would make sense.
-
-This explains where the original N=60 may have come from.
+Therefore a recruitment target of approximately **58–60 participants** is reasonable under these assumptions.
 
 ---
 
-# 9. Now examine the first 30 patients
+# 9. What should be examined at the interim stage?
 
-Do **not** immediately perform the final hypothesis test.
+Start descriptively rather than immediately testing the primary hypothesis.
 
-Start descriptively.
-
-Check:
+Useful quantities include:
 
 1. number recruited;
-2. number with primary outcome available;
-3. missing data;
-4. dropout;
-5. descriptive statistics;
-6. variability or event rate;
-7. distribution of the outcome;
-8. data quality;
-9. whether the actual data structure matches the planned analysis.
+2. number completing relevant follow-up;
+3. number with the primary outcome available;
+4. missing data;
+5. dropout;
+6. descriptive statistics;
+7. variability or event rates;
+8. outcome distributions;
+9. data-quality problems;
+10. whether the observed data structure matches the planned analysis.
 
 ---
 
-# 10. Example interim dataset
+# 10. Example interim data
 
-Suppose the data look like:
+Suppose 30 participants have entered the study.
 
-| ID  | Group     | Baseline | Follow-up |
-| --- | --------- | -------: | --------: |
-| 1   | Control   |       51 |        48 |
-| 2   | Control   |       48 |        46 |
-| 3   | Control   |       55 |        52 |
-| ... | ...       |      ... |       ... |
-| 16  | Treatment |       52 |        43 |
-| 17  | Treatment |       49 |        42 |
-| 18  | Treatment |       56 |        48 |
-| ... | ...       |      ... |       ... |
+For the primary follow-up outcome:
 
-There are 30 recruited patients.
+| Group | Available N | Mean | SD |
+|---|---:|---:|---:|
+| Control | 14 | 47.8 | 8.7 |
+| Treatment | 13 | 43.6 | 9.2 |
 
-But perhaps only 27 currently have follow-up data.
+Three participants do not currently have a follow-up measurement.
 
----
+Before treating these observations as missing or dropout, establish why.
 
-# 11. Check missingness carefully
-
-Suppose:
+For example:
 
 ```text
 30 recruited
-
-27 have follow-up data
-2 have not reached the follow-up date
-1 withdrew
+    │
+    ├── 27 completed relevant follow-up
+    ├── 2 have not yet reached follow-up
+    └── 1 withdrew
 ```
 
-Do **not** automatically say:
+Only the withdrawal represents confirmed attrition at this point.
 
-[\
-3/30=10%\ dropout\
-]
-
-because two patients have not yet had the opportunity to complete follow-up.
-
-Distinguish:
-
-- genuine withdrawal;
-- loss to follow-up;
-- follow-up not yet due;
-- measurement failure;
-- data-entry error.
-
-This distinction matters for estimating future attrition.
+Participants who have not yet reached their scheduled follow-up should not automatically be classified as dropouts.
 
 ---
 
-# 12. Check variability
+# 11. Using interim data to examine variability
 
-Suppose the primary outcome is continuous.
+Suppose the original sample-size calculation assumed:
 
-The original calculation assumed:
+\[
+SD=6
+\]
 
-[\
-SD=6\
-]
+but the accumulating data suggest variability closer to:
 
-Now calculate descriptive statistics for the first 30 patients.
+\[
+SD\approx9
+\]
 
-Hypothetical results:
-
-| Group     |  N | Mean |  SD |
-| --------- | -: | ---: | --: |
-| Control   | 14 | 47.8 | 8.7 |
-| Treatment | 13 | 43.6 | 9.2 |
-
-The observed variability is approximately:
-
-[\
-SD\approx9\
-]
-
-rather than 6.
-
-This is potentially important.
-
----
-
-# 13. Why does the SD matter?
+This difference matters.
 
 Originally:
 
-[\
-\Delta=5\
-]
+\[
+d=\frac{5}{6}=0.83
+\]
 
-and:
+Using SD = 9:
 
-[\
-SD=6\
-]
+\[
+d=\frac{5}{9}=0.56
+\]
 
-giving:
+The clinically meaningful difference has not changed.
 
-[\
-d=\frac{5}{6}=0.83\
-]
+Instead, the outcome appears more variable.
 
-Suppose the accumulating data suggest:
-
-[\
-SD\approx9\
-]
-
-Then:
-
-[\
-d=\frac{5}{9}=0.56\
-]
-
-The clinically meaningful difference has **not changed**.
-
-The amount of noise has increased.
-
-Therefore, detecting the same 5-point difference becomes more difficult.
+More variability makes the same effect harder to detect.
 
 ---
 
-# 14. Sample-size re-estimation example
+# 12. Illustrative sample-size re-estimation
 
-If the study design allows an appropriate sample-size reassessment, repeat the calculation using the updated estimate of variability while keeping the clinically meaningful difference unchanged.
+Keeping the target difference at 5 but using SD = 9:
 
 ```r
 power.t.test(
@@ -499,68 +460,71 @@ power.t.test(
 
 This gives approximately:
 
-[\
-n\approx52\
-]
+\[
+n\approx52
+\]
 
-per group.
+per group, or approximately:
 
-Therefore:
-
-[\
-N\approx104\
-]
+\[
+N\approx104
+\]
 
 complete participants.
 
-Compare:
+Compare the calculations:
 
-|                                  | Original | Interim-informed illustration |
-| -------------------------------- | -------: | ----------------------------: |
-| Clinically meaningful difference |        5 |                             5 |
-| SD                               |        6 |                             9 |
-| Alpha                            |      .05 |                           .05 |
-| Desired power                    |      80% |                           80% |
-| Approximate N per group          |       23 |                            52 |
-| Approximate total complete N     |       46 |                           104 |
+| Parameter | Original calculation | Updated illustration |
+|---|---:|---:|
+| Clinically meaningful difference | 5 | 5 |
+| SD | 6 | 9 |
+| Alpha | .05 | .05 |
+| Desired power | 80% | 80% |
+| Approximate N per group | 23 | 52 |
+| Approximate complete N | 46 | 104 |
 
-This illustrates why the interim information may matter.
+This illustrates an important principle:
 
----
-
-# 15. Does this mean the target should automatically change from 60 to 104?
-
-**No.**
-
-This calculation demonstrates the implications of a different SD.
-
-It does not automatically establish a new recruitment target.
-
-Reasons include:
-
-1. the SD estimated from only 30 participants is itself uncertain;
-2. the appropriate re-estimation method depends on the study design;
-3. sample-size re-estimation may have been prespecified in a particular way;
-4. changes to a clinical study protocol may require discussion/documentation;
-5. if treatment-group information has already been examined, additional statistical issues may arise.
-
-For an ongoing clinical study, a substantial change to the primary sample size should be discussed with the supervisor/research team and, where appropriate, a medical statistician.
+> **A change in the estimated variability can substantially change the sample size required to detect the same clinically meaningful effect.**
 
 ---
 
-# 16. Could we instead ask what power N=60 provides?
+# 13. Does an updated calculation automatically become the new recruitment target?
 
-Yes.
+No.
+
+An interim estimate based on a relatively small sample is itself uncertain.
+
+For example, an SD of 9 observed in an early sample does not establish that the population SD is exactly 9.
+
+Before changing the recruitment target, consider:
+
+- whether sample-size re-estimation was planned;
+- whether the interim estimate is sufficiently reliable;
+- whether the procedure being used is appropriate for the study design;
+- whether treatment allocation has been examined;
+- whether changing the sample size requires protocol or ethics documentation;
+- whether specialist statistical advice is appropriate.
+
+The calculation can show the **implication of an assumption** without automatically determining the final sample size.
+
+---
+
+# 14. Calculating power for the existing planned sample
+
+Instead of changing N, another useful question is:
+
+> If the original sample size is retained, what power would it provide under the revised assumptions?
 
 Suppose:
 
-- final N = 60;
-- 30 per group;
-- clinically meaningful difference = 5;
+- 30 participants per group;
+- total N = 60;
+- target difference = 5;
 - SD = 9;
 - alpha = .05.
 
-Run:
+In R:
 
 ```r
 power.t.test(
@@ -573,146 +537,225 @@ power.t.test(
 )
 ```
 
-This asks:
+This answers:
 
-> **“If I retain the planned sample size of 60, what power would I have to detect a five-point difference under these assumptions?”**
+> **What power would N = 60 provide for detecting a five-point difference if the SD were 9?**
 
-This is different from asking:
+Compare this with:
 
-> **“How many participants do I need for 80% power?”**
+```r
+power.t.test(
+    delta = 5,
+    sd = 9,
+    sig.level = 0.05,
+    power = 0.80,
+    type = "two.sample",
+    alternative = "two.sided"
+)
+```
 
----
+which answers:
 
-# 17. Do NOT automatically use the observed interim treatment difference
-
-Suppose the first 30 participants show:
-
-[\
-Mean\_{Control}=47.8\
-]
-
-[\
-Mean\_{Treatment}=43.6\
-]
-
-Therefore:
-
-[\
-Observed\ difference=4.2\
-]
-
-It may be tempting to say:
-
-> “Let's use 4.2 as the effect size for the new power calculation.”
-
-Be cautious.
-
-The treatment effect estimated from only 30 participants may be unstable.
-
-With additional participants it could become:
-
-[\
-2.8,\quad3.9,\quad5.2,\quad6.1,\ldots\
-]
-
-The effect used for study planning should generally reflect the **clinically/scientifically meaningful difference**, supported where possible by previous evidence, rather than simply whatever difference happened to occur in the interim sample.
+> **How many participants would be required for 80% power?**
 
 ---
 
-# 18. Do NOT use non-significance as evidence that more participants are required
+# 15. Why not simply use the observed interim treatment effect?
 
-Avoid:
+Suppose the accumulating data show:
+
+\[
+\bar X_{Control}=47.8
+\]
+
+and:
+
+\[
+\bar X_{Treatment}=43.6
+\]
+
+The observed difference is:
+
+\[
+47.8-43.6=4.2
+\]
+
+It may be tempting to replace the original target difference of 5 with 4.2 in the power calculation.
+
+This should not be done automatically.
+
+The estimated treatment effect from a small interim sample can be unstable.
+
+As additional participants are recruited, the estimate may change considerably.
+
+The more important question is:
+
+> **What effect was the study intended to be able to detect?**
+
+That effect should have scientific or clinical justification.
+
+---
+
+# 16. Why a non-significant interim result does not automatically mean the study is underpowered
+
+Avoid the reasoning:
 
 ```text
 Interim p > .05
        ↓
 Study is underpowered
        ↓
-Need more participants
+Increase sample size
 ```
 
-This reasoning is incorrect.
+A non-significant result can occur because:
 
-A non-significant result could arise because:
-
-- the true effect is small;
 - the true effect is zero;
-- the data are highly variable;
+- the true effect is small;
+- variability is high;
 - the sample is small;
-- or some combination of these.
+- the estimate is imprecise;
+- or some combination of these factors.
 
-A non-significant p-value does not itself diagnose insufficient power.
+Therefore:
+
+> **A non-significant interim p-value does not by itself demonstrate insufficient power.**
 
 ---
 
-# 19. Be cautious with observed/post-hoc power
+# 17. Why observed/post-hoc power is usually not the answer
 
-Suppose the first 30 participants produce:
+Suppose an interim analysis produces:
 
-[\
-p=.22\
-]
+\[
+p=.22
+\]
 
-Calculating observed power from the same observed effect generally adds little useful information.
+It may seem useful to calculate the “observed power” based on the observed treatment effect.
 
-Observed power is strongly related to the observed effect and p-value.
+However, observed power calculated from the same dataset is strongly related to the observed effect and p-value and generally adds little useful information.
 
-Instead, focus on:
+It is usually more informative to examine:
 
-- the effect the study was designed to detect;
-- the observed effect estimate;
+- the effect estimate;
 - confidence interval;
-- assumptions behind the original sample-size calculation.
+- clinically meaningful effect;
+- original design assumptions;
+- uncertainty around the estimate.
 
 ---
 
-# 20. What if the primary outcome is binary?
+# 18. Binary outcomes
+
+Not all studies have continuous outcomes.
 
 Suppose the primary outcome is:
 
 > postoperative complication: yes/no.
 
-Then the relevant quantity may be an **event rate**, rather than SD.
+The sample-size calculation may depend on expected **event proportions** rather than an SD.
 
-Perhaps the original calculation assumed:
+For example, the original design may have assumed:
 
-[\
-P\_{Control}=0.40\
-]
+\[
+P_{Control}=0.40
+\]
 
 and:
 
-[\
-P\_{Treatment}=0.15\
-]
+\[
+P_{Treatment}=0.15
+\]
 
-or an overall event rate relevant to the calculation.
-
-At interim, suppose:
+Suppose the interim data contain:
 
 ```text
-30 relevant patients
+30 participants with relevant follow-up
+
 8 complications
-22 no complications
+22 without complications
 ```
 
-Then:
+The observed overall event rate is:
 
-[\
-\hat p=\frac{8}{30}=26.7%\
-]
+\[
+\hat p=\frac{8}{30}=0.267
+\]
 
-This can be compared with the assumptions used in the original sample-size calculation.
+or:
 
-Again, do not automatically replace the original assumption with 26.7%. The estimate from 30 patients is uncertain.
+\[
+26.7\%
+\]
 
-The appropriate power calculation must match the actual design.
+This information can help assess whether the original event-rate assumptions appear plausible.
+
+However, an event rate estimated from only 30 participants is uncertain and should not automatically replace the original assumptions.
+
+The power calculation must also correspond to the actual comparison being planned.
 
 ---
 
-# 21. What if there are repeated measurements?
+# 19. Dropout and attrition
 
-Suppose each patient is measured at:
+Suppose a study requires 100 analysable participants.
+
+If 10% attrition is expected:
+
+\[
+N_{\text{recruit}}
+=
+\frac{100}{1-.10}
+=
+111.1
+\]
+
+Therefore approximately 112 participants may need to be recruited.
+
+If expected attrition is 20%:
+
+\[
+N_{\text{recruit}}
+=
+\frac{100}{1-.20}
+=
+125
+\]
+
+Thus, changes in expected attrition can alter the **recruitment target** even when the required number of analysable participants remains unchanged.
+
+---
+
+# 20. Missing data and dropout are not necessarily the same thing
+
+Suppose:
+
+```text
+30 participants recruited
+
+30 baseline measurements
+27 follow-up measurements
+25 biomarker measurements
+```
+
+This does not automatically mean five participants dropped out.
+
+Missing observations may arise because:
+
+- follow-up has not yet occurred;
+- a participant withdrew;
+- a participant was lost to follow-up;
+- a measurement failed;
+- a variable was not collected;
+- there was a data-entry problem.
+
+Understanding **why** data are missing is more informative than simply calculating a percentage.
+
+---
+
+# 21. Repeated measurements
+
+Suppose each participant is measured at:
 
 ```text
 Baseline
@@ -721,38 +764,38 @@ Baseline
 6 months
 ```
 
-Then the observations within each patient are correlated.
+The observations within each participant are correlated.
 
-The data might look like:
+For example:
 
-| Patient | Time     | Score |
-| ------- | -------- | ----: |
-| 1       | Baseline |    55 |
-| 1       | 1 month  |    49 |
-| 1       | 3 months |    43 |
-| 1       | 6 months |    39 |
-| 2       | Baseline |    48 |
-| 2       | 1 month  |    46 |
-| 2       | 3 months |    42 |
-| 2       | 6 months |    40 |
+| Patient | Time | Score |
+|---|---|---:|
+| 1 | Baseline | 55 |
+| 1 | 1 month | 49 |
+| 1 | 3 months | 43 |
+| 1 | 6 months | 39 |
+| 2 | Baseline | 48 |
+| 2 | 1 month | 46 |
+| 2 | 3 months | 42 |
+| 2 | 6 months | 40 |
 
-A simple independent t-test across all measurements would not be appropriate.
+These measurements should not be treated as independent observations.
 
-The final analysis might require:
+Depending on the research question and design, the final analysis may require:
 
-- repeated-measures methods;
-- mixed-effects models;
+- a repeated-measures approach;
+- a mixed-effects model;
 - another longitudinal model.
 
-The power calculation should ideally correspond to the planned primary analysis.
+The sample-size calculation should ideally correspond to the planned primary analysis.
 
 ---
 
-# 22. Part 2: determining the final analysis plan
+# 22. Planning the final statistical analysis
 
-Treat this separately from the power calculation.
+Power/sample-size planning and final-analysis planning are related but separate tasks.
 
-The workflow is:
+A useful workflow is:
 
 ```text
 PRIMARY RESEARCH QUESTION
@@ -769,113 +812,125 @@ BASELINE MEASUREMENT?
           ↓
 PRESPECIFIED COVARIATES?
           ↓
-MISSING DATA?
+MISSING-DATA STRATEGY?
           ↓
 APPROPRIATE STATISTICAL MODEL
 ```
 
-Do not choose the final statistical method based on which analysis produces the smallest p-value in the first 30 patients.
+The final statistical method should not be chosen according to which analysis produces the smallest p-value in the preliminary data.
 
 ---
 
 # 23. Identify the primary outcome
 
-Ask:
+The first question is:
 
-> **“What is your primary outcome?”**
+> **What is the primary outcome?**
+
+Common possibilities include:
+
+### Continuous outcomes
 
 Examples:
 
-### Continuous
-
-- symptom score;
 - blood pressure;
+- symptom score;
 - biomarker concentration;
 - quality-of-life score.
 
-### Binary
+### Binary outcomes
+
+Examples:
 
 - complication: yes/no;
 - disease recurrence: yes/no;
-- response: yes/no.
+- treatment response: yes/no.
 
-### Time-to-event
+### Count outcomes
+
+Examples:
+
+- number of hospital admissions;
+- number of adverse events.
+
+### Time-to-event outcomes
+
+Examples:
 
 - time until death;
 - time until recurrence;
 - time until discharge.
 
-### Repeated continuous outcome
+### Repeated outcomes
 
-- symptom score measured repeatedly over time.
+Examples:
 
-The outcome type strongly determines the final analysis.
+- symptom score measured at several follow-up visits.
+
+The outcome type is one of the major determinants of the statistical model.
 
 ---
 
-# 24. Identify the comparison
+# 24. Identify the primary comparison
 
-Ask:
-
-> **“What exactly is your primary comparison or effect of interest?”**
-
-For example:
+Examples include:
 
 ```text
-Treatment A vs Treatment B
+Treatment A versus Treatment B
 ```
-
-or:
 
 ```text
-Before vs after treatment
+Before versus after treatment
 ```
-
-or:
 
 ```text
 Difference in change over time between two groups
 ```
 
-These are different statistical questions.
+```text
+Association between an exposure and an outcome
+```
+
+These represent different statistical questions and may require different analyses.
 
 ---
 
-# 25. Simple final-analysis map
+# 25. General analysis guide
 
-| Study/outcome                                  | Possible analysis                                     |
-| ---------------------------------------------- | ----------------------------------------------------- |
-| Continuous outcome, two independent groups     | t-test / linear regression                            |
-| Continuous follow-up with baseline measurement | Linear regression / ANCOVA framework                  |
-| Continuous paired before/after data            | Paired analysis                                       |
-| Binary outcome                                 | Chi-square/Fisher's exact test or logistic regression |
-| Binary outcome with covariates                 | Logistic regression                                   |
-| Repeated measurements                          | Longitudinal/mixed-effects model                      |
-| Time-to-event outcome                          | Kaplan-Meier/Cox regression                           |
-| Continuous outcome with several predictors     | Multiple linear regression                            |
+| Study/outcome | Possible analysis |
+|---|---|
+| Continuous outcome, two independent groups | Independent t-test / linear regression |
+| Continuous follow-up with baseline adjustment | Linear regression / ANCOVA framework |
+| Continuous paired before/after data | Paired t-test or corresponding model |
+| Continuous outcome, more than two independent groups | ANOVA / linear regression |
+| Binary outcome | Chi-square/Fisher's exact test / logistic regression |
+| Binary outcome with predictors | Logistic regression |
+| Count outcome | Poisson/negative-binomial model where appropriate |
+| Repeated measurements | Mixed-effects/longitudinal model |
+| Time-to-event outcome | Kaplan-Meier methods / Cox regression |
+| Continuous outcome with several predictors | Multiple linear regression |
 
-This is a guide rather than an automatic rule.
+This table is a starting point rather than an automatic decision rule.
 
 ---
 
-# 26. Example: continuous follow-up with baseline measurement
+# 26. Example: baseline-adjusted continuous outcome
 
-Suppose:
+Suppose a study compares two treatments and measures symptom severity at baseline and six months.
 
-- treatment group is the exposure;
-- symptom score at six months is the primary outcome;
-- baseline symptom score is available.
+A possible model is:
 
-A possible final model is:
-
-\beta_0\
-+\
-\beta_1Treatment\
-+\
-\beta_2Y\_{baseline}\
-+\
-\epsilon\
-]
+\[
+Y_{followup}
+=
+\beta_0
++
+\beta_1Treatment
++
+\beta_2Y_{baseline}
++
+\epsilon
+\]
 
 In R:
 
@@ -888,50 +943,51 @@ model <- lm(
 summary(model)
 ```
 
-The treatment coefficient estimates the group difference in follow-up outcome after accounting for baseline outcome, conditional on the model.
+Here, the treatment coefficient represents the estimated treatment-group difference in the follow-up outcome after accounting for baseline outcome, conditional on the model.
 
 ---
 
-# 27. Why might this be preferable to simply comparing follow-up means?
+# 27. Why adjust for baseline?
 
-Suppose baseline symptom severity varies considerably.
+Suppose participants enter the study with different baseline symptom scores.
 
-A simple analysis:
+A simple model:
 
-[\
-Followup\sim Treatment\
-]
+\[
+Followup\sim Treatment
+\]
 
-ignores baseline outcome.
+does not use information about baseline symptom severity.
 
-An adjusted model:
+A baseline-adjusted model:
 
-[\
-Followup\sim Treatment+Baseline\
-]
+\[
+Followup\sim Treatment+Baseline
+\]
 
-uses information about where each participant started.
+accounts for this baseline information.
 
-Whether baseline adjustment should form the primary analysis should ideally be specified in advance rather than chosen because it produces a more favourable result.
+Whether baseline adjustment should form the primary analysis should ideally be decided before examining the final treatment results.
 
 ---
 
 # 28. Example: binary outcome
 
-Suppose the outcome is:
+Suppose:
 
 ```text
-Complication:
+Complication
+
 0 = No
 1 = Yes
 ```
 
-A simple comparison might use:
+For a simple two-group comparison, possibilities include:
 
 - chi-square test;
 - Fisher's exact test where appropriate.
 
-If adjustment for prespecified covariates is needed:
+For an adjusted analysis:
 
 ```r
 model <- glm(
@@ -943,140 +999,95 @@ model <- glm(
 summary(model)
 ```
 
-This is logistic regression.
+This is a logistic regression model.
 
 ---
 
-# 29. Use the interim data to assess feasibility of the final model
+# 29. What can preliminary data tell us about the final analysis?
 
-Although the first 30 patients should not be used for significance hunting, they can reveal practical problems.
+Pilot or interim data can reveal whether the planned analysis is feasible.
 
-Check:
+Useful questions include:
 
-- are all required variables actually being collected?
-- how much missing data is there?
-- are some categories extremely rare?
-- are there enough events?
-- are there impossible or erroneous values?
-- are outcomes extremely skewed?
-- are there floor/ceiling effects?
-- are repeated measurements structured as expected?
+- Are all required variables actually being collected?
+- Is there substantial missing data?
+- Are some outcome categories extremely rare?
+- Are there enough events to support the intended model?
+- Are there obvious data errors?
+- Are there extreme outliers?
+- Are there strong floor or ceiling effects?
+- Is the outcome distribution very different from what was anticipated?
+- Are repeated measurements structured as expected?
 
-Example:
-
-Suppose the intended final model is:
+For example, suppose the proposed final model is:
 
 ```text
 Complication ~ Treatment + Age + Sex +
                BMI + Smoking + Disease Severity
 ```
 
-But after 30 patients there are only:
+but the preliminary data contain only three complications.
 
-```text
-3 complications
-```
+This raises concerns about whether a model containing many parameters will be supportable by the eventual number of events.
 
-This raises concerns about the feasibility of fitting a model containing many parameters.
-
-That is useful information for planning.
+The preliminary data therefore provide useful **design information** without needing to search for significant effects.
 
 ---
 
-# 30. SPSS: practical interim exploration
+# 30. Descriptive exploration in SPSS
 
-For a continuous primary outcome:
-
-### Descriptive statistics
-
-Go to:
+For a continuous outcome:
 
 **Analyze → Descriptive Statistics → Explore**
 
-Put:
+Use:
 
 - primary outcome → **Dependent List**
-- group → **Factor List**
+- group → **Factor List**, where relevant.
 
-Under **Plots**, request appropriate:
+Useful plots include:
 
 - histogram;
 - boxplot;
 - QQ plot.
 
-Example output:
+Review:
 
-```text
-Group          N      Mean      SD
-
-Control       14      47.8      8.7
-Treatment     13      43.6      9.2
-```
-
-Compare the observed variability with the assumptions from the original sample-size calculation.
+- N;
+- mean;
+- standard deviation;
+- range;
+- unusual observations;
+- missing observations.
 
 ---
 
-# 31. SPSS: missing data
+# 31. Missing data in SPSS
 
-Start by checking:
+Useful starting points include:
 
 **Analyze → Descriptive Statistics → Frequencies**
 
-or appropriate descriptive procedures.
+or other suitable descriptive procedures.
 
 Determine:
 
-- number of valid observations;
-- number missing;
-- which variables are missing;
-- why the observations are missing where this information is available.
-
-Do not treat participants whose follow-up date has not yet arrived as dropouts.
+- how many observations are available;
+- which variables have missing data;
+- whether missingness is concentrated in particular measurements;
+- why data are missing where this information is available.
 
 ---
 
-# 32. SPSS: final continuous two-group comparison
+# 32. Descriptive exploration in R
 
-If a simple independent-group analysis is genuinely appropriate:
-
-**Analyze → Compare Means → Independent-Samples T Test**
-
-- Test Variable: primary continuous outcome
-- Grouping Variable: treatment/group
-
-But do not automatically perform this as a formal interim efficacy analysis unless that is appropriate under the study design.
-
----
-
-# 33. SPSS: regression with baseline adjustment
-
-Go to:
-
-**Analyze → Regression → Linear**
-
-Set:
-
-- Dependent: follow-up outcome
-- Independent: treatment/group and baseline outcome
-
-Conceptually:
-
-[\
-Followup=\beta_0+\beta_1Treatment+\beta_2Baseline+\epsilon\
-]
-
----
-
-# 34. R: useful interim descriptive analysis
-
-For sample size:
+Sample size by group:
 
 ```r
 table(data$group)
 ```
 
-For missingness:
+Missing observations:
 
 ```r
 colSums(is.na(data))
@@ -1088,7 +1099,7 @@ Percentage missing:
 colMeans(is.na(data)) * 100
 ```
 
-For group descriptive statistics:
+Group descriptive statistics:
 
 ```r
 library(dplyr)
@@ -1102,7 +1113,7 @@ data %>%
     )
 ```
 
-For visual inspection:
+Visual exploration:
 
 ```r
 hist(data$followup)
@@ -1115,148 +1126,145 @@ boxplot(followup ~ group, data = data)
 
 ---
 
-# 35. Should normality be tested?
+# 33. What about normality?
 
-Do not mechanically use a normality test as:
+Avoid using a normality test mechanically as:
 
 ```text
 Shapiro-Wilk p > .05
-→ data are normal
+→ normal
 
 Shapiro-Wilk p < .05
-→ data are not normal
+→ not normal
 ```
 
-With small samples, normality tests have limited ability to detect departures from normality.
+With small samples, normality tests may have limited ability to detect departures from normality.
 
-Use:
+Instead, consider:
 
 - QQ plots;
 - histograms;
 - boxplots;
-- knowledge of the measurement;
+- extreme observations;
+- scientific understanding of the measurement;
 - model residual diagnostics where appropriate.
 
-Also remember that assumptions generally concern the statistical model/errors rather than requiring the raw outcome in every group to be perfectly normally distributed.
+For many models, the relevant assumptions concern the **model residuals/errors**, rather than requiring the raw outcome itself to be perfectly normally distributed.
 
 ---
 
-# 36. What if formal interim hypothesis testing was planned?
+# 34. Formal interim hypothesis testing
 
-This requires special care.
-
-Suppose the plan is:
+Suppose a study plans:
 
 ```text
-N=30:
-test Treatment A vs Treatment B
+Interim:
+test the primary hypothesis
 
-then
-
-N=60:
-test Treatment A vs Treatment B again
+Later:
+test the same primary hypothesis again
 ```
 
-Testing the same primary hypothesis multiple times creates multiple opportunities to reject the null hypothesis.
+Each test creates an opportunity to reject the null hypothesis.
 
-This can inflate the overall Type I error if ordinary significance thresholds are repeatedly used.
+Repeated testing using the usual significance threshold can inflate the overall Type I error.
 
-Formal group-sequential designs may use methods such as:
+Formal sequential designs may use approaches such as:
 
 - O'Brien-Fleming boundaries;
 - Pocock boundaries;
-- alpha-spending approaches.
+- alpha-spending methods.
 
-If formal interim efficacy/futility testing was part of the protocol, follow that planned procedure.
+If formal interim efficacy or futility testing was planned, the prespecified procedure should be followed.
 
-If it is unclear, do not improvise a new sequential testing procedure during a tutoring appointment.
+An ordinary p-value calculated halfway through the study should not automatically be treated as if it were the final analysis.
 
 ---
 
-# 37. If the first 30 are part of the final 60, can they still be included in the final analysis?
+# 35. Can internal-pilot participants remain in the final analysis?
 
-Potentially, **yes**.
-
-That is one feature of an appropriately designed internal pilot.
+Potentially, yes.
 
 Conceptually:
 
 ```text
-First 30 patients
-       ↓
-Internal pilot/interim review
-       ↓
-Assess prespecified assumptions
-       ↓
+Initial participants
+        ↓
+Internal pilot
+        ↓
+Review prespecified design assumptions
+        ↓
 Continue recruitment
-       ↓
-Additional patients
-       ↓
+        ↓
+Additional participants
+        ↓
 Final dataset
-       ↓
-Original 30 + later participants
-       ↓
+        ↓
+Initial + later participants
+        ↓
 Final analysis
 ```
 
-The precise validity of this approach depends on how the internal pilot and any sample-size re-estimation were designed.
+Whether this is statistically appropriate depends on how the internal-pilot and sample-size re-estimation procedures were designed.
 
 ---
 
-# 38. What should NOT be done?
+# 36. Common mistakes
 
-## Do not do this:
+## Mistake 1: increasing N because the interim result is not significant
+
+Avoid:
 
 ```text
-First 30 patients
-       ↓
-Treatment difference isn't significant
-       ↓
-Calculate observed power
-       ↓
-Power is low
-       ↓
-Keep adding participants until significant
+p > .05
+   ↓
+Need more participants
 ```
 
-This is not an appropriate sample-size strategy.
+Sample-size decisions should not simply be driven by whether the accumulating treatment comparison has crossed .05.
 
 ---
 
-## Also avoid:
+## Mistake 2: calculating observed power after a non-significant result
 
-### Changing the primary outcome because another outcome looks significant
+Observed power generally adds little information beyond the observed effect and p-value.
 
-Do not:
-
-```text
-Primary outcome → p=.20
-
-Secondary outcome → p=.03
-
-Therefore make secondary outcome primary
-```
+Focus instead on the effect estimate, confidence interval and original design assumptions.
 
 ---
 
-### Choosing the final model based on significance
+## Mistake 3: using the observed interim effect automatically
 
-Do not:
+A treatment difference observed in a small preliminary sample can be unstable.
+
+The target effect should have scientific or clinical justification.
+
+---
+
+## Mistake 4: changing the primary outcome
+
+Avoid changing the primary outcome simply because another outcome appears more favourable in the preliminary data.
+
+---
+
+## Mistake 5: choosing whichever statistical model gives significance
+
+For example:
 
 ```text
-Model A → p=.08
-Model B → p=.04
+Model A: p = .08
+Model B: p = .04
 
 Therefore choose Model B
 ```
 
-The model should be determined by the research question and design.
+This is not a sound basis for selecting the primary analysis.
 
 ---
 
-### Adding/removing covariates solely according to p-values
+## Mistake 6: selecting covariates only according to p-values
 
-Do not simply say:
+Avoid:
 
 ```text
 Age significant → include
@@ -1264,259 +1272,284 @@ Sex not significant → remove
 BMI significant → include
 ```
 
-Covariate selection should primarily reflect the design, prespecified plan and scientific rationale.
+Covariate selection should primarily reflect the study design, scientific rationale and prespecified analysis plan.
 
 ---
 
-# 39. The most useful table to create during the appointment
+# 37. A practical review table
 
-Fill this in together.
+When reviewing an ongoing study, it can be useful to construct the following table:
 
-| Parameter                    | Original assumption |          Interim information | Action/question                                   |
-| ---------------------------- | ------------------: | ---------------------------: | ------------------------------------------------- |
-| Primary outcome              |                   ? |                            ? | Confirm                                           |
-| Clinically meaningful effect |                   ? | Do not automatically replace | Is original effect still scientifically relevant? |
-| SD/event rate                |                   ? |                            ? | Compare with original                             |
-| Alpha                        |                   ? |            Usually unchanged | Confirm                                           |
-| Desired power                |                   ? |            Usually unchanged | Confirm                                           |
-| Expected dropout             |                   ? |                            ? | Compare                                           |
-| Required complete N          |                   ? |                            ? | Re-estimate only if appropriate                   |
-| Recruitment target           |                 60? |                            ? | Determine after review                            |
-| Primary analysis             |                   ? |                            ? | Confirm based on design                           |
+| Parameter | Original assumption | Preliminary/interim information | Question |
+|---|---:|---:|---|
+| Primary outcome | ? | ? | Is it clearly defined? |
+| Clinically meaningful effect | ? | Do not automatically replace | Is the original target still scientifically meaningful? |
+| SD/event rate | ? | ? | Is the original assumption plausible? |
+| Alpha | ? | Usually unchanged | What was prespecified? |
+| Desired power | ? | Usually unchanged | 80%, 90%, etc.? |
+| Expected dropout | ? | ? | Is attrition higher/lower than expected? |
+| Required complete N | ? | ? | Is formal re-estimation appropriate? |
+| Recruitment target | ? | ? | Does attrition change recruitment needs? |
+| Primary analysis | ? | ? | Does it match the research question and data structure? |
 
-This table will keep the consultation focused.
-
----
-
-# 40. Questions to ask in order
-
-## First: study design
-
-Ask:
-
-> **“What is your primary research question?”**
-
-Then:
-
-> **“What is your primary outcome?”**
-
-Then:
-
-> **“Can you explain the study design and what is being compared?”**
-
-Then:
-
-> **“Are the 30 patients a separate pilot or the first 30 of the planned 60?”**
+This separates **assumptions** from **observations** and helps prevent the interim analysis from becoming a search for significant results.
 
 ---
 
-## Second: original power calculation
+# 38. Practical workflow
 
-Ask:
+## Step 1: Define the study
 
-> **“Can you show me the original sample-size calculation or protocol?”**
-
-Then identify:
+Identify:
 
 ```text
-Effect to detect = ?
-SD / event rate = ?
-Alpha = ?
-Desired power = ?
-Expected dropout = ?
-Required complete N = ?
-Why was N=60 chosen?
+Primary research question
+Primary outcome
+Study design
+Primary comparison
 ```
 
----
+## Step 2: Recover the original power calculation
 
-## Third: interim analysis
+Identify:
 
-Ask:
+```text
+Target effect
+SD / event rate / other nuisance parameter
+Alpha
+Desired power
+Expected dropout
+Required complete N
+Recruitment target
+```
 
-> **“What did the previous statistician say the interim analysis at 30 patients was intended to assess?”**
+## Step 3: Determine the purpose of the preliminary analysis
 
-Was it:
+Was it intended to assess:
 
-- variability?
-- event rate?
-- sample-size reassessment?
-- recruitment/dropout?
-- safety?
-- efficacy?
-- futility?
-- something else?
+```text
+Variability?
+Event rate?
+Dropout?
+Recruitment?
+Sample-size requirements?
+Data quality?
+Formal efficacy/futility?
+```
 
----
-
-## Fourth: current data
+## Step 4: Examine the preliminary data appropriately
 
 Check:
 
 ```text
-How many recruited?
-How many have completed follow-up?
-How many have the primary outcome?
-How much missing data?
-How much genuine dropout?
-What is the SD/event rate?
-Any major data-quality problems?
+Available N
+Follow-up completion
+Missingness
+Dropout
+SD/event rate
+Data distribution
+Data quality
+Data structure
 ```
 
----
+## Step 5: Compare observations with assumptions
 
-## Fifth: power/sample size
-
-Compare:
+For example:
 
 ```text
-ORIGINAL ASSUMPTIONS
-        versus
-INTERIM INFORMATION
+Original SD = 6
+
+Preliminary SD ≈ 9
 ```
 
-Then determine whether an appropriate sample-size reassessment is warranted.
-
----
-
-## Sixth: final analysis
-
-Ask:
+or:
 
 ```text
-What is the outcome type?
-What is the primary comparison?
-Independent or repeated observations?
-Baseline measurement available?
-Prespecified covariates?
-Missing data?
+Expected attrition = 10%
+
+Observed eligible attrition ≈ 20%
 ```
 
-Then determine the statistical model.
+## Step 6: Consider sample-size re-estimation
 
----
+If appropriate to the design, examine how changes in relevant nuisance parameters affect the required sample size.
 
-# 41. Straightforward answers to the main questions
+Do not automatically replace the clinically meaningful effect with the observed preliminary treatment difference.
 
-## “I have 30 of my planned 60 patients. Am I adequately powered?”
+## Step 7: Confirm the final analysis plan
 
-**Answer:**
-
-> “We can't determine that from 30/60 alone. First we need to reconstruct the original power calculation and identify the effect the study was designed to detect, the assumed variability or event rate, alpha and desired power. We can then consider whether the accumulating data suggest that the assumptions behind the original calculation remain reasonable.”
-
----
-
-## “Can I use my 30 patients to calculate the final sample size?”
-
-**Answer:**
-
-> “Potentially, particularly if an internal-pilot sample-size reassessment was planned. The accumulating data may help estimate quantities such as variability, event rate or dropout. We should be cautious about simply using the observed treatment difference from the first 30 patients as the new effect size.”
-
----
-
-## “How do I know whether 60 is still enough?”
-
-**Answer:**
-
-> “First identify why 60 was originally chosen. Then compare the assumptions behind that calculation with the relevant information from the accumulating data. If an appropriate sample-size re-estimation shows that substantially more or fewer participants are required, that can then be discussed in the context of the study protocol.”
-
----
-
-## “My first 30 patients don't show a significant result. Do I need more patients?”
-
-**Answer:**
-
-> “Not necessarily. A non-significant interim result does not by itself demonstrate inadequate power. We should return to the original study assumptions rather than increasing sample size simply because the interim p-value is above .05.”
-
----
-
-## “Should I calculate observed/post-hoc power?”
-
-**Answer:**
-
-> “Usually this adds little useful information when it is based on the same observed treatment effect. The estimated effect and confidence interval, together with the original power assumptions, are generally more informative.”
-
----
-
-## “Can I test the primary outcome now?”
-
-**Answer:**
-
-> “Descriptive analysis is useful. Formal interim hypothesis testing is different and should follow the planned study design because repeatedly testing the primary hypothesis can affect the overall Type I error.”
-
----
-
-## “How do I decide my final analysis?”
-
-**Answer:**
-
-> “Start with the primary research question, primary outcome and study design. Then determine whether observations are independent or repeated, whether baseline adjustment is appropriate, what covariates were prespecified, and how missing data will be handled. The statistical model should follow from those features rather than from the interim p-values.”
-
----
-
-# 42. If completely stuck during the appointment
-
-Return to these five questions:
-
-> **1. What is your primary outcome?**
-
-> **2. Are these 30 patients part of the final study or a separate pilot?**
-
-> **3. Can you show me how the original target of 60 was calculated?**
-
-> **4. What exactly was the planned interim analysis supposed to assess?**
-
-> **5. What is the primary comparison you ultimately want to make?**
-
-The answers to these questions will usually determine the next statistical step.
-
----
-
-# 43. One-minute conceptual explanation
-
-A concise way to explain the whole situation is:
-
-> **“There are really two separate questions here. The first is sample size: we need to understand why the study originally planned 60 patients and whether the assumptions behind that calculation, such as variability, event rate or dropout, remain reasonable based on the accumulating data. If sample-size re-estimation was planned and appropriate, we can then reassess the required sample size. The second question is the final analysis: that should be determined by the primary outcome, research question and study design, including whether measurements are independent or repeated, whether baseline adjustment is needed, and how missing data will be handled. We shouldn't choose either the sample size or final model simply according to whether the first 30 patients produce a significant result.”**
-
----
-
-# 44. Bottom line
-
-For an ongoing study with **30 of a planned 60 patients**, the process should generally be:
+Determine:
 
 ```text
-1. FIND ORIGINAL PROTOCOL / POWER CALCULATION
-                    ↓
-2. UNDERSTAND WHY N=60 WAS CHOSEN
-                    ↓
-3. IDENTIFY WHAT THE INTERIM ANALYSIS WAS
-   SUPPOSED TO ASSESS
-                    ↓
-4. REVIEW THE FIRST 30 PATIENTS
-   - data quality
-   - missingness
-   - dropout
-   - SD / event rate
-   - data structure
-                    ↓
-5. COMPARE WITH ORIGINAL ASSUMPTIONS
-                    ↓
-6. IF APPROPRIATE, PERFORM A FORMAL
-   SAMPLE-SIZE REASSESSMENT
-                    ↓
-7. CONFIRM THE FINAL ANALYSIS FROM
-   THE RESEARCH QUESTION + STUDY DESIGN
-                    ↓
-8. DOCUMENT THE PLAN BEFORE THE
-   FINAL DATA ARE ANALYSED
-                    ↓
-9. COMPLETE RECRUITMENT
-                    ↓
-10. PERFORM FINAL ANALYSIS
+Outcome type
+Primary comparison
+Independent / paired / repeated observations
+Baseline adjustment
+Prespecified covariates
+Missing-data strategy
+Primary statistical model
 ```
 
-The key principle is:
+## Step 8: Document the plan
 
-> **Do not ask only, “What happened in the first 30 patients?” Ask, “What was the study designed to detect, what assumptions produced the original sample size, and are those assumptions still reasonable?”**
+Where possible, specify the primary analysis before the final outcome data are analysed.
 
-That provides the bridge from the interim data to both the **power/sample-size decision** and the **final statistical analysis plan**.
+---
+
+# 39. Frequently asked questions
+
+## “I have collected half of my planned sample. Am I adequately powered?”
+
+Not enough information is available from the recruitment fraction alone.
+
+The original target effect, variability/event rate, alpha, desired power and analysis design are needed.
+
+---
+
+## “Can preliminary data be used to recalculate the required sample size?”
+
+Potentially.
+
+Pilot or interim data may provide information about nuisance parameters such as variability, event rate or attrition. Whether formal sample-size re-estimation is appropriate depends on the study design and how the preliminary data were obtained.
+
+---
+
+## “The interim result is not statistically significant. Does that mean more participants are needed?”
+
+No.
+
+A non-significant result alone does not establish that the study is underpowered.
+
+---
+
+## “Should the observed interim effect be used in the new power calculation?”
+
+Not automatically.
+
+The observed effect may be unstable. The target effect should ideally represent a scientifically or clinically meaningful effect.
+
+---
+
+## “What if the observed SD is much larger than originally expected?”
+
+Greater variability generally reduces the ability to detect the same effect. This may increase the required sample size.
+
+Whether the recruitment target should actually change depends on the study design and the planned sample-size reassessment procedure.
+
+---
+
+## “What if dropout is higher than expected?”
+
+A higher dropout rate may increase the number of participants that need to be recruited to achieve the required number of analysable participants.
+
+---
+
+## “Should observed/post-hoc power be calculated?”
+
+Usually it provides little additional information when calculated from the observed effect in the same dataset.
+
+Effect estimates, confidence intervals and the original design assumptions are generally more useful.
+
+---
+
+## “How should the final statistical analysis be selected?”
+
+Start with:
+
+1. the primary research question;
+2. primary outcome;
+3. study design;
+4. independence or repeated observations;
+5. baseline measurements;
+6. prespecified covariates;
+7. missing-data considerations.
+
+Then select a model appropriate to that structure.
+
+Do not select the final model according to which analysis produces the most favourable p-value.
+
+---
+
+# 40. Key takeaways
+
+### 1. Power cannot be determined from sample size alone.
+
+Knowing that a study has collected 30 of 60 participants does not tell us whether it is adequately powered.
+
+### 2. Recover the original sample-size assumptions first.
+
+Understand why the original target sample was chosen before performing a new calculation.
+
+### 3. Preliminary data can inform useful nuisance parameters.
+
+Depending on the design, these may include:
+
+- SD;
+- event rate;
+- correlation;
+- dropout;
+- missingness.
+
+### 4. Do not automatically use the observed preliminary treatment effect.
+
+The target effect should have clinical or scientific justification.
+
+### 5. A non-significant interim result does not automatically imply insufficient power.
+
+Do not simply recruit more participants because \(p>.05\).
+
+### 6. Sample-size re-estimation and interim hypothesis testing are different.
+
+Reassessing variability is not the same as formally testing the treatment effect halfway through the study.
+
+### 7. The final analysis should follow the research question and study design.
+
+It should not be selected according to which model produces the smallest p-value.
+
+### 8. Power planning and final-analysis planning should agree.
+
+The power calculation should ideally correspond to the study's primary outcome, comparison and planned statistical model.
+
+---
+
+# Final conceptual framework
+
+The entire process can be summarised as:
+
+```text
+WHAT IS THE RESEARCH QUESTION?
+              ↓
+WHAT IS THE PRIMARY OUTCOME?
+              ↓
+WHAT IS THE STUDY DESIGN?
+              ↓
+WHY WAS THE ORIGINAL SAMPLE SIZE CHOSEN?
+              ↓
+WHAT WAS THE PILOT/INTERIM REVIEW INTENDED TO DO?
+              ↓
+WHAT DO THE PRELIMINARY DATA SAY ABOUT
+VARIABILITY / EVENT RATE / ATTRITION / FEASIBILITY?
+              ↓
+ARE THE ORIGINAL POWER ASSUMPTIONS STILL REASONABLE?
+              ↓
+IS SAMPLE-SIZE RE-ESTIMATION APPROPRIATE?
+              ↓
+WHAT STATISTICAL MODEL MATCHES THE
+PRIMARY QUESTION AND DATA STRUCTURE?
+              ↓
+PRESPECIFY / DOCUMENT THE FINAL ANALYSIS
+              ↓
+COMPLETE THE STUDY
+              ↓
+FINAL ANALYSIS
+```
+
+The key question is not simply:
+
+> **“What happened in the data collected so far?”**
+
+It is:
+
+> **“What was the study designed to detect, what assumptions produced the original sample size, are those assumptions still reasonable, and what analysis best addresses the primary research question?”**
+
+That distinction provides the foundation for sensible use of pilot and interim data in power, sample-size and final-analysis planning.
