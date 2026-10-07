@@ -749,13 +749,8 @@ These may potentially require random slopes, depending on the design and modelli
 
 ---
 
-Yes. Given the appointment wording — **“Check the revised data analysis section before resubmit for publication”** — I think there is a good chance they will show you a paragraph from the Methods/Data Analysis section and ask something like:
+---
 
-> “Does this explanation make statistical sense?”
-
-So you need to check **both the statistics and whether the wording accurately describes what was actually done**.
-
-Below is the section I would add to your reusable tutoring material.
 
 # Writing Statistical Analysis for a Paper
 
