@@ -1,6 +1,4 @@
-Absolutely. I would separate this into two things: a **reusable teaching guide to linear/GLM/mixed models**, followed by a **very practical publication-analysis checking framework** you can use in appointments.
-
-# Reusable Guide: Linear, Generalised Linear, and Mixed-Effects Models
+# Linear, Generalised Linear, and Mixed-Effects Models
 
 ## 1. The big picture
 
@@ -751,7 +749,745 @@ These may potentially require random slopes, depending on the design and modelli
 
 ---
 
+Yes. Given the appointment wording — **“Check the revised data analysis section before resubmit for publication”** — I think there is a good chance they will show you a paragraph from the Methods/Data Analysis section and ask something like:
 
-If they can provide coherent answers to those questions and the model/output supports those answers, you're in a strong position.
+> “Does this explanation make statistical sense?”
 
-And for a short publication-checking appointment, I'd prioritise the four checks in exactly this order: **model choice → model specification → diagnostics → interpretation/reporting**. That prevents getting distracted by individual p-values before establishing whether the underlying model makes sense.
+So you need to check **both the statistics and whether the wording accurately describes what was actually done**.
+
+Below is the section I would add to your reusable tutoring material.
+
+# Writing Statistical Analysis for a Paper
+
+## 1. The central rule
+
+The Methods/Data Analysis paragraph should allow a knowledgeable reader to understand:
+
+> **What was analysed, why that model was appropriate, what predictors were included, how dependency/repeated observations were handled, and how inference was conducted.**
+
+The wording should match the actual model.
+
+For example, if the R model is:
+
+```r id="81yq5z"
+model <- glmer(
+  response ~ age_group * context +
+    (1 | participant),
+  family = binomial,
+  data = dat
+)
+```
+
+the manuscript should not simply say:
+
+> “A regression analysis was performed.”
+
+That's too vague.
+
+A much better description is:
+
+> “A generalised linear mixed-effects model (GLMM) with a binomial distribution and logit link was fitted to examine the association of age group and context with the probability of the response. Age group, context, and their interaction were included as fixed effects. A random intercept for participant was included to account for repeated observations within participants.”
+
+That description maps directly onto the R model:
+
+```text id="5i4krb"
+generalised linear mixed-effects model
+             ↓
+           glmer()
+
+binomial distribution + logit
+             ↓
+      family = binomial
+
+age group + context + interaction
+             ↓
+      age_group * context
+
+random intercept for participant
+             ↓
+       (1 | participant)
+```
+
+This is exactly the correspondence you should check.
+
+---
+
+# 2. Likely ideal wording for the current type of analysis
+
+Based on the previous discussion, suppose the actual model is something like:
+
+```r id="46hyff"
+glmer(
+  response ~ predictor1 * predictor2 +
+    (1 | participant),
+  family = binomial,
+  data = dat
+)
+```
+
+A strong Methods description would be:
+
+> “A generalised linear mixed-effects model (GLMM) with a binomial distribution and logit link was fitted using the `glmer()` function in the `lme4` package in R. Predictor 1, Predictor 2, and their interaction were included as fixed effects. The interaction was included to examine whether the association between Predictor 1 and the response varied according to Predictor 2. A random intercept for participant was included to account for repeated observations within participants.”
+
+If the interaction was specifically added following reviewer feedback, I would **not necessarily write that in the statistical Methods section**. The manuscript should explain the scientific/statistical rationale rather than:
+
+> “An interaction was added because the reviewer requested it.”
+
+The response-to-reviewers document can explain that it was added in response to the reviewer.
+
+---
+
+# 3. If there is no interaction
+
+R:
+
+```r id="kwnzmq"
+glmer(
+  response ~ age_group + context +
+    (1 | participant),
+  family = binomial,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A generalised linear mixed-effects model (GLMM) with a binomial distribution and logit link was fitted to examine the associations of age group and context with the probability of the response. Age group and context were included as fixed effects, and a random intercept for participant was included to account for repeated observations within participants.”
+
+Notice that we don't claim:
+
+> “to examine the effect of age group on…”
+
+unless the research design supports a causal interpretation.
+
+For observational research, **“association”** is often safer than **“effect”**.
+
+---
+
+# 4. If there is an interaction
+
+R:
+
+```r id="mwnqfj"
+response ~ age_group * context +
+  (1 | participant)
+```
+
+Suitable wording:
+
+> “Age group, context, and their interaction were included as fixed effects. The interaction was included to examine whether the association between context and the response differed between age groups.”
+
+This is much better than:
+
+> “The interaction between age and context was added to the model.”
+
+because the improved version explains **what the interaction actually tests**.
+
+---
+
+# 5. If there is a random slope
+
+Suppose:
+
+```r id="e6evse"
+response ~ age_group * context +
+  (1 + context | participant)
+```
+
+Suitable wording:
+
+> “The model included random intercepts for participants and random slopes for context by participant, allowing participants to vary both in their baseline probability of the response and in the association between context and the response.”
+
+That's a particularly useful sentence to remember.
+
+It translates:
+
+```r id="v51kxr"
+(1 + context | participant)
+```
+
+into plain language.
+
+---
+
+# 6. If there are multiple random slopes
+
+Suppose:
+
+```r id="tpgm6b"
+response ~ age_group * context +
+  (1 + context + task_type | participant)
+```
+
+Suitable wording:
+
+> “Random intercepts for participants and random slopes for context and task type by participant were included, allowing participants to vary in their baseline responses as well as in their responses to context and task type.”
+
+Again:
+
+```text id="2ojjuz"
+1
+→ different participant baselines
+
+context
+→ context effect can vary between participants
+
+task_type
+→ task-type effect can vary between participants
+```
+
+---
+
+# 7. If participants AND items are random effects
+
+This is especially relevant to language/psychology-type research.
+
+Suppose:
+
+```r id="fm3tmx"
+response ~ age_group * context +
+  (1 | participant) +
+  (1 | item)
+```
+
+Suitable wording:
+
+> “Random intercepts were included for participants and items to account for repeated observations within participants and variation across items.”
+
+Or slightly more explicit:
+
+> “The model included random intercepts for participants and items, allowing baseline response probabilities to vary across both participants and stimulus items.”
+
+If appropriate to the actual design, both ideas can be combined:
+
+> “Random intercepts for participants and items were included to account for the crossed structure of the data and variation in baseline response probabilities across participants and items.”
+
+---
+
+# 8. Linear regression wording
+
+Suppose:
+
+```r id="5mw90c"
+lm(
+  score ~ age_group + context,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A multiple linear regression model was fitted to examine the associations of age group and context with the outcome score. Age group and context were included as predictors.”
+
+If there's one predictor:
+
+```r id="nydhc3"
+lm(score ~ age, data = dat)
+```
+
+you could say:
+
+> “A simple linear regression model was fitted to examine the association between age and outcome score.”
+
+For a paper, it may also be appropriate to describe relevant diagnostic checks.
+
+---
+
+# 9. Linear model with interaction
+
+R:
+
+```r id="iqmvnh"
+lm(
+  score ~ age_group * context,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A linear regression model was fitted with age group, context, and their interaction as predictors. The interaction term was included to examine whether the association between context and outcome score differed between age groups.”
+
+Again:
+
+```r id="evm0o2"
+age_group * context
+```
+
+means:
+
+```r id="gyut9f"
+age_group +
+context +
+age_group:context
+```
+
+---
+
+# 10. Linear mixed-effects model
+
+Suppose the outcome is continuous and measurements are repeated:
+
+```r id="4sxt0j"
+lmer(
+  score ~ age_group + context +
+    (1 | participant),
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A linear mixed-effects model was fitted to examine the associations of age group and context with outcome score. Age group and context were included as fixed effects, with a random intercept for participant to account for repeated observations within participants.”
+
+This is an important distinction:
+
+**LM:**
+
+```r id="dbr5dd"
+lm(score ~ age_group + context)
+```
+
+> “A linear regression model…”
+
+**LMM:**
+
+```r id="0i8trp"
+lmer(score ~ age_group + context + (1 | participant))
+```
+
+> “A linear mixed-effects model…”
+
+---
+
+# 11. Linear mixed-effects model with interaction and random slope
+
+R:
+
+```r id="jgvwfn"
+lmer(
+  score ~ age_group * context +
+    (1 + context | participant),
+  data = dat
+)
+```
+
+Strong manuscript wording:
+
+> “A linear mixed-effects model was fitted with age group, context, and their interaction as fixed effects. The interaction tested whether the association between context and outcome score differed between age groups. The model included random intercepts and random slopes for context by participant, allowing participants to vary in both their baseline scores and their responses to context.”
+
+That is a very good template.
+
+---
+
+# 12. Generalised linear model: binary outcome
+
+If observations are independent:
+
+```r id="i10tk9"
+glm(
+  response ~ age_group + context,
+  family = binomial,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A logistic regression model was fitted to examine the associations of age group and context with the probability of the binary response.”
+
+Or, more technically:
+
+> “A generalised linear model with a binomial distribution and logit link was fitted to examine the associations of age group and context with the probability of the response.”
+
+Both are correct.
+
+“Logistic regression” is often easier for readers.
+
+---
+
+# 13. Generalised linear model with interaction
+
+R:
+
+```r id="y49zo9"
+glm(
+  response ~ age_group * context,
+  family = binomial,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A logistic regression model was fitted with age group, context, and their interaction as predictors. The interaction was included to examine whether the association between context and the probability of the response differed between age groups.”
+
+---
+
+# 14. Generalised linear mixed-effects model
+
+Now add repeated observations:
+
+```r id="x8uhqr"
+glmer(
+  response ~ age_group + context +
+    (1 | participant),
+  family = binomial,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A generalised linear mixed-effects model with a binomial distribution and logit link was fitted to examine the associations of age group and context with the probability of the response. Age group and context were included as fixed effects, and a random intercept for participant was included to account for repeated observations within participants.”
+
+This is probably one of the most useful templates for the appointment.
+
+---
+
+# 15. GLMM with interaction
+
+R:
+
+```r id="st8b85"
+glmer(
+  response ~ age_group * context +
+    (1 | participant),
+  family = binomial,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A generalised linear mixed-effects model with a binomial distribution and logit link was fitted. Age group, context, and their interaction were included as fixed effects. The interaction tested whether the association between context and the probability of the response differed between age groups. A random intercept for participant was included to account for repeated observations within participants.”
+
+---
+
+# 16. GLMM with random intercept + random slope
+
+R:
+
+```r id="skhw8g"
+glmer(
+  response ~ age_group * context +
+    (1 + context | participant),
+  family = binomial,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A generalised linear mixed-effects model with a binomial distribution and logit link was fitted. Age group, context, and their interaction were included as fixed effects. Random intercepts and random slopes for context by participant were included, allowing participants to vary in both their baseline probability of the response and their response to context.”
+
+If you want to explicitly explain the interaction:
+
+> “The age group × context interaction tested whether the association between context and response differed between age groups.”
+
+---
+
+# 17. Count outcome: Poisson GLM
+
+Suppose the outcome is number of occurrences:
+
+```r id="jq5eq5"
+glm(
+  count ~ age_group + context,
+  family = poisson,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A Poisson regression model with a log link was fitted to examine the associations of age group and context with the expected count of the outcome.”
+
+Don't call this ordinary linear regression.
+
+---
+
+# 18. Count outcome with repeated observations: Poisson GLMM
+
+```r id="gr2azg"
+glmer(
+  count ~ age_group + context +
+    (1 | participant),
+  family = poisson,
+  data = dat
+)
+```
+
+Suitable wording:
+
+> “A generalised linear mixed-effects model with a Poisson distribution and log link was fitted to model the count outcome. Age group and context were included as fixed effects, with a random intercept for participant to account for repeated observations within participants.”
+
+For count data, you would also want to consider whether Poisson assumptions such as the mean–variance relationship are reasonable; overdispersion may require a different model.
+
+---
+
+# 19. Reporting the results is different from describing the methods
+
+This distinction is important.
+
+**Methods** answers:
+
+> What did you do and why?
+
+**Results** answers:
+
+> What did the model find?
+
+For example, Methods:
+
+> “Age group, context, and their interaction were included as fixed effects.”
+
+Results might say:
+
+> “There was evidence of an age group × context interaction (β = 0.79, SE = 0.25, z = 3.16, p = .002), indicating that the association between context and the probability of the response differed between age groups.”
+
+But ideally, don't stop there.
+
+Explain **how** it differed.
+
+For example:
+
+> “Model-predicted probabilities indicated a larger difference between formal and informal contexts among younger participants than among older participants.”
+
+That gives the interaction substantive meaning.
+
+---
+
+# 20. Wording for a non-significant interaction
+
+Avoid:
+
+> “There was no interaction.”
+
+That's stronger than the statistical evidence supports.
+
+Prefer:
+
+> “There was insufficient evidence of an interaction between age group and context (β = ..., 95% CI [...], p = ...).”
+
+Or:
+
+> “The analysis did not provide clear evidence that the association between context and the response differed between age groups.”
+
+This is more statistically careful.
+
+---
+
+# 21. Wording when there is a significant interaction
+
+Avoid simply:
+
+> “The interaction was significant.”
+
+Better:
+
+> “There was evidence of an interaction between age group and context, indicating that the association between context and the response differed between age groups.”
+
+Then describe the pattern using predicted probabilities or appropriate contrasts.
+
+---
+
+# 22. Wording for `(1 | participant)`
+
+This is worth having as a direct translation table.
+
+| R | Good manuscript wording |
+|---|---|
+| `(1 \| participant)` | “A random intercept for participant was included to account for repeated observations within participants.” |
+| `(1 \| item)` | “A random intercept for item was included to account for variation across items.” |
+| `(1 \| participant) + (1 \| item)` | “Random intercepts were included for participants and items.” |
+| `(1 + context \| participant)` | “Random intercepts and random slopes for context by participant were included.” |
+| `(1 + context + task \| participant)` | “Random intercepts and random slopes for context and task by participant were included.” |
+
+If explaining rather than merely reporting, add:
+
+> “…allowing participants to vary in their baseline responses.”
+
+for `(1 | participant)`.
+
+And:
+
+> “…allowing participants to vary in both their baseline responses and their responses to context.”
+
+for `(1 + context | participant)`.
+
+---
+
+# 23. A very useful formula-to-English translation
+
+Suppose you see:
+
+```r id="ny7sr7"
+response ~ age_group * context +
+  (1 + context | participant) +
+  (1 | item)
+```
+
+Don't panic.
+
+Break it down:
+
+```text id="9vgugp"
+response
+↓
+Outcome
+
+
+age_group + context
+↓
+Fixed effects
+
+
+age_group:context
+↓
+Fixed interaction
+
+
+(1 | participant)
+↓
+Participant random intercept
+
+
+(context | participant)
+↓
+Participant random slope for context
+
+
+(1 | item)
+↓
+Item random intercept
+```
+
+Then translate:
+
+> “A mixed-effects model was fitted with age group, context, and their interaction as fixed effects. Random intercepts and random slopes for context were included by participant, allowing participants to differ in their baseline responses and in their responses to context. A random intercept for item was also included to account for variation across items.”
+
+Then add the distribution/link depending on whether this is an LMM or GLMM.
+
+---
+
+# 24. What I would actually check when they show you their paragraph
+
+You don't need to rewrite everything immediately.
+
+Take each sentence and ask:
+
+**1. Does the model name match the actual analysis?**
+
+If they used:
+
+```r id="4ehg6f"
+glmer(...)
+```
+
+and binary outcome, “linear regression” would be wrong.
+
+You want something like:
+
+> “generalised linear mixed-effects model with binomial distribution and logit link”
+
+or appropriate equivalent wording.
+
+**2. Are the fixed and random effects described correctly?**
+
+If:
+
+```r id="fz2tq9"
+(1 | participant)
+```
+
+they should not call participant a fixed effect.
+
+If:
+
+```r id="f9bcv1"
+age * context
+```
+
+the Methods should make clear that the interaction was modelled.
+
+**3. Does the explanation of the interaction match what an interaction actually means?**
+
+You want something equivalent to:
+
+> “to examine whether the association between X and the outcome differed according to Y.”
+
+**4. Does the Results interpretation actually correspond to the coefficients/model?**
+
+Especially check:
+
+- reference categories;
+- interaction interpretation;
+- estimates;
+- CIs;
+- p-values;
+- predicted probabilities/contrasts if used.
+
+---
+
+# 25. Example of a weak paragraph and how you could improve it
+
+Suppose you are shown:
+
+> “A mixed model was conducted using R. Age and context were analysed and participant was controlled for. An interaction was also added to see whether it was significant.”
+
+There are several problems.
+
+“Mixed model” is vague.
+
+“Participant was controlled for” doesn't properly describe `(1 | participant)`.
+
+“Interaction was added to see whether it was significant” is poor statistical justification.
+
+A better version would be:
+
+> “A generalised linear mixed-effects model with a binomial distribution and logit link was fitted in R using the `glmer()` function from the `lme4` package. Age group, context, and their interaction were included as fixed effects. The interaction was included to examine whether the association between context and the probability of the response differed between age groups. A random intercept for participant was included to account for repeated observations within participants.”
+
+That is the kind of transformation I suspect may be useful in the appointment.
+
+---
+
+# 26. Your quickest wording cheat sheet
+
+If you're looking over their manuscript and need to decide whether a sentence makes sense, translate their R model into these components:
+
+```text id="r2w7fw"
+MODEL FAMILY
+What model?
+
+OUTCOME/DISTRIBUTION
+What is Y and why this distribution/link?
+
+FIXED EFFECTS
+What predictors are being estimated?
+
+INTERACTION
+Does the relationship between X and Y depend on Z?
+
+RANDOM INTERCEPT
+What grouping units have different baselines?
+
+RANDOM SLOPE
+Which within-unit relationships are allowed to vary?
+```
+
+For example:
+
+```r id="vs8w0b"
+glmer(
+  response ~ age_group * context +
+    (1 + context | participant),
+  family = binomial
+)
+```
+
+becomes:
+
+> “A generalised linear mixed-effects model with a binomial distribution and logit link was fitted. Age group, context, and their interaction were included as fixed effects. The interaction tested whether the association between context and the response differed between age groups. Random intercepts and random slopes for context by participant were included to account for repeated observations and to allow both baseline responses and the association with context to vary across participants.”
+
+If what they've written conveys those ideas accurately, their **description of the model is in good shape**. You can then move on to checking whether the actual model is appropriate, whether it fitted successfully, and whether the Results interpretation matches the output.
