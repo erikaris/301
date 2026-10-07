@@ -1,47 +1,8 @@
 # Tutoring session prep: reviewing a revised data analysis section (mixed-effects logistic regression)
 
-General version for any student who brings a revised analysis section, based on a glmer model, for checking before resubmission to a journal.
-
 ---
 
-## 1. Snapshot of the typical request
-
-What the request usually looks like
-- A student, often not a statistics specialist, has revised a data analysis section after supervisor or reviewer comments.
-- The audience is peer reviewers, not only a supervisor, so the standard is journal-level.
-- A common trigger is a comment about whether an interaction term belongs in a glmer model. The guidance to give is: include only terms with a plausible reason to predict the outcome, interaction terms included. Useful reading: https://strengejacke.github.io/ggeffects/articles/practical_logisticmixedmodel.html
-
-What to confirm first
-- The revised text and R script. The examples below assume a mixed-effects logistic model (lme4 in R) with a binary outcome such as correct/incorrect. If the outcome is a count or a proportion, the structure of the review stays the same but the family and the interpretation change.
-
-What the student is asking, in plain words
-"I changed my analysis after the comments. Before I send the paper back, is what I wrote correct, justified, and safe from reviewer criticism?"
-
-So the task is a review, not teaching from scratch. The most useful stance is to read the revised text with the student and check four things: model choice, interaction justification, reporting, and wording.
-
----
-
-## 2. Suggested running order for the session
-
-1. Ask the student to share the revised section and the R script (2 min).
-2. Confirm outcome type, design, and the model formula used (2 min).
-3. Check the interaction term logic (Approach A).
-4. Check random effects and convergence (Approach B).
-5. Check that the results are reported in an interpretable way (Approach C).
-6. Check assumptions and diagnostics (Approach D).
-7. Run through the wording checklist (Approach E).
-8. Agree two or three concrete edits before the student leaves.
-
-Questions to ask first
-- What is the outcome variable, and is it binary, count, or proportion?
-- What are the units that are measured repeatedly (participants, items, texts, classrooms)?
-- Which predictors are in the model, and why each one?
-- What exactly did the supervisor or reviewer object to?
-- Did the model produce any warning (singular fit, failure to converge)?
-
----
-
-## 3. Dummy dataset used in all examples
+## 1. Dummy dataset used in all examples
 
 Scenario: 40 participants (20 native speakers, 20 learners) each answer 20 items. Items are either easy or hard. The outcome is whether the answer was correct (1) or not (0). This is a typical design with repeated measures, so subjects and items are both random effects.
 
@@ -104,7 +65,7 @@ Dummy output (illustrative; values will differ slightly when you run it)
 
 ---
 
-## 4. Approach A: Decide whether the interaction term belongs, then test it
+## 2. Approach A: Decide whether the interaction term belongs, then test it
 
 Why this matters
 Supervisor and reviewer comments often point here. An interaction asks: does the effect of one predictor depend on the level of another? Adding interactions "just in case" inflates the number of tests, makes the model harder to read, and invites reviewer questions.
@@ -219,7 +180,7 @@ Interpretation: in both groups easy items are answered correctly more often. The
 
 ---
 
-## 5. Approach B: Check the random effects structure and convergence
+## 3. Approach B: Check the random effects structure and convergence
 
 Why this matters
 Reviewers in linguistics and psychology often ask whether random slopes were considered. A singular fit or convergence warning that is not mentioned is a common reason for a request for revision.
@@ -267,7 +228,7 @@ How to interpret
 
 ---
 
-## 6. Approach C: Report results so that readers can interpret them
+## 4. Approach C: Report results so that readers can interpret them
 
 Why this matters
 Log-odds are hard to read. Reviewers expect odds ratios with confidence intervals, plus a plot or table of predicted probabilities.
@@ -319,7 +280,7 @@ How to interpret
 
 ---
 
-## 7. Approach D: Check assumptions and diagnostics
+## 5. Approach D: Check assumptions and diagnostics
 
 Why this matters
 Generalised linear mixed models have different diagnostics from ordinary regression. Standard residual plots mislead. DHARMa residuals are the current practical choice.
@@ -362,7 +323,7 @@ How to interpret
 
 ---
 
-## 8. Approach E: Wording and reproducibility checklist for the data analysis section
+## 6. Approach E: Wording and reproducibility checklist for the data analysis section
 
 Use this live while reading the student's text.
 
@@ -395,7 +356,7 @@ Safe wording examples
 
 ---
 
-## 9. How to do the equivalent in SPSS
+## 7. How to do the equivalent in SPSS
 
 Important limitation: SPSS handles a single binary outcome with crossed random effects (participants and items together) awkwardly. R with lme4 is the better tool. If the student is committed to SPSS, explain the trade-off before anything changes in a paper that is going back for publication.
 
@@ -416,7 +377,7 @@ Caveat: the menu steps are from general knowledge of the procedure and have not 
 
 ---
 
-## 10. Efficient Q and A list for the session
+## 8. Efficient Q and A list for the session
 
 | What the student asks (or needs) | Answer |
 |---|---|
@@ -433,8 +394,3 @@ Caveat: the menu steps are from general knowledge of the procedure and have not 
 
 ---
 
-## 11. Notes for the tutor (not for the student)
-
-- Ask for the revised text and script first and map the student's actual model onto the examples above.
-- All numerical output above is dummy output written to illustrate interpretation. It is not from a real run and will not reproduce exactly. To get exact numbers, run the simulation code once in R.
-- A tutor explains and checks. The student's supervisor and the journal's statistical guidance remain the final authority on the analysis plan.
