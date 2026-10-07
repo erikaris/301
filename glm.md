@@ -1,6 +1,18 @@
 
 # First: What Is a GLM? (Accessible Explanation)
 
+---
+Quick notes:
+
+| Model | Outcome/error distribution | Observations |
+|---|---|---|
+| **Linear model (LM)** | Normally distributed errors | Independent |
+| **Linear mixed-effects model (LMM)** | Normally distributed conditional errors | **Clustered/repeated** |
+| **Generalised linear model (GLM)** | Non-normal response allowed: binary, count, etc. | Independent |
+| **Generalised linear mixed model (GLMM)** | Non-normal response allowed | **Clustered/repeated** |
+
+---
+
 Start simple:
 
 > A **General Linear Model (LM)** is standard regression — it assumes the outcome is **continuous** and normally distributed.
