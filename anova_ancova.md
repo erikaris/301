@@ -183,17 +183,9 @@ For example, imagine:
 
 Then:
 
-$$
-\text{Exam score}
-=
-\text{reference level}
-+
-\text{teaching-method effect}
-+
-\text{effect of prior score}
-+
-\text{unexplained variation}
-$$
+```math
+\text{Exam score} = \text{reference level} + \text{teaching-method effect} + \text{effect of prior score} + \text{unexplained variation}
+```
 
 ### What are $i$ and $j$?
 
