@@ -131,17 +131,9 @@ For ANCOVA, if Treatment is the main factor of interest, the central question be
 
 In the MPS314 clinical-trial example:
 
-$$
-Y_{ij}
-=
-\mu
-+
-\tau_i
-+
-\beta x_{ij}
-+
-\epsilon_{ij}
-$$
+```math
+Y_{ij} = \mu + \tau_i + \beta x_{ij} + \epsilon_{ij}
+```
 
 and the treatment hypothesis is:
 
