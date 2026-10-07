@@ -1,5 +1,24 @@
 # A. Linear, Generalised Linear, and Mixed-Effects Models
 
+---
+Quick notes:
+
+| Model | Outcome/error distribution | Observations |
+|---|---|---|
+| **Linear model (LM)** | Normally distributed errors | Independent |
+| **Linear mixed-effects model (LMM)** | Normally distributed conditional errors | **Clustered/repeated** |
+| **Generalised linear model (GLM)** | Non-normal response allowed: binary, count, etc. | Independent |
+| **Generalised linear mixed model (GLMM)** | Non-normal response allowed | **Clustered/repeated** |
+
+Or in another word:
+
+| | Independent observations | Repeated/clustered observations |
+|---|---|---|
+| *Continuous outcome* | Linear model (LM) | Linear mixed-effects model (LMM) |
+| *Binary/count/etc.* | Generalised linear model (GLM) | Generalised linear mixed model (GLMM) |
+
+---
+
 ## 1. The big picture
 
 A useful starting framework is to ask **two questions**:
