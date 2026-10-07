@@ -324,3 +324,226 @@ H_1:\tau_2\neq0
 $$
 
 So **$\tau$ is the key parameter for the group comparison**, while **$\beta$ describes the relationship between the covariate and outcome**.
+
+---
+
+## Worked example: Fitting ANCOVA in R
+
+The MPS314 example considers a clinical trial comparing **Drug** and **Placebo** for reducing cholesterol.
+
+For the ANCOVA, we have:
+
+- **Outcome:** `month6` = cholesterol after 6 months
+- **Factor:** `treatment` = Placebo or Drug
+- **Covariate:** `baseline` = cholesterol before treatment
+
+### The data
+
+The relevant part of the data has the following structure:
+
+```text
+treatment    baseline    month6
+placebo      ...         ...
+drug         ...         ...
+placebo      ...         ...
+drug         ...         ...
+...          ...         ...
+```
+
+Each row represents one patient.
+
+The question is:
+
+> **Is there a difference in cholesterol after 6 months between Drug and Placebo after adjusting for baseline cholesterol?**
+
+### Mathematical model
+
+The ANCOVA model used in MPS314 is:
+
+```math
+Y_{ij} = \mu + \tau_i + \beta x_{ij} + \epsilon_{ij}
+```
+
+where:
+
+- $Y_{ij}$ = six-month cholesterol
+- $\mu$ = intercept
+- $\tau_i$ = treatment-group effect
+- $x_{ij}$ = baseline cholesterol
+- $\beta$ = coefficient for baseline cholesterol
+- $\epsilon_{ij}$ = unexplained/random variation
+
+In simple terms:
+
+```text
+6-month cholesterol
+=
+intercept
++
+treatment effect
++
+baseline cholesterol effect
++
+unexplained variation
+```
+
+### Fit the model in R
+
+```r
+# Fit the ANCOVA model
+# month6 = outcome
+# baseline = continuous covariate
+# treatment = categorical factor
+lm1 <- lm(
+  month6 ~ baseline + treatment,
+  data = cholesterol_imputed
+)
+
+# Display the results
+summary(lm1)
+```
+
+The important part is:
+
+```r
+month6 ~ baseline + treatment
+```
+
+This is the R version of:
+
+```math
+Y_{ij} = \mu + \tau_i + \beta x_{ij} + \epsilon_{ij}
+```
+
+The correspondence is:
+
+| Mathematical model | R model |
+|---|---|
+| $Y_{ij}$ | `month6` |
+| $\mu$ | `(Intercept)` |
+| $\tau_i$ | `treatment` |
+| $\beta x_{ij}$ | `baseline` |
+| $\epsilon_{ij}$ | residual/error |
+
+### R output
+
+The MPS314 example gives:
+
+```text
+Coefficients:
+                Estimate Std. Error t value  Pr(>|t|)
+(Intercept)      2.41959    0.45292   5.342  6.07e-07 ***
+baseline         0.49485    0.10063   4.918  3.57e-06 ***
+treatmentdrug   -0.16205    0.05494  -2.950   0.00399 **
+
+Residual standard error: 0.2713 on 97 degrees of freedom
+Multiple R-squared:  0.2305
+Adjusted R-squared:  0.2147
+F-statistic: 14.53
+p-value: 3.024e-06
+```
+
+### How does R turn this into the fitted model?
+
+Take the values from the `Estimate` column:
+
+```text
+(Intercept)      =  2.41959
+baseline         =  0.49485
+treatmentdrug    = -0.16205
+```
+
+These replace the unknown parameters in the mathematical model.
+
+So:
+
+```math
+\hat{\mu}=2.41959
+```
+
+```math
+\hat{\beta}=0.49485
+```
+
+```math
+\hat{\tau}_{drug}=-0.16205
+```
+
+The fitted model is therefore:
+
+```math
+\widehat{Y} = 2.41959 + 0.49485x - 0.16205(\text{Drug})
+```
+
+R represents the treatment group using an indicator variable:
+
+```math
+\text{Drug} =
+\begin{cases}
+0 & \text{Placebo}\\
+1 & \text{Drug}
+\end{cases}
+```
+
+Therefore, for **Placebo**, Drug = 0:
+
+```math
+\widehat{Y}_{Placebo}
+=
+2.41959 + 0.49485x
+```
+
+For **Drug**, Drug = 1:
+
+```math
+\widehat{Y}_{Drug}
+=
+2.41959 + 0.49485x - 0.16205
+```
+
+So, for patients with the **same baseline cholesterol**, the difference between Drug and Placebo is:
+
+```math
+\widehat{Y}_{Drug}-\widehat{Y}_{Placebo}=-0.16205
+```
+
+This is the estimated treatment effect:
+
+```math
+\hat{\tau}_{drug}=-0.16205
+```
+
+In words:
+
+> **After adjusting for baseline cholesterol, the Drug group is estimated to have mean six-month cholesterol 0.162 mmol/L lower than the Placebo group.**
+
+The treatment p-value is:
+
+```math
+p=0.00399
+```
+
+so there is evidence of a treatment-group difference after adjusting for baseline cholesterol.
+
+The main connection to remember is:
+
+```text
+Mathematics:
+
+Y = μ + τ(group) + β(covariate) + ε
+
+                    ↓
+
+R:
+
+lm(outcome ~ covariate + group, data = ...)
+
+                    ↓
+
+MPS314:
+
+lm(month6 ~ baseline + treatment,
+   data = cholesterol_imputed)
+```
+
+So ANCOVA in R is simply a linear model containing both the **categorical factor** and the **continuous covariate**.
