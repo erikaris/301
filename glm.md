@@ -15,8 +15,8 @@ Or in another word:
 
 | | Independent observations | Repeated/clustered observations |
 |---|---|---|
-| Continuous outcome | Linear model (LM) | Linear mixed-effects model (LMM) |
-| Binary/count/etc. | Generalised linear model (GLM) | Generalised linear mixed model (GLMM) |
+| *Continuous outcome* | Linear model (LM) | Linear mixed-effects model (LMM) |
+| *Binary/count/etc.* | Generalised linear model (GLM) | Generalised linear mixed model (GLMM) |
 
 ---
 
