@@ -11,6 +11,13 @@ Quick notes:
 | **Generalised linear model (GLM)** | Non-normal response allowed: binary, count, etc. | Independent |
 | **Generalised linear mixed model (GLMM)** | Non-normal response allowed | **Clustered/repeated** |
 
+Or in another word:
+
+| | Independent observations | Repeated/clustered observations |
+|---|---|---|
+| Continuous outcome | Linear model (LM) | Linear mixed-effects model (LMM) |
+| Binary/count/etc. | Generalised linear model (GLM) | Generalised linear mixed model (GLMM) |
+
 ---
 
 Start simple:
