@@ -50,7 +50,7 @@ For all four, lower is better, and they only make sense when comparing models on
 | MSE | 0.99 / 5 | 0.198 |
 | RMSE | square root of 0.198 | 0.445 hours |
 
-![Residuals of five test hills around a fitted line, and how they turn into MAE, SSE, MSE and RMSE](figures/figure1_residuals_and_metrics.png)
+![Residuals of five test hills around a fitted line, and how they turn into MAE, SSE, MSE and RMSE](images/figure1_residuals_and_metrics.png)
 
 Things to point out:
 
@@ -78,7 +78,7 @@ Model A:  A ###   B ###   C ###   D ###   E ###
 Model B:  A       B       C       D       E ###############
 ```
 
-![Model A has five small misses and Model B has one large miss, yet both have an MAE of 0.30 hours](figures/figure2_same_mae_different_rmse.png)
+![Model A has five small misses and Model B has one large miss, yet both have an MAE of 0.30 hours](images/figure2_same_mae_different_rmse.png)
 
 | Metric | Model A | Model B |
 |---|---|---|
