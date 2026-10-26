@@ -2,6 +2,8 @@
 
 *A reusable statistics tutoring reference. All examples and outputs are illustrative unless explicitly calculated. Adapt the method to the actual sampling and measurement design.*
 
+Also check the [decision tree](https://github.com/erikaris/301/blob/main/reliability_decision_tree_updated-1.pdf). 
+
 ## 1. What are we trying to establish?
 
 | Property | Question | Why assess it? | When? |
