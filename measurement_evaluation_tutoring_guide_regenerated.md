@@ -2,10 +2,6 @@
 
 *A reusable statistics tutoring reference. All examples and outputs are illustrative unless explicitly calculated. Adapt the method to the actual sampling and measurement design.*
 
-## Applying the guide to Abeer's appointment (provisional)
-
-The referral does **not** establish what "reliability" means, whether the outcome is numerical or categorical, whether one or both eyes are measured, or how many observers and occasions are involved. The most defensible immediate task is to clarify the statistical question and data layout. Ask Abeer to show five anonymised rows and define the unit, scale, repetition, observer/instrument and acceptable error. Then use Section A to select the appropriate method. **Do not prescribe ICC or Bland–Altman solely because the research is ophthalmological.**
-
 ## 1. What are we trying to establish?
 
 | Property | Question | Why assess it? | When? |
