@@ -93,6 +93,7 @@ For observations 4, 6, 8, sample variance is 4 and sample SD is $\sqrt4=2$ units
 ### Illustration: heights and deviations from the mean
 
 ![Six people with different heights, a horizontal mean line, and arrows marking distances from the mean](images/standard_deviation_people.svg)
+(source: [https://numiqo.com/tutorial/standard-deviation](https://numiqo.com/tutorial/standard-deviation))
 
 *This redraw follows the visual layout of the supplied reference: six figures, a horizontal mean line and arrows showing deviations. The values are made internally consistent. The six illustrative heights are 18, 8, 15, 8, 9 and 11 cm, with mean 11.5 cm and **sample SD 4.14 cm**. The unusually small heights are purely schematic; for real people use realistic units and measurements.*
 
