@@ -1,6 +1,7 @@
-# Estimation, Variability and Confidence Intervals
+# Stat Key Concepts: Estimation, Variability and Confidence Intervals
 
 *A reusable introductory statistics tutorial with examples, worked calculations, interpretation, and R/SPSS guidance.*
+*Also check [the infographic here](https://github.com/erikaris/301/blob/main/Estimation%20and%20Confidence%20Intervals%20Infographic.png)*
 
 ## Learning objectives
 
