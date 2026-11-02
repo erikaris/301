@@ -133,13 +133,13 @@ The following are **original, simulated-data histograms** created for this tutor
 
 **Histogram A: approximately symmetric distribution**
 
-![Histogram of approximately symmetric numerical observations](statistical_tutorial_assets/approximately_symmetric_histogram.png)
+![Histogram of approximately symmetric numerical observations](images/approximately_symmetric_histogram.png)
 
 The observations cluster around the centre, with roughly similar tails. If the study design is appropriate and there are no influential outliers, a parametric mean comparison such as Welch’s t-test is often reasonable—even with a modest sample.
 
 **Histogram B: strongly right-skewed distribution**
 
-![Histogram of strongly right-skewed numerical observations](statistical_tutorial_assets/right_skewed_histogram.png)
+![Histogram of strongly right-skewed numerical observations](images/right_skewed_histogram.png)
 
 Most observations are relatively low, with a long tail of larger values. **Do not immediately select Mann–Whitney.** With a large enough independent sample, a mean-based test may still be reasonable; with very small samples, severe skew can make ordinary t inference fragile. If the research question concerns typical values or relative ordering rather than means, a median-focused or rank-based method may fit better.
 
