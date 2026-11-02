@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 450" role="img" aria-label="Six people of different heights, with a mean line and arrows showing each deviation from the mean">
+<rect width="940" height="450" fill="white"/>
+<rect x="35" y="150.5" width="875" height="38" fill="#7cc6c4" opacity=".75"/>
+<line x1="35" y1="169.5" x2="910" y2="169.5" stroke="#9e5157" stroke-width="5"/>
+<path d="M35 16 V365 H922" stroke="#008f8c" stroke-width="6" fill="none"/><path d="M22 34 L35 12 L48 34 M901 352 L923 365 L901 378" stroke="#008f8c" stroke-width="6" fill="none"/>
+<text x="610" y="40" font-family="Arial,sans-serif" font-size="29" font-weight="bold">Standard deviation</text>
+<text x="910" y="156.5" font-family="Arial,sans-serif" font-size="17" text-anchor="end" font-weight="bold">Mean = 11.5 cm</text>
+<ellipse cx="120" cy="75.0" rx="13.8" ry="18.8" fill="#008f8c"/>
+<path d="M103.8 107.0 Q120 95.8 136.2 107.0 L143.8 197.0 L132.5 197.0 L131.2 365.0 L122.5 365.0 L120.0 200.8 L117.5 365.0 L108.8 365.0 L107.5 197.0 L96.2 197.0 Z" fill="#008f8c"/>
+<line x1="89" y1="59.0" x2="151" y2="59.0" stroke="#9e5157" stroke-width="5"/>
+<line x1="73" y1="66.0" x2="73" y2="162.5" stroke="#9e5157" stroke-width="3"/>
+<path d="M68 68.0 L73 59.0 L78 68.0 M68 160.5 L73 169.5 L78 160.5" fill="none" stroke="#9e5157" stroke-width="2"/>
+<text x="120" y="46.0" font-family="Arial,sans-serif" font-size="20" text-anchor="middle" fill="#14212c">18 cm</text>
+<ellipse cx="260" cy="245.0" rx="8.8" ry="12.0" fill="#008f8c"/>
+<path d="M249.6 277.0 Q260 269.8 270.4 277.0 L275.2 334.6 L268.0 334.6 L267.2 365.0 L261.6 365.0 L260.0 337.0 L258.4 365.0 L252.8 365.0 L252.0 334.6 L244.8 334.6 Z" fill="#008f8c"/>
+<line x1="229" y1="229.0" x2="291" y2="229.0" stroke="#9e5157" stroke-width="5"/>
+<line x1="213" y1="176.5" x2="213" y2="222.0" stroke="#9e5157" stroke-width="3"/>
+<path d="M208 178.5 L213 169.5 L218 178.5 M208 220.0 L213 229.0 L218 220.0" fill="none" stroke="#9e5157" stroke-width="2"/>
+<text x="260" y="145.5" font-family="Arial,sans-serif" font-size="20" text-anchor="middle" fill="#14212c">8 cm</text>
+<ellipse cx="400" cy="126.0" rx="13.8" ry="18.8" fill="#008f8c"/>
+<path d="M383.8 158.0 Q400 146.8 416.2 158.0 L423.8 248.0 L412.5 248.0 L411.2 365.0 L402.5 365.0 L400.0 251.8 L397.5 365.0 L388.8 365.0 L387.5 248.0 L376.2 248.0 Z" fill="#008f8c"/>
+<line x1="369" y1="110.0" x2="431" y2="110.0" stroke="#9e5157" stroke-width="5"/>
+<line x1="353" y1="117.0" x2="353" y2="162.5" stroke="#9e5157" stroke-width="3"/>
+<path d="M348 119.0 L353 110.0 L358 119.0 M348 160.5 L353 169.5 L358 160.5" fill="none" stroke="#9e5157" stroke-width="2"/>
+<text x="400" y="97.0" font-family="Arial,sans-serif" font-size="20" text-anchor="middle" fill="#14212c">15 cm</text>
+<ellipse cx="540" cy="245.0" rx="8.8" ry="12.0" fill="#008f8c"/>
+<path d="M529.6 277.0 Q540 269.8 550.4 277.0 L555.2 334.6 L548.0 334.6 L547.2 365.0 L541.6 365.0 L540.0 337.0 L538.4 365.0 L532.8 365.0 L532.0 334.6 L524.8 334.6 Z" fill="#008f8c"/>
+<line x1="509" y1="229.0" x2="571" y2="229.0" stroke="#9e5157" stroke-width="5"/>
+<line x1="493" y1="176.5" x2="493" y2="222.0" stroke="#9e5157" stroke-width="3"/>
+<path d="M488 178.5 L493 169.5 L498 178.5 M488 220.0 L493 229.0 L498 220.0" fill="none" stroke="#9e5157" stroke-width="2"/>
+<text x="540" y="145.5" font-family="Arial,sans-serif" font-size="20" text-anchor="middle" fill="#14212c">8 cm</text>
+<ellipse cx="680" cy="228.0" rx="10.0" ry="13.7" fill="#008f8c"/>
+<path d="M668.1 260.0 Q680 251.8 691.9 260.0 L697.4 325.8 L689.1 325.8 L688.2 365.0 L681.8 365.0 L680.0 328.5 L678.2 365.0 L671.8 365.0 L670.9 325.8 L662.6 325.8 Z" fill="#008f8c"/>
+<line x1="649" y1="212.0" x2="711" y2="212.0" stroke="#9e5157" stroke-width="5"/>
+<line x1="633" y1="176.5" x2="633" y2="205.0" stroke="#9e5157" stroke-width="3"/>
+<path d="M628 178.5 L633 169.5 L638 178.5 M628 203.0 L633 212.0 L638 203.0" fill="none" stroke="#9e5157" stroke-width="2"/>
+<text x="680" y="145.5" font-family="Arial,sans-serif" font-size="20" text-anchor="middle" fill="#14212c">9 cm</text>
+<ellipse cx="820" cy="194.0" rx="12.5" ry="17.1" fill="#008f8c"/>
+<path d="M805.2 226.0 Q820 215.7 834.8 226.0 L841.7 308.1 L831.4 308.1 L830.3 365.0 L822.3 365.0 L820.0 311.5 L817.7 365.0 L809.7 365.0 L808.6 308.1 L798.3 308.1 Z" fill="#008f8c"/>
+<line x1="789" y1="178.0" x2="851" y2="178.0" stroke="#9e5157" stroke-width="5"/>
+<line x1="773" y1="176.5" x2="773" y2="171.0" stroke="#9e5157" stroke-width="3"/>
+<path d="M768 178.5 L773 169.5 L778 178.5 M768 169.0 L773 178.0 L778 169.0" fill="none" stroke="#9e5157" stroke-width="2"/>
+<text x="820" y="145.5" font-family="Arial,sans-serif" font-size="20" text-anchor="middle" fill="#14212c">11 cm</text>
+<text x="460" y="418" font-family="Arial,sans-serif" font-size="19" text-anchor="middle" fill="#14212c">Sample SD = 4.14 cm  |  Individual heights: 18, 8, 15, 8, 9, 11 cm</text>
+</svg>
