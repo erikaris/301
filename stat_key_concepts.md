@@ -317,9 +317,7 @@ These formulas presume appropriate sampling and independence. Clustered data, su
 
 ---
 
-# Separate appointment notes: five questions and answers
-
-*This section is separate from the general tutorial and can be omitted when sharing the tutorial as a reusable resource.*
+# Summary
 
 1. **Population/sample and parameter/statistic:** A population is the whole group of interest; a sample is the observed subset. A parameter describes the population, while a statistic is calculated from the sample to estimate it.
 2. **Sampling methods:** Simple random, systematic, stratified, cluster and multistage sampling use probability selection; convenience, purposive, quota and snowball sampling do not generally provide known selection probabilities.
